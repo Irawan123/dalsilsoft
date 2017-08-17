@@ -11,3 +11,5 @@ class Location(models.Model):
     name = fields.Char("Nama Lokasi")
     note = fields.Text("Keterangan")
     active = fields.Boolean("Is Active ?", default=True)
+    is_customer = fields.Boolean("Is Customer", default=False)
+    is_supplier = fields.Boolean("Is Supplier", default=False)

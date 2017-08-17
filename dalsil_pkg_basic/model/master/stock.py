@@ -8,12 +8,12 @@ class Stock(models.Model):
     _inherit = "ss.model"
     _description = "Stock"
 
-    product_id = fields.Many2one("dalsil.product", "Barang")
+    product_id = fields.Many2one("dalsil.product", "Barang", ondelete="cascade")
     qty = fields.Float(digits=(10,2), string="Jumlah Barang")
     location_id = fields.Many2one("dalsil.location", "Lokasi")
 
     @api.model
-    def add_stock(self, product_id, location_id, qty):
+    def set_stock(self, product_id, location_id, qty):
         stock = self.env['dalsil.stock']
         if not isinstance(product_id, int):
             product_id = product_id.id
@@ -23,26 +23,14 @@ class Stock(models.Model):
             ('product_id', '=', product_id),
             ('location_id', '=' location_id)
         ])
-        if stock:
+        if stock and stock.qty + qty >= 0:
             stock.qty += qty
         else:
-            stock.create({
-                "product_id": product_id,
-                "qty": qty,
-                "location_id": location_id
-            })
-
-    @api.model
-    def sub_stock(self, product_id, location_id, qty):
-        stock = self.env['dalsil.stock']
-        if not isinstance(product_id, int):
-            product_id = product_id.id
-        if not isinstance(location_id, int):
-            location_id = location_id.id
-        stock = stock.search([
-            ('product_id', '=', product_id),
-            ('location_id', '=' location_id)
-        ])
-        if not stock or stock.qty - qty < 0:
-            raise ValidationError("Stock tidak mencukupi")
-        stock.qty += qty
+            if qty >= 0:
+                stock.create({
+                    "product_id": product_id,
+                    "qty": qty,
+                    "location_id": location_id
+                })
+            else:
+                raise ValidationError("Stock tidak mencukupi")
