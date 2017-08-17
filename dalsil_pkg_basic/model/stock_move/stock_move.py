@@ -21,6 +21,7 @@ class StockMove(models.Model):
     line_ids = fields.One2many("dalsil.stock_move.line", "parent_id", string="Detail Stock")
     note = fields.Text("Keterangan")
     state = fields.Selection(STATE, string="Status")
+    purchase_id = fields.Many2one("dalsil.purchase", "Ref Purchase")
     done_uid = fields.Many2one("res.users", "Done By", readonly=True)
     dt_done = fields.Datetime("Done On", readonly=True)
     cancel_uid = fields.Many2one("res.users", "Canceled By", readonly=True)
@@ -33,7 +34,7 @@ class StockMove(models.Model):
             record = record.suspend_security()
             if record.state != 'draft':
                 continue
-            stock = self.env['dalsil.stock']
+            stock = self.env['dalsil.stock'].suspend_security()
             for line_id in record.line_ids:
                 if record.source_loc_id:
                     stock.set_stock(line_id.product_id, record.source_loc_id, line_id.qty)
@@ -48,7 +49,7 @@ class StockMove(models.Model):
         for record in self:
             record = record.suspend_security()
             if record.state == 'done':
-                stock = self.env['dalsil.stock']
+                stock = self.env['dalsil.stock'].suspend_security()
                 for line_id in record.line_ids:
                     if record.source_loc_id:
                         stock.set_stock(line_id.product_id, record.source_loc_id, line_id.qty * -1)
