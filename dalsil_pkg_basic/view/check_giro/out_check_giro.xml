@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--#########################################################################################################-->
+        <!-- SEARCH -->
+        <!--#########################################################################################################-->
+        <record id="view_dalsil_cg_out_search" model="ir.ui.view">
+            <field name="name">dalsil.check_giro.out.search</field>
+            <field name="model">dalsil.check_giro.out</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="cg_type"/>
+                    <field name="journal_id"/>
+                    <field name="account_id"/>
+                    <field name="vendor_id"/>
+                    <field name="due_date"/>
+                    <field name="state"/>
+                    <group string="Group By">
+                        <filter name="group_cg_type" string="Type" context="{'group_by': 'cg_type'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--#########################################################################################################-->
+        <!--Group Tree View-->
+        <!--#########################################################################################################-->
+        <record model="ir.ui.view" id="view_dalsil_cg_out_tree">
+            <field name="name">dalsil.check_giro.out.tree</field>
+            <field name="model">dalsil.check_giro.out</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="cg_type"/>
+                    <field name="journal_id"/>
+                    <field name="account_id"/>
+                    <field name="vendor_id"/>
+                    <field name="due_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--#########################################################################################################-->
+        <!-- FORM -->
+        <!--#########################################################################################################-->
+        <record id="view_dalsil_cg_out_form" model="ir.ui.view">
+            <field name="name">dalsil.check_giro.out.form</field>
+            <field name="model">dalsil.check_giro.out</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button type="object" name="to_validate" string="Validate"
+                                class="oe_highlight"
+                                states="draft"/>
+                        <button type="object" name="to_withdraw" string="Withdraw"
+                                class="oe_highlight"
+                                states="open"/>
+                        <button type="object" name="to_cancel" string="Cancel"
+                                states="draft"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,open,withdraw"/>
+                    </header>
+
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="cg_type"/>
+                                <field name="journal_id" create="0"/>
+                                <field name="account_id"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <group string="Cek Giro Information">
+                            <group>
+                                <field name="vendor_id"/>
+                            </group>
+                            <group>
+                                <field name="name"/>
+                                <field name="due_date"/>
+                                <label for="cg_amount" string="Cek Giro Amount"/>
+                                <div>
+                                    <field name="cg_amount" class="oe_outline" nolabel="1"/>
+                                    <field name="cg_curr_id" class="oe_outline"/>
+                                </div>
+                            </group>
+                        </group>
+                        <separator string="Memo"/>
+                        <field name="memo"/>
+                        <group string="Withdraw Information">
+                            <group>
+                                <field name="wd_journal_id"
+                                       attrs="{'invisible': [('state', 'in', ['draft',False])], 'required': [('state', 'not in', ['draft',False])]}"
+                                       create="0"/>
+                                <field name="wd_account_id"
+                                       attrs="{'invisible': [('state', 'in', ['draft',False])], 'required': [('state', 'not in', ['draft',False])]}"/>
+                            </group>
+                            <group>
+                                <field name="wd_date"
+                                       attrs="{'invisible': [('state', 'in', ['draft',False])], 'required': [('state', 'not in', ['draft',False])]}"/>
+                                <field name="wd_amount"
+                                       attrs="{'invisible': [('state', 'in', ['draft',False])], 'required': [('state', 'not in', ['draft',False])]}"/>
+                            </group>
+                        </group>
+                        <field name="id" invisible="1"/>
+                        <notebook>
+                            <page string="Transaction">
+                                <field name="line_ids" context="{'default_parent_id':id}"
+                                       attrs="{'readonly': [('state', 'not in', ['draft',False])]}" nolabel="1"/>
+                                <group class="oe_subtotal_footer oe_right">
+                                    <field name="total_pay" widget="monetary"/>
+                                </group>
+                            </page>
+                            <page string="Other Info">
+                                <field name="note"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--#########################################################################################################-->
+        <!--Act Window-->
+        <!--#########################################################################################################-->
+        <record model="ir.actions.act_window" id="act_dalsil_cg_out">
+            <field name="name">Outgoing Cek Giro</field>
+            <field name="res_model">dalsil.check_giro.out</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Click here to create Outgoing Cek Giro.</p>
+            </field>
+        </record>
+
+        <!--#########################################################################################################-->
+    </data>
+</odoo>

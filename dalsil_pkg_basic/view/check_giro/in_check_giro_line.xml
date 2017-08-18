@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--#########################################################################################################-->
+        <!--Group Tree View-->
+        <!--#########################################################################################################-->
+        <record model="ir.ui.view" id="view_dalsil_cg_in_line_tree">
+            <field name="name">dalsil.check_giro.in.line.tree</field>
+            <field name="model">dalsil.check_giro.in.line</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="parent_id" invisible="1"/>
+                    <field name="customer_id" invisible="1"/>
+                    <field name="invoice_id"/>
+                    <field name="bill_date"/>
+                    <field name="due_date"/>
+                    <field name="source_doc"/>
+                    <field name="total"/>
+                    <field name="to_pay"/>
+                    <field name="payment"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--#########################################################################################################-->
+    </data>
+</odoo>
