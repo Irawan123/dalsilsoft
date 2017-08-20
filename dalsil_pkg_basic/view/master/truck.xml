@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--#########################################################################################################-->
+        <!-- SEARCH -->
+        <!--#########################################################################################################-->
+        <record id="view_dalsil_truck_search" model="ir.ui.view">
+            <field name="name">dalsil.truck.search</field>
+            <field name="model">dalsil.truck</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="type_truck"/>
+                    <field name="note"/>
+                    <field name="active"/>
+                    <group string="Group By">
+                        <filter name="group_type_truck" string="Type Truck" context="{'group_by': 'type_truck'}"/>
+                        <filter name="group_active" string="Active" context="{'group_by': 'active'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--#########################################################################################################-->
+        <!--Group Tree View-->
+        <!--#########################################################################################################-->
+        <record model="ir.ui.view" id="view_dalsil_truck_tree">
+            <field name="name">dalsil.truck.tree</field>
+            <field name="model">dalsil.truck</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="type_truck"/>
+                    <field name="note"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--#########################################################################################################-->
+        <!-- FORM -->
+        <!--#########################################################################################################-->
+        <record id="view_dalsil_truck_form" model="ir.ui.view">
+            <field name="name">dalsil.truck.form</field>
+            <field name="model">dalsil.truck</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="type_truck"/>
+                                <field name="note"/>
+                                <field name="active"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--#########################################################################################################-->
+        <!--Act Window-->
+        <!--#########################################################################################################-->
+        <record model="ir.actions.act_window" id="act_dalsil_truck">
+            <field name="name">Truck</field>
+            <field name="res_model">dalsil.truck</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Click here to create Truck.</p>
+            </field>
+        </record>
+
+        <!--#########################################################################################################-->
+    </data>
+</odoo>
