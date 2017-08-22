@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <data noupdate="1">
+        <record id="dalsil_config" model="dalsil.config">
+            <field name="def_sangu"></field>
+        </record>
+    </data>
+</odoo>
