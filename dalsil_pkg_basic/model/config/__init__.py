@@ -1,0 +1,2 @@
+import config
+import wiz_config

@@ -9,6 +9,11 @@
         "base", "product", "account", "ss_common"
     ],
     "data": [
-        
+        'view/config/config.xml',
+        'view/config/wiz_config.xml',
+        'view/master/truck.xml',
+        'view/rent_truck/rent_truck.xml',
+        'view/rent_truck/rent_truck_line.xml',
+        'view/menu.xml'
     ],
 }

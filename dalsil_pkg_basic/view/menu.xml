@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <data>
+        <menuitem id="dalsil_menu" name="Menu" sequence="1"/>
+
+        <!-- Menu Product -->
+        <menuitem id="dalsil_menu_master" name="Master" sequence="1"
+                  parent="dalsil_menu"/>
+
+        <menuitem id="dalsil_truck_act" name="Truck" sequence="1"
+                  action="act_dalsil_truck" parent="dalsil_menu_master"/>
+
+        <!-- Menu Transaction -->
+        <menuitem id="dalsil_menu_trans" name="Transaction" sequence="2"
+                  parent="dalsil_menu"/>
+
+        <menuitem id="dalsil_rent_truck_act" name="Penyewaan Truck" sequence="1"
+                  action="act_dalsil_rent_truck" parent="dalsil_menu_trans"/>
+
+        <!-- Menu Configuration -->
+        <menuitem id="dalsil_config_act" name="Configuration" sequence="3"
+                  action="act_dalsil_config" parent="dalsil_menu"/>
+    </data>
+</odoo>

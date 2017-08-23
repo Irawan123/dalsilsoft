@@ -19,10 +19,10 @@ class WizConfig(models.TransientModel):
         })
 
     @api.multi
-    def get_default_setting(self):
+    def get_default_setting(self, context):
         config = self.env["ir.model.data"].xmlid_to_object("dalsil_pkg_basic.dalsil_config")
 
         return {
-            "def_sangu": config.def_sangu.id
+            "def_sangu": config.def_sangu
         }
         
