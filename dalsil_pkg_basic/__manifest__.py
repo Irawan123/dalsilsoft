@@ -9,6 +9,8 @@
         "base", "product", "account", "ss_common"
     ],
     "data": [
+        'view/modified/res_partner.xml',
+
         'view/config/config.xml',
         'view/config/wiz_config.xml',
         'view/master/truck.xml',

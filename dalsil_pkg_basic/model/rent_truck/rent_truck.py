@@ -26,7 +26,7 @@ class RentTruck(models.Model):
     state = fields.Selection(STATE, "State")
     truck_id = fields.Many2one("dalsil.truck", "Truck", domain=[("active", "=", True)], required=True)
     driver_id = fields.Many2one("res.partner", "Driver", domain=[("active", "=", True), ("is_driver", "=", True)], required=True)
-    customer_id = fields.Many2one("res.partner", "Destination", domain=[("active", "=", True), ("is_customer", "=", True)], required=True)
+    customer_id = fields.Many2one("res.partner", "Destination", domain=[("active", "=", True), ("customer", "=", True)], required=True)
     dest_type = fields.Selection(DEST_TYPE, "Destination Type", required=True)
     so_number = fields.Char("SO Number")
     dn_number = fields.Char("DN Number")

@@ -3,11 +3,14 @@
     <data>
         <menuitem id="dalsil_menu" name="Menu" sequence="1"/>
 
-        <!-- Menu Product -->
+        <!-- Menu Master -->
         <menuitem id="dalsil_menu_master" name="Master" sequence="1"
                   parent="dalsil_menu"/>
 
-        <menuitem id="dalsil_truck_act" name="Truck" sequence="1"
+        <menuitem id="dalsil_menu_driver" name="Driver" sequence="10"
+                  action="action_partner_driver_form" parent="dalsil_menu_master"/>
+
+        <menuitem id="dalsil_menu_truck" name="Truck" sequence="50"
                   action="act_dalsil_truck" parent="dalsil_menu_master"/>
 
         <!-- Menu Transaction -->
