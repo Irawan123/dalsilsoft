@@ -21,18 +21,6 @@
                         </group>
                         <group></group>
                     </group>
-                    <group>
-                        <separator string="Created Data"/>
-                        <newline/>
-                        <field name="create_uid" readonly="1"/>
-                        <field name="create_date" readonly="1"/>
-                    </group>
-                    <group>
-                        <separator string="Last Updated"/>
-                        <newline/>
-                        <field name="write_uid" readonly="1"/>
-                        <field name="write_date" readonly="1"/>
-                    </group>
                 </form>
             </field>
         </record>
