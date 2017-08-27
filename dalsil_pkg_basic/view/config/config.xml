@@ -3,6 +3,7 @@
     <data noupdate="1">
         <record id="dalsil_config" model="dalsil.config">
             <field name="def_sangu">0.0</field>
+            <field name="product_sangu"></field>
         </record>
     </data>
 </odoo>

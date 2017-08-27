@@ -26,6 +26,7 @@ class RentTruck(models.Model):
     state = fields.Selection(STATE, "State")
     truck_id = fields.Many2one("dalsil.truck", "Truck", domain=[("active", "=", True)], required=True)
     driver_id = fields.Many2one("res.partner", "Driver", domain=[("active", "=", True), ("is_driver", "=", True)], required=True)
+    customer_rent_id = fields.Many2one("res.partner", "Penyewa Truck", domain=[("active", "=", True), ("customer", "=", True)], required=True)
     customer_id = fields.Many2one("res.partner", "Destination", domain=[("active", "=", True), ("customer", "=", True)], required=True)
     dest_type = fields.Selection(DEST_TYPE, "Destination Type", required=True)
     so_number = fields.Char("SO Number")
@@ -36,6 +37,8 @@ class RentTruck(models.Model):
     note = fields.Text("Note")
 
     line_ids = fields.One2many("dalsil.rent_truck.line", "parent_id", "Product")
+    sangu_invoice_id = fields.Many2one("account.invoice", "Invoice Sangu", readonly="1")
+    rent_invoice_id = fields.Many2one("account.invoice", "Invoice Rent", readonly="1")
 
     #################### Compute ####################
     @api.depends("line_ids", "line_ids.sub_total")
@@ -68,6 +71,16 @@ class RentTruck(models.Model):
             if record.state != STATE[1][0]:
                 continue
             record._cstate(STATE[2][0])
+            vals = {
+                'partner_id': record.customer_id.business_partner_id.id,
+                'invoice_line': tuple((0, 0, {
+                    'product_id'
+                    'name': 'Customer Invoice Item ({})'.format(line.calc_id.calc_number),
+                    'quantity': 1.0,
+                    'price_unit': line.amount
+                }) for line in record.calc_ids)
+            }
+            invoice = self.env['account.invoice'].create(vals)
 
     @api.multi
     def to_cancel(self):
