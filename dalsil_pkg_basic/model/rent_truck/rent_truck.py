@@ -39,6 +39,8 @@ class RentTruck(models.Model):
     line_ids = fields.One2many("dalsil.rent_truck.line", "parent_id", "Product")
     sangu_invoice_id = fields.Many2one("account.invoice", "Invoice Sangu", readonly="1")
     rent_invoice_id = fields.Many2one("account.invoice", "Invoice Rent", readonly="1")
+    inv_invoice_id = fields.Many2one("account.invoice", "Customer Invoice", readonly="1")
+    pur_invoice_id = fields.Many2one("account.invoice", "Vendor Bill", readonly="1")
 
     #################### Compute ####################
     @api.depends("line_ids", "line_ids.sub_total")

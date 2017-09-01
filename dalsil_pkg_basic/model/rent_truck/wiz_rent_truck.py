@@ -2,6 +2,12 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 from datetime import datetime, date, time, timedelta
 
+DEST_TYPE = (
+    ("rent", _("Rent")),
+    ("warehouse", _("Warehouse")),
+    ("customer", _("Customer"))
+)
+
 class WizRentTruck(models.TransientModel):
     """
     Wizard model untuk mengisikan data2 yang dibutuhkan untuk membuat account invoice
@@ -11,9 +17,15 @@ class WizRentTruck(models.TransientModel):
     _description = "Wizard Generate Account Invoice"
 
     rent_truck_id = fields.Many2one("dalsil.rent_truck", string="Rent Truck")
+    dest_type = fields.Selection(DEST_TYPE, "Destination Type")
+    
     sangu_payment_term_id = fields.Many2one('account.payment.term', string='Sangu Payment Terms', required=True)
     
     rent_payment_term_id = fields.Many2one('account.payment.term', string='Rent Payment Terms', required=True)
+
+    inv_line_ids = fields.One2many("dalsil.wiz_rent_truck.line_inv", "parent_id", "Product")
+
+    pur_line_ids = fields.One2many("dalsil.wiz_rent_truck.line_pur", "parent_id", "Product")
 
     #################### public ####################
     def show(self, rent_truck_id):
@@ -69,35 +81,63 @@ class WizRentTruck(models.TransientModel):
         }
         self.rent_truck_id.rent_invoice_id = self.env['account.invoice'].create(vals)
 
+    @api.multi
+    def _generate_purchase(self):
+        """
+        Generate Journal entry
+        """
+        setting = self.env['dalsil.wiz_config'].get_default_setting()
+        vals = {
+            'partner_id': self.rent_truck_id.customer_rent_id.id,
+            'origin': self.rent_truck_id.name,
+            'type': 'out_invoice',
+            'payment_term_id': self.rent_payment_term_id.id,
+            'invoice_line': tuple((0, 0, {
+                'product_id': line.product_id.id,
+                'name': 'Cost Rent Truck No ({})'.format(self.rent_truck_id.name),
+                'quantity': line.qty,
+                'price_unit': line.unit_price
+            }) for line in record.pur_line_ids)
+        }
+        self.rent_truck_id.pur_invoice_id = self.env['account.invoice'].create(vals)
+
+    @api.multi
+    def _generate_invoice(self):
+        """
+        Generate Journal entry
+        """
+        setting = self.env['dalsil.wiz_config'].get_default_setting()
+        vals = {
+            'partner_id': self.rent_truck_id.customer_rent_id.id,
+            'origin': self.rent_truck_id.name,
+            'type': 'out_invoice',
+            'payment_term_id': self.rent_payment_term_id.id,
+            'invoice_line': tuple((0, 0, {
+                'product_id': line.product_id.id,
+                'name': 'Cost Rent Truck No ({})'.format(self.rent_truck_id.name),
+                'quantity': line.qty,
+                'price_unit': line.unit_price
+            }) for line in record.inv_line_ids)
+        }
+        self.rent_truck_id.inv_invoice_id = self.env['account.invoice'].create(vals)
+
     #################### Button ####################
     def do_continue(self):
         """
         Membuatkan journal untuk pembayran expense
         """
         self.ensure_one()
-        if self.rent_truck_id.dest_type == 'rent':
+        if self.dest_type == 'rent':
             self._generate_sangu()
             self._generate_rent()
-        elif self.rent_truck_id.dest_type == 'warehouse':
+        elif self.dest_type == 'warehouse':
             self._generate_sangu()
             self._generate_rent()
-            # self._generate_purchase()
-        elif self.rent_truck_id.dest_type == 'customer':
+            self._generate_purchase()
+        elif self.dest_type == 'customer':
             self._generate_sangu()
             self._generate_rent()
-            # self._generate_purchase()
-            # self._generate_invoice()
-        # self.env["isme.expense.general.pay"]._ccreate({
-        #     "company_id": self.gen_exp_id.company_id.id,
-        #     "payment_type": "outbound",
-        #     "name": self.memo,
-        #     "journal_id": self.journal_id.id,
-        #     "amount": self.amount,
-        #     "pay_date": self.pay_date,
-        #     "gen_exp_id": self.gen_exp_id.id,
-        #     "partner_id": self.gen_exp_id.partner_id.id or None,
-        # }).to_post()
-        # self._generate_journal_entry()
-        # self.gen_exp_id.to_pay()
+            self._generate_purchase()
+            self._generate_invoice()
 
         return {}
