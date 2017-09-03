@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!-- #################################################################################################### -->
+        <!-- FORM -->
+        <!-- #################################################################################################### -->
+        <record id="view_dalsil_wiz_rent_truck" model="ir.ui.view">
+            <field name="name">dalsil.wiz_rent_truck.form</field>
+            <field name="model">dalsil.wiz_rent_truck</field>
+            <field name="arch" type="xml">
+                <form string="Wiz Rent Truck">
+                    <field name="rent_truck_id" invisible="1"/>
+                    <field name="dest_type" invisible="1"/>
+                    <group string="Sangu">
+                        <field name="sangu_payment_term_id" required="1"/>
+                    </group>
+
+                    <group string="Rent">
+                        <field name="rent_payment_term_id" required="1"/>
+                    </group>
+
+                    <separator string="Customer Invoice" attrs="{'invisible': [('dest_type', 'in', ['warehouse', 'customer'])]}"/>
+                    <field name="inv_line_ids" attrs="{'invisible': [('dest_type', 'in', ['warehouse', 'customer'])]}"/>
+
+                    <separator string="Purchase Vendor" attrs="{'invisible': [('dest_type', '=', 'customer')]}"/>
+                    <field name="pur_line_ids" attrs="{'invisible': [('dest_type', '=', 'customer')]}"/>
+                    <footer>
+                        <button name="do_continue" string="Create Invoice" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

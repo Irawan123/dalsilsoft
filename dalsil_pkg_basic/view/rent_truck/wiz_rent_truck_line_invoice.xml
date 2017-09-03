@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!-- #################################################################################################### -->
+        <!--Group Tree View-->
+        <!-- #################################################################################################### -->
+        <record model="ir.ui.view" id="view_dalsil_wiz_rent_truck_line_inv_tree">
+            <field name="name">dalsil.wiz_rent_truck.line_inv.tree</field>
+            <field name="model">dalsil.wiz_rent_truck.line_inv</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom" create="false" delete="false">
+                    <field name="parent_id" invisible="1"/>
+                    <field name="product_id" readonly="1"/>
+                    <field name="uom_id" readonly="1"/>
+                    <field name="qty" readonly="1"/>
+                    <field name="unit_price" />
+                    <field name="sub_total"/>
+                </tree>
+            </field>
+        </record>
+
+   </data>
+</odoo>

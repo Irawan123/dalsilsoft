@@ -19,9 +19,9 @@ class WizRentTruck(models.TransientModel):
     rent_truck_id = fields.Many2one("dalsil.rent_truck", string="Rent Truck")
     dest_type = fields.Selection(DEST_TYPE, "Destination Type")
     
-    sangu_payment_term_id = fields.Many2one('account.payment.term', string='Sangu Payment Terms', required=True)
+    sangu_payment_term_id = fields.Many2one('account.payment.term', string='Sangu Payment Terms')
     
-    rent_payment_term_id = fields.Many2one('account.payment.term', string='Rent Payment Terms', required=True)
+    rent_payment_term_id = fields.Many2one('account.payment.term', string='Rent Payment Terms')
 
     inv_line_ids = fields.One2many("dalsil.wiz_rent_truck.line_inv", "parent_id", "Product")
 
