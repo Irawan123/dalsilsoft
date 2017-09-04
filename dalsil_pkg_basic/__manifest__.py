@@ -6,7 +6,7 @@
     "license": "AGPL-3",
     "category": "DalSil",
     "depends": [
-        "base", "product", "account", "ss_common"
+        "base", "product", "account", "ss_common", "account_accountant"
     ],
     "data": [
         'view/modified/res_partner.xml',
