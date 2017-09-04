@@ -16,6 +16,10 @@
         'view/master/truck.xml',
         'view/rent_truck/rent_truck.xml',
         'view/rent_truck/rent_truck_line.xml',
+        'view/check_giro/in_check_giro.xml',
+        'view/check_giro/in_check_giro_line.xml',
+        'view/check_giro/out_check_giro.xml',
+        'view/check_giro/out_check_giro_line.xml',
         'view/menu.xml'
     ],
 }

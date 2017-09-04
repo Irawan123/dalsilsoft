@@ -45,7 +45,7 @@
         <!--#########################################################################################################-->
         <!-- FORM -->
         <!--#########################################################################################################-->
-    <record id="view_dalsil_cg_in_form" model="ir.ui.view">
+        <record id="view_dalsil_cg_in_form" model="ir.ui.view">
             <field name="name">dalsil.check_giro.in.form</field>
             <field name="model">dalsil.check_giro.in</field>
             <field name="arch" type="xml">

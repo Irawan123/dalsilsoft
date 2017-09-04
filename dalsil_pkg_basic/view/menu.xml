@@ -38,6 +38,13 @@
         <menuitem id="dalsil_menu_payments" name="Pembayaran" sequence="100"
                   action="account.action_account_payments" parent="dalsil_menu_trans"/>
 
+        <menuitem id="dalsil_menu_cg_in" name="Incoming Check Giro" sequence="110"
+                  action="act_dalsil_cg_in" parent="dalsil_menu_trans"/>
+
+        <menuitem id="dalsil_menu_cg_out" name="Outgoing Check Giro" sequence="120"
+                  action="act_dalsil_cg_out" parent="dalsil_menu_trans"/>
+
+
         <!-- Menu Accounting -->
         <menuitem id="dalsil_menu_accounting" name="Akuntansi" sequence="30"
                   parent="dalsil_menu"/>
