@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 from datetime import datetime, date, time, timedelta
 
@@ -35,9 +35,17 @@ class WizRentTruck(models.TransientModel):
         :param rent_truck_id: Object/ID general expense
         """
         rent_truck_id = self.env["dalsil.rent_truck"].browse(rent_truck_id) if isinstance(rent_truck_id, int) else rent_truck_id
-
+        lines = []
+        for line_id in rent_truck_id.line_ids:
+            lines.append([0, 0, {
+                'product_id': line_id.product_id.id,
+                'qty': line_id.qty
+            }])
         return self.wizard_show("General Invoice", {
-            "rent_truck_id": rent_truck_id.id
+            "rent_truck_id": rent_truck_id.id,
+            "dest_type": rent_truck_id.dest_type,
+            "inv_line_ids": lines,
+            "pur_line_ids": lines
         }, True)
 
     #################### private ####################
@@ -46,17 +54,18 @@ class WizRentTruck(models.TransientModel):
         """
         Generate Journal entry
         """
-        setting = self.env['dalsil.wiz_config'].get_default_setting()
+        setting = self.env["ir.model.data"].xmlid_to_object("dalsil_pkg_basic.dalsil_config")
+        # setting = self.env['dalsil.wiz_config'].get_default_setting()
         vals = {
             'partner_id': self.rent_truck_id.driver_id.id,
             'origin': self.rent_truck_id.name,
             'type': 'in_invoice',
             'payment_term_id': self.sangu_payment_term_id.id,
             'invoice_line': (0, 0, {
-                'product_id': setting['product_sangu'],
+                'product_id': setting.product_sangu.id,
                 'name': 'Sangu Driver Rent Truck No ({})'.format(self.rent_truck_id.name),
                 'quantity': 1.0,
-                'price_unit': setting['def_sangu']
+                'price_unit': setting.def_sangu
             })
         }
         self.rent_truck_id.sangu_invoice_id = self.env['account.invoice'].create(vals)
@@ -66,14 +75,15 @@ class WizRentTruck(models.TransientModel):
         """
         Generate Journal entry
         """
-        setting = self.env['dalsil.wiz_config'].get_default_setting()
+        setting = self.env["ir.model.data"].xmlid_to_object("dalsil_pkg_basic.dalsil_config")
+        # setting = self.env['dalsil.wiz_config'].get_default_setting()
         vals = {
             'partner_id': self.rent_truck_id.customer_rent_id.id,
             'origin': self.rent_truck_id.name,
             'type': 'out_invoice',
             'payment_term_id': self.rent_payment_term_id.id,
             'invoice_line': (0, 0, {
-                'product_id': setting['product_rent'],
+                'product_id': setting.product_rent.id,
                 'name': 'Cost Rent Truck No ({})'.format(self.rent_truck_id.name),
                 'quantity': 1.0,
                 'price_unit': self.rent_truck_id.total_rent
@@ -86,7 +96,6 @@ class WizRentTruck(models.TransientModel):
         """
         Generate Journal entry
         """
-        setting = self.env['dalsil.wiz_config'].get_default_setting()
         vals = {
             'partner_id': self.rent_truck_id.customer_rent_id.id,
             'origin': self.rent_truck_id.name,
@@ -106,7 +115,6 @@ class WizRentTruck(models.TransientModel):
         """
         Generate Journal entry
         """
-        setting = self.env['dalsil.wiz_config'].get_default_setting()
         vals = {
             'partner_id': self.rent_truck_id.customer_rent_id.id,
             'origin': self.rent_truck_id.name,

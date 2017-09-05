@@ -62,7 +62,7 @@
                         <button type="object" name="to_open" string="Open"
                                 class="oe_highlight"
                                 states="draft"/>
-                        <button type="object" name="to_done" string="Done"
+                        <button type="object" name="wiz_done" string="Done"
                                 class="oe_highlight"
                                 states="open"/>
                         <button type="object" name="to_cancel" string="Cancel"

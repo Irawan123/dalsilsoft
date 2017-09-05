@@ -19,6 +19,7 @@
                         <group string="Penyewaan Truck">
                             <field name="def_sangu" required="1"/>
                             <field name="product_sangu" required="1"/>
+                            <field name="product_rent" required="1"/>
                         </group>
                         <group></group>
                     </group>

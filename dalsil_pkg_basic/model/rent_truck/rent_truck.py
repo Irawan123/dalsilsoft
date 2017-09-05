@@ -64,6 +64,13 @@ class RentTruck(models.Model):
             record._cstate(STATE[1][0])
 
     @api.multi
+    def wiz_done(self):
+        """
+        Ubah state jadi done
+        """
+        return self.env['dalsil.wiz_rent_truck'].show(self.id)
+
+    @api.multi
     def to_done(self):
         """
         Ubah state jadi done
@@ -73,16 +80,6 @@ class RentTruck(models.Model):
             if record.state != STATE[1][0]:
                 continue
             record._cstate(STATE[2][0])
-            vals = {
-                'partner_id': record.customer_id.business_partner_id.id,
-                'invoice_line': tuple((0, 0, {
-                    'product_id'
-                    'name': 'Customer Invoice Item ({})'.format(line.calc_id.calc_number),
-                    'quantity': 1.0,
-                    'price_unit': line.amount
-                }) for line in record.calc_ids)
-            }
-            invoice = self.env['account.invoice'].create(vals)
 
     @api.multi
     def to_cancel(self):

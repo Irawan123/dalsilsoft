@@ -1,2 +1,5 @@
 import rent_truck_line
 import rent_truck
+import wiz_rent_truck_line_invoice
+import wiz_rent_truck_line_purchase
+import wiz_rent_truck

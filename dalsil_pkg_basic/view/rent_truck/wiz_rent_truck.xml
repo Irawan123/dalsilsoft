@@ -19,11 +19,11 @@
                         <field name="rent_payment_term_id" required="1"/>
                     </group>
 
-                    <separator string="Customer Invoice" attrs="{'invisible': [('dest_type', 'in', ['warehouse', 'customer'])]}"/>
-                    <field name="inv_line_ids" attrs="{'invisible': [('dest_type', 'in', ['warehouse', 'customer'])]}"/>
+                    <separator string="Customer Invoice" attrs="{'invisible': [('dest_type', 'not in', ['warehouse', 'customer'])]}"/>
+                    <field name="inv_line_ids" attrs="{'invisible': [('dest_type', 'not in', ['warehouse', 'customer'])]}"/>
 
-                    <separator string="Purchase Vendor" attrs="{'invisible': [('dest_type', '=', 'customer')]}"/>
-                    <field name="pur_line_ids" attrs="{'invisible': [('dest_type', '=', 'customer')]}"/>
+                    <separator string="Purchase Vendor" attrs="{'invisible': [('dest_type', '!=', 'customer')]}"/>
+                    <field name="pur_line_ids" attrs="{'invisible': [('dest_type', '!=', 'customer')]}"/>
                     <footer>
                         <button name="do_continue" string="Create Invoice" type="object" class="oe_highlight"/>
                         <button string="Cancel" class="oe_link" special="cancel" />

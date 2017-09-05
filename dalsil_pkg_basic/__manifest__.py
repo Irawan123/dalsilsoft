@@ -16,6 +16,9 @@
         'view/master/truck.xml',
         'view/rent_truck/rent_truck.xml',
         'view/rent_truck/rent_truck_line.xml',
+        'view/rent_truck/wiz_rent_truck.xml',
+        'view/rent_truck/wiz_rent_truck_line_invoice.xml',
+        'view/rent_truck/wiz_rent_truck_line_purchase.xml',
         'view/menu.xml'
     ],
 }
