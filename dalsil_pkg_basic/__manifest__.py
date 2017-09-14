@@ -6,7 +6,7 @@
     "license": "AGPL-3",
     "category": "DalSil",
     "depends": [
-        "base", "product", "sale", "account", "ss_common"
+        "base", "product", "sale", "account", "ss_common", "account_accountant", "account_financial_report_qweb"
     ],
     "data": [
         'view/modified/res_partner.xml',
@@ -19,6 +19,10 @@
         'view/rent_truck/wiz_rent_truck.xml',
         'view/rent_truck/wiz_rent_truck_line_invoice.xml',
         'view/rent_truck/wiz_rent_truck_line_purchase.xml',
+        'view/check_giro/in_check_giro.xml',
+        'view/check_giro/in_check_giro_line.xml',
+        'view/check_giro/out_check_giro.xml',
+        'view/check_giro/out_check_giro_line.xml',
         'view/menu.xml'
     ],
 }

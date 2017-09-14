@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<templates>
+    <t t-extend="mail.client_action">
+        <t t-jquery="span[class='o_mail_request_permission']">
+            this.html('Dalsil Soft needs your permission to <a href="#">enable desktop notifications</a>.');
+        </t>
+    </t>
+</templates>

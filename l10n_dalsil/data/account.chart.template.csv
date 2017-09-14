@@ -1,0 +1,2 @@
+id,name,property_account_receivable_id:id,property_account_payable_id:id,property_account_expense_categ_id:id,property_account_income_categ_id:id,income_currency_exchange_account_id:id,expense_currency_exchange_account_id:id,use_anglo_saxon,property_stock_account_input_categ_id:id,property_stock_account_output_categ_id:id,property_stock_valuation_account_id:id
+isme_chart_template,DalSilSoft COA,140_01,210_01,150,410_01,,,False,150,510,150

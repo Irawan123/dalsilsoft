@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<templates>
+    <t t-extend="UserMenu">
+        <t t-jquery="li.divider">
+            this.before('<li><a isme="home" href="http://dalsil.id/" target="_blank">DalsilSoft Home</a></li>');
+        </t>
+    </t>
+</templates>

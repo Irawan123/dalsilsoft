@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!--#########################################################################################################-->
+        <record model="ir.ui.view" id="isme_cp_form">
+            <field name="name">DalSilSoft Control Panel</field>
+            <field name="model">isme.cp</field>
+            <field name="priority" eval="16"/>
+            <field name="arch" type="xml">
+                <form string="isme.cp">
+                    <header>
+                        <button string="Apply" type="object" name="execute" class="oe_highlight"/>
+                        <button string="Cancel" type="object" name="cancel"/>
+                    </header>
+                    <group string="Konfigurasi DalSilSoft">
+                        <div name="l10n_dalsil">
+                            <field name="module_l10n_dalsil"/>
+                            <label for="module_l10n_dalsil"/>
+                        </div>
+                    </group>
+                    <group string="Paket">
+                        <div name="pkg_basic">
+                            <field name="module_dalsil_pkg_basic"/>
+                            <label for="module_dalsil_pkg_basic"/>
+                        </div>
+                    </group>
+                    <group name="action" string="Action">
+                        <button string="Change Email Odoo to DalSil" type="object"
+                                name="change_email_odoo_to_isme" class="oe_highlight"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!--#########################################################################################################-->
+        <record id="act_cp" model="ir.actions.act_window">
+            <field name="name">DalSilSoft Control Panel</field>
+            <field name="res_model">isme.cp</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+
+        <!--#########################################################################################################-->
+    </data>
+</odoo>

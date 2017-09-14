@@ -1,0 +1,3 @@
+id,description,chart_template_id:id,type_tax_use,name,amount_type,amount,account_id:id,refund_account_id:id,children_tax_ids:id,tag_ids:id
+ppn_klr,PPN,isme_chart_template,sale,PPN KELUARAN,percent,10,210_10,210_10,,
+ppn_msk,PPN,isme_chart_template,purchase,PPN MASUKAN,percent,10,170_04,170_04,,

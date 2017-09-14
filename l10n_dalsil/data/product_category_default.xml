@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record model="ir.property" id="stock_account.default_category_valuation">
+            <field name="value_text">real_time</field>
+        </record>
+
+        <record model="ir.property" id="stock_account.default_category_cost_method">
+            <field name="value_text">real</field>
+        </record>
+    </data>
+</odoo>

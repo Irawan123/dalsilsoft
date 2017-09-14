@@ -1,0 +1,90 @@
+id,code,name,user_type_id:id,reconcile,chart_template_id:id
+110,110,KAS DITANGAN,account.data_account_type_liquidity,0,isme_chart_template
+120,120,BANK,account.data_account_type_liquidity,0,isme_chart_template
+130,130,DEPOSITO,account.data_account_type_liquidity,0,isme_chart_template
+140_01,140.01,PIUTANG USAHA,account.data_account_type_receivable,1,isme_chart_template
+140_02,140.02,PIUTANG KARYAWAN,account.data_account_type_receivable,1,isme_chart_template
+140_03,140.03,PIUTANG PEMILIK,account.data_account_type_receivable,1,isme_chart_template
+140_04,140.04,PIUTANG GIRO / CEK,account.data_account_type_receivable,1,isme_chart_template
+140_05,140.05,PIUTANG CREDIT CARD,account.data_account_type_receivable,1,isme_chart_template
+140_06,140.06,PIUTANG DEBIT CARD,account.data_account_type_receivable,1,isme_chart_template
+140_07,140.07,PIUTANG LAINNYA,account.data_account_type_receivable,1,isme_chart_template
+150,150,PERSEDIAAN BARANG DAGANG,account.data_account_type_current_assets,0,isme_chart_template
+160_01,160.01,UANG MUKA SEWA,account.data_account_type_prepayments,0,isme_chart_template
+160_02,160.02,UANG MUKA ASURANSI,account.data_account_type_prepayments,0,isme_chart_template
+160_03,160.03,UANG MUKA LISENSI DAN PERIZINAN,account.data_account_type_prepayments,0,isme_chart_template
+160_04,160.04,UANG MUKA PEMBELIAN ASET TETAP,account.data_account_type_prepayments,0,isme_chart_template
+160_05,160.05,UANG MUA PEMBELIAN BARANG,account.data_account_type_prepayments,0,isme_chart_template
+160_06,160.06,UANG MUKA IKLAN DAN PROMOSI,account.data_account_type_prepayments,0,isme_chart_template
+160_07,160.07,UANG MUKA LAINNYA,account.data_account_type_prepayments,0,isme_chart_template
+170_01,170.01,PAJAK DIBAYAR DIMUKA PPH 22,account.data_account_type_prepayments,0,isme_chart_template
+170_02,170.02,PAJAK DIBAYAR DIMUKA PPH 23,account.data_account_type_prepayments,0,isme_chart_template
+170_03,170.03,PAJAK DIBAYAR DIMUKA PPH 25,account.data_account_type_prepayments,0,isme_chart_template
+170_04,170.04,PPN MASUKAN,account.data_account_type_prepayments,0,isme_chart_template
+180_01,180.01,ASET TETAP TANAH,account.data_account_type_fixed_assets,0,isme_chart_template
+180_02,180.02,ASET TETAP BANGUNAN,account.data_account_type_fixed_assets,0,isme_chart_template
+180_03,180.03,ASET TETAP KENDARAAN,account.data_account_type_fixed_assets,0,isme_chart_template
+180_04,180.04,INVENTARIS KANTOR,account.data_account_type_fixed_assets,0,isme_chart_template
+180_05,180.05,ASET TETAP LAIN-LAIN,account.data_account_type_fixed_assets,0,isme_chart_template
+190_01,190.01,AKUMULASI PENYUSUTAN TANAH,account.data_account_type_fixed_assets,0,isme_chart_template
+190_02,190.02,AKUMULASI PENYUSUTAN BANGUNAN,account.data_account_type_fixed_assets,0,isme_chart_template
+190_03,190.03,AKUMULASI PENYUSUTAN KENDARAAN,account.data_account_type_fixed_assets,0,isme_chart_template
+190_04,190.04,AKUMULASI PENYUSUTAN INVENTARIS KANTOR,account.data_account_type_fixed_assets,0,isme_chart_template
+190_05,190.05,AKUMULASI PENYUSUTAN LAIN-LAIN,account.data_account_type_fixed_assets,0,isme_chart_template
+210_01,210.01,UTANG USAHA,account.data_account_type_payable,1,isme_chart_template
+210_02,210.02,UTANG PEMILIK,account.data_account_type_non_current_liabilities,0,isme_chart_template
+210_03,210.03,UTANG PIHAK KETIGA,account.data_account_type_non_current_liabilities,0,isme_chart_template
+210_03,210.03,UTANG GAJI,account.data_account_type_current_liabilities,0,isme_chart_template
+210_04,210.04,UTANG PAJAK PPh 21,account.data_account_type_current_liabilities,0,isme_chart_template
+210_05,210.05,UTANG PAJAK PPh 23,account.data_account_type_current_liabilities,0,isme_chart_template
+210_06,210.06,UTANG PAJAK PPh 25,account.data_account_type_current_liabilities,0,isme_chart_template
+210_07,210.07,UTANG PAJAK PASAL 4 (2),account.data_account_type_current_liabilities,0,isme_chart_template
+210_08,210.08,UTANG PPN,account.data_account_type_current_liabilities,0,isme_chart_template
+210_09,210.09,PENDAPATAN DITERIMA DIMUKA,account.data_account_type_current_liabilities,0,isme_chart_template
+210_10,210.10,PPN KELUARAN,account.data_account_type_current_liabilities,1,isme_chart_template
+210_11,210.11,UTANG CREDIT CARD,account.data_account_type_payable,1,isme_chart_template
+210_12,210.12,UTANG DEBIT CARD,account.data_account_type_payable,1,isme_chart_template
+220,220,UTANG BANK,account.data_account_type_payable,1,isme_chart_template
+310_01,310.01,MODAL DISETOR,account.data_account_type_equity,0,isme_chart_template
+320_01,320.01,LABA RUGI TAHUN LALU,account.data_account_type_equity,0,isme_chart_template
+320_02,320.02,LABA RUGI TAHUN BERJALAN,account.data_account_type_equity,0,isme_chart_template
+320_03,320.03,LABA RUGI BULAN BERJALAN,account.data_account_type_equity,0,isme_chart_template
+410_01,410.01,PENDAPATAN USAHA,account.data_account_type_revenue,0,isme_chart_template
+410_02,410.02,RETUR PENJUALAN,account.data_account_type_revenue,0,isme_chart_template
+410_03,410.03,PENDAPATAN USAHA LAINNYA,account.data_account_type_revenue,0,isme_chart_template
+510,510,HPP BARANG,account.data_account_type_direct_costs,0,isme_chart_template
+610_01,610.01,BEBAN GAJI KARYAWAN,account.data_account_type_expenses,0,isme_chart_template
+610_02,610.02,BEBAN TUNJANGAN / BONUS KARYAWAN,account.data_account_type_expenses,0,isme_chart_template
+610_03,610.03,BEBAN LEMBUR KARYAWAN,account.data_account_type_expenses,0,isme_chart_template
+610_04,610.04,BEBAN IKLAN DAN PROMOSI,account.data_account_type_expenses,0,isme_chart_template
+610_05,610.05,BEBAN PENGIRIMAN BARANG DAGANG,account.data_account_type_expenses,0,isme_chart_template
+610_06,610.06,BEBAN AIR MINUM,account.data_account_type_expenses,0,isme_chart_template
+610_07,610.07,"BEBAN TELEPON, LISTRIK, AIR",account.data_account_type_expenses,0,isme_chart_template
+610_08,610.08,BEBAN INTERNET,account.data_account_type_expenses,0,isme_chart_template
+610_09,610.09,"BEBAN POS, SURAT, METERAI",account.data_account_type_expenses,0,isme_chart_template
+610_10,610.10,"BEBAN MAJALAH, SURAT KABAR",account.data_account_type_expenses,0,isme_chart_template
+610_11,610.11,BEBAN JASA PROFESIONAL,account.data_account_type_expenses,0,isme_chart_template
+610_12,610.12,BEBAN PERLENGKAPAN KANTOR,account.data_account_type_expenses,0,isme_chart_template
+610_13,610.13,BEBAN PERLENGKAPAN KEBERSIHAN,account.data_account_type_expenses,0,isme_chart_template
+610_14,610.14,BEBAN PERIZINAN,account.data_account_type_expenses,0,isme_chart_template
+610_15,610.15,BEBAN ADMINISTRASI BANK,account.data_account_type_expenses,0,isme_chart_template
+610_16,610.16,BEBAN SEWA,account.data_account_type_expenses,0,isme_chart_template
+610_17,610.17,BEBAN PEMELIHARAAN DAN PERAWATAN ASET,account.data_account_type_expenses,0,isme_chart_template
+610_18,610.18,BEBAN BBM,account.data_account_type_expenses,0,isme_chart_template
+610_19,610.19,BEBAN PAJAK KENDARAAN,account.data_account_type_expenses,0,isme_chart_template
+610_20,610.20,BEBAN PARKIR KENDARAAN,account.data_account_type_expenses,0,isme_chart_template
+610_21,610.21,BEBAN BUNGA,account.data_account_type_expenses,0,isme_chart_template
+610_22,610.22,BEBAN ASURANSI,account.data_account_type_expenses,0,isme_chart_template
+610_23,610.23,BEBAN KERUGIAN PENJUALAN AKTIVA TETAP,account.data_account_type_expenses,0,isme_chart_template
+610_25,610.25,BEBAN PENYUSUTAN TANAH,account.data_account_type_fixed_assets,0,isme_chart_template
+610_26,610.26,BEBAN PENYUSUTAN BANGUNAN,account.data_account_type_fixed_assets,0,isme_chart_template
+610_27,610.27,BEBAN PENYUSUTAN KENDARAAN,account.data_account_type_fixed_assets,0,isme_chart_template
+610_28,610.28,BEBAN PENYUSUTAN INVENTARIS KANTOR,account.data_account_type_fixed_assets,0,isme_chart_template
+610_29,610.29,BEBAN PENYUSUTAN LAIN-LAIN,account.data_account_type_fixed_assets,0,isme_chart_template
+710_01,710.01,PENDAPATAN BUNGA BANK,account.data_account_type_other_income,0,isme_chart_template
+710_02,710.02,PENDAPATAN BUNGA DEPOSITO,account.data_account_type_expenses,0,isme_chart_template
+710_03,710.03,PENDAPATAN PENJUALAN AKTIVA TETAP,account.data_account_type_expenses,0,isme_chart_template
+710_04,710.04,PENDAPATAN LAINYA,account.data_account_type_expenses,0,isme_chart_template
+810_01,810.01,BEBAN PAJAK PENGHASILAN,account.data_account_type_expenses,0,isme_chart_template
+810_02,810.02,BEBAN PAJAK BUMI DAN BANGUNAN,account.data_account_type_expenses,0,isme_chart_template
+810_03,810.03,BEBAN PAJAK KENDARAAN,account.data_account_type_expenses,0,isme_chart_template

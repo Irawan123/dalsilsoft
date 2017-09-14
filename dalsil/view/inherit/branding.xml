@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!--#########################################################################################################-->
+        <!--JS Load-->
+        <!--#########################################################################################################-->
+        <template id="assets_backend" name="dalsil branding assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/dalsil/static/src/js/branding.js"/>
+                <script type="text/javascript" src="/dalsil/static/src/js/nocontent_help.js"/>
+            </xpath>
+        </template>
+
+        <!--#########################################################################################################-->
+        <template id="assets_frontend" name="dalsil branding assets" inherit_id="web.assets_frontend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/dalsil/static/src/js/login.js"/>
+            </xpath>
+        </template>
+
+        <!--#########################################################################################################-->
+        <!--favicon-->
+        <!--#########################################################################################################-->
+        <template id="dalsil_layout" inherit_id="web.layout">
+            <xpath expr="//link[@rel='shortcut icon']" position="replace">
+                <link rel="shortcut icon" href="/dalsil/static/src/img/isme_soft_0X35.png"/>
+            </xpath>
+        </template>
+
+        <!--#########################################################################################################-->
+        <!--Menu-->
+        <!--#########################################################################################################-->
+        <template id="menu_secondary" inherit_id="web.menu_secondary">
+            <xpath expr="//a[@class='o_sub_menu_logo']" position="replace">
+                <a class="o_sub_menu_logo" href="http://dalsil.id/" target="_blank">
+                    <img src='/dalsil/static/src/img/isme_soft_219X96.png'/>
+                </a>
+            </xpath>
+            <xpath expr="//div[@class='o_sub_menu_footer']" position="replace">
+                <div class="o_sub_menu_footer">
+                    Product of
+                    <a href="http://dalsil.co.id/" target="_blank">
+                        <span style="color: #9E0B0F; font-style: italic">DALSIL</span>
+                    </a>
+                </div>
+            </xpath>
+        </template>
+
+        <!--#########################################################################################################-->
+        <!--Title-->
+        <!--#########################################################################################################-->
+        <template id="dalsil_title" name="dalsil title" inherit_id="web.layout">
+            <xpath expr="//title" position="replace">
+                <title>DalSilSoft</title>
+            </xpath>
+        </template>
+
+        <!--#########################################################################################################-->
+    </data>
+</odoo>
