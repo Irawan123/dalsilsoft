@@ -66,7 +66,7 @@
         <!--Act Window-->
         <!--#########################################################################################################-->
         <record model="ir.actions.act_window" id="act_dalsil_truck">
-            <field name="name">Truck</field>
+            <field name="name">Trucks</field>
             <field name="res_model">dalsil.truck</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[]</field>

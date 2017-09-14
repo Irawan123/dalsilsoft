@@ -1,62 +1,66 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <odoo>
     <data>
+        <!-- Parent Menu -->
         <menuitem id="dalsil_menu" name="Menu" sequence="1"/>
 
-        <!-- Menu Master -->
-        <menuitem id="dalsil_menu_master" name="Master" sequence="10"
+        <!-- Trucking -->
+        <menuitem id="dalsil_menu_trucking" name="Trucking" sequence="10"
                   parent="dalsil_menu"/>
 
-        <menuitem id="dalsil_menu_customer" name="Customer" sequence="10"
-                  action="base.action_partner_customer_form" parent="dalsil_menu_master"/>
+        <menuitem id="dalsil_menu_rent_truck" name="Rent Truck" sequence="10"
+                  action="act_dalsil_rent_truck" parent="dalsil_menu_trucking"/>
 
-        <menuitem id="dalsil_menu_vendor" name="Vendor" sequence="20"
-                  action="base.action_partner_supplier_form" parent="dalsil_menu_master"/>
+        <menuitem id="dalsil_menu_truck" name="Trucks" sequence="40"
+                  action="act_dalsil_truck" parent="dalsil_menu_trucking"/>
 
-        <menuitem id="dalsil_menu_driver" name="Driver" sequence="30"
-                  action="action_partner_driver_form" parent="dalsil_menu_master"/>
+        <menuitem id="dalsil_menu_driver" name="Drivers" sequence="50"
+                  action="action_partner_driver_form" parent="dalsil_menu_trucking"/>
 
-        <menuitem id="dalsil_menu_truck" name="Truck" sequence="50"
-                  action="act_dalsil_truck" parent="dalsil_menu_master"/>
 
-        <menuitem id="dalsil_menu_product" name="Product" sequence="60"
-                  action="product.product_template_action" parent="dalsil_menu_master"/>
-
-        <!-- Menu Transaction -->
-        <menuitem id="dalsil_menu_trans" name="Transaction" sequence="20"
+        <!-- Penjualan -->
+        <menuitem id="dalsil_menu_sales" name="Sales" sequence="20"
                   parent="dalsil_menu"/>
 
-        <menuitem id="dalsil_menu_rent_truck" name="Penyewaan Truck" sequence="10"
-                  action="act_dalsil_rent_truck" parent="dalsil_menu_trans"/>
+        <menuitem id="dalsil_menu_cust_invoice" name="Customer Invoices" sequence="10"
+                  action="account.action_invoice_tree1" parent="dalsil_menu_sales"/>
 
-        <menuitem id="dalsil_menu_cust_invoice" name="Penjualan" sequence="20"
-                  action="account.action_invoice_tree1" parent="dalsil_menu_trans"/>
+        <menuitem id="dalsil_menu_cust_payments" name="Payments" sequence="20"
+                  action="account.action_account_payments" parent="dalsil_menu_sales"/>
 
-        <menuitem id="dalsil_menu_vendor_bill" name="Pembelian" sequence="30"
-                  action="account.action_invoice_tree2" parent="dalsil_menu_trans"/>
+        <menuitem id="dalsil_menu_cg_in" name="Incoming Check Giro" sequence="30"
+                  action="act_dalsil_cg_in" parent="dalsil_menu_sales"/>
 
-        <menuitem id="dalsil_menu_payments" name="Pembayaran" sequence="100"
-                  action="account.action_account_payments" parent="dalsil_menu_trans"/>
+        <menuitem id="dalsil_menu_customer" name="Customers" sequence="40"
+                  action="base.action_partner_customer_form" parent="dalsil_menu_sales"/>
 
-        <menuitem id="dalsil_menu_cg_in" name="Incoming Check Giro" sequence="110"
-                  action="act_dalsil_cg_in" parent="dalsil_menu_trans"/>
+        <menuitem id="dalsil_menu_product" name="Sellable Product" sequence="50"
+                  action="product.product_template_action" parent="dalsil_menu_sales"/>
 
-        <menuitem id="dalsil_menu_cg_out" name="Outgoing Check Giro" sequence="120"
-                  action="act_dalsil_cg_out" parent="dalsil_menu_trans"/>
+
+        <!-- Pembelian -->
+        <menuitem id="dalsil_menu_purchase" name="Purchases" sequence="30"
+                  parent="dalsil_menu"/>
+
+        <menuitem id="dalsil_menu_vendor_bill" name="Vendor Bills" sequence="10"
+                  action="account.action_invoice_tree2" parent="dalsil_menu_purchase"/>
+
+        <menuitem id="dalsil_menu_vendor_payments" name="Payments" sequence="20"
+                  action="account.action_account_payments_payable" parent="dalsil_menu_purchase"/>
+
+        <menuitem id="dalsil_menu_cg_out" name="Outgoing Check Giro" sequence="40"
+                  action="act_dalsil_cg_out" parent="dalsil_menu_purchase"/>
+
+        <menuitem id="dalsil_menu_vendor" name="Vendors" sequence="50"
+                  action="base.action_partner_supplier_form" parent="dalsil_menu_purchase"/>
 
 
         <!-- Menu Accounting -->
-        <menuitem id="dalsil_menu_accounting" name="Akuntansi" sequence="30"
+        <menuitem id="dalsil_menu_accounting" name="Adviser" sequence="40"
                   parent="dalsil_menu"/>
 
         <menuitem id="dalsil_menu_account" name="Chart of Accounts" sequence="10"
                   action="account.action_account_form" parent="dalsil_menu_accounting"/>
-
-        <menuitem id="dalsil_menu_account_bank" name="Bank Accounts" sequence="20"
-                  action="account.action_account_bank_journal_form" parent="dalsil_menu_accounting"/>
-
-        <menuitem id="dalsil_menu_account_journal" name="Journals" sequence="30"
-                  action="account.action_account_journal_form" parent="dalsil_menu_accounting"/>
 
         <menuitem id="dalsil_menu_account_move_line" name="Journal Items" sequence="40"
                   action="account.action_account_moves_all_a" parent="dalsil_menu_accounting"/>
@@ -64,17 +68,38 @@
         <menuitem id="dalsil_menu_account_move" name="Journal Entries" sequence="50"
                   action="account.action_move_journal_line" parent="dalsil_menu_accounting"/>
 
+
         <!-- Menu Laporan -->
-        <menuitem id="dalsil_menu_report" name="Laporan" sequence="40"
+        <menuitem id="dalsil_menu_report" name="Reports" sequence="100"
                   parent="dalsil_menu"/>
 
-        <menuitem id="dalsil_menu_general_ledger" name="Buku Besar" sequence="10"
-                  action="account.action_account_general_ledger_menu" parent="dalsil_menu_report"/>
+        <menuitem id="dalsil_menu_general_ledger" name="General Ledger" sequence="10"
+                  action="account_financial_report_qweb.action_general_ledger_wizard" parent="dalsil_menu_report"/>
 
 
 
         <!-- Menu Configuration -->
-        <menuitem id="dalsil_config_act" name="Configuration" sequence="9999"
-                  action="act_dalsil_config" parent="dalsil_menu"/>
+        <menuitem id="dalsil_menu_config" name="Configuration" sequence="999"
+                  parent="dalsil_menu"/>
+
+        <menuitem id="dalsil_config_setting" name="Settings" sequence="10"
+                  action="act_dalsil_config" parent="dalsil_menu_config"/>
+
+        <menuitem id="dalsil_config_accounting" name="Accounting" sequence="20"
+                  parent="dalsil_menu_config"/>
+
+        <menuitem id="dalsil_menu_account_journal" name="Journals" sequence="10"
+                  action="account.action_account_journal_form" parent="dalsil_config_accounting"/>
+        <menuitem id="dalsil_menu_account_bank" name="Bank Accounts" sequence="20"
+                  action="account.action_account_bank_journal_form" parent="dalsil_config_accounting"/>
+
+        <menuitem id="dalsil_menu_date_range" name="Date ranges" parent="dalsil_config_accounting" sequence="30"/>
+        <menuitem id="dalsil_menu_date_range_action"
+                  action="date_range.date_range_action" sequence="10"
+                  parent="dalsil_menu_date_range"/>
+        <menuitem id="dalsil_menu_date_range_type_action"
+                  action="date_range.date_range_type_action" sequence="20"
+                  parent="dalsil_menu_date_range"/>
+
     </data>
 </odoo>

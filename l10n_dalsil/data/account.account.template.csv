@@ -1,90 +1,87 @@
-id,code,name,user_type_id:id,reconcile,chart_template_id:id
-110,110,KAS DITANGAN,account.data_account_type_liquidity,0,isme_chart_template
-120,120,BANK,account.data_account_type_liquidity,0,isme_chart_template
-130,130,DEPOSITO,account.data_account_type_liquidity,0,isme_chart_template
-140_01,140.01,PIUTANG USAHA,account.data_account_type_receivable,1,isme_chart_template
-140_02,140.02,PIUTANG KARYAWAN,account.data_account_type_receivable,1,isme_chart_template
-140_03,140.03,PIUTANG PEMILIK,account.data_account_type_receivable,1,isme_chart_template
-140_04,140.04,PIUTANG GIRO / CEK,account.data_account_type_receivable,1,isme_chart_template
-140_05,140.05,PIUTANG CREDIT CARD,account.data_account_type_receivable,1,isme_chart_template
-140_06,140.06,PIUTANG DEBIT CARD,account.data_account_type_receivable,1,isme_chart_template
-140_07,140.07,PIUTANG LAINNYA,account.data_account_type_receivable,1,isme_chart_template
-150,150,PERSEDIAAN BARANG DAGANG,account.data_account_type_current_assets,0,isme_chart_template
-160_01,160.01,UANG MUKA SEWA,account.data_account_type_prepayments,0,isme_chart_template
-160_02,160.02,UANG MUKA ASURANSI,account.data_account_type_prepayments,0,isme_chart_template
-160_03,160.03,UANG MUKA LISENSI DAN PERIZINAN,account.data_account_type_prepayments,0,isme_chart_template
-160_04,160.04,UANG MUKA PEMBELIAN ASET TETAP,account.data_account_type_prepayments,0,isme_chart_template
-160_05,160.05,UANG MUA PEMBELIAN BARANG,account.data_account_type_prepayments,0,isme_chart_template
-160_06,160.06,UANG MUKA IKLAN DAN PROMOSI,account.data_account_type_prepayments,0,isme_chart_template
-160_07,160.07,UANG MUKA LAINNYA,account.data_account_type_prepayments,0,isme_chart_template
-170_01,170.01,PAJAK DIBAYAR DIMUKA PPH 22,account.data_account_type_prepayments,0,isme_chart_template
-170_02,170.02,PAJAK DIBAYAR DIMUKA PPH 23,account.data_account_type_prepayments,0,isme_chart_template
-170_03,170.03,PAJAK DIBAYAR DIMUKA PPH 25,account.data_account_type_prepayments,0,isme_chart_template
-170_04,170.04,PPN MASUKAN,account.data_account_type_prepayments,0,isme_chart_template
-180_01,180.01,ASET TETAP TANAH,account.data_account_type_fixed_assets,0,isme_chart_template
-180_02,180.02,ASET TETAP BANGUNAN,account.data_account_type_fixed_assets,0,isme_chart_template
-180_03,180.03,ASET TETAP KENDARAAN,account.data_account_type_fixed_assets,0,isme_chart_template
-180_04,180.04,INVENTARIS KANTOR,account.data_account_type_fixed_assets,0,isme_chart_template
-180_05,180.05,ASET TETAP LAIN-LAIN,account.data_account_type_fixed_assets,0,isme_chart_template
-190_01,190.01,AKUMULASI PENYUSUTAN TANAH,account.data_account_type_fixed_assets,0,isme_chart_template
-190_02,190.02,AKUMULASI PENYUSUTAN BANGUNAN,account.data_account_type_fixed_assets,0,isme_chart_template
-190_03,190.03,AKUMULASI PENYUSUTAN KENDARAAN,account.data_account_type_fixed_assets,0,isme_chart_template
-190_04,190.04,AKUMULASI PENYUSUTAN INVENTARIS KANTOR,account.data_account_type_fixed_assets,0,isme_chart_template
-190_05,190.05,AKUMULASI PENYUSUTAN LAIN-LAIN,account.data_account_type_fixed_assets,0,isme_chart_template
-210_01,210.01,UTANG USAHA,account.data_account_type_payable,1,isme_chart_template
-210_02,210.02,UTANG PEMILIK,account.data_account_type_non_current_liabilities,0,isme_chart_template
-210_03,210.03,UTANG PIHAK KETIGA,account.data_account_type_non_current_liabilities,0,isme_chart_template
-210_03,210.03,UTANG GAJI,account.data_account_type_current_liabilities,0,isme_chart_template
-210_04,210.04,UTANG PAJAK PPh 21,account.data_account_type_current_liabilities,0,isme_chart_template
-210_05,210.05,UTANG PAJAK PPh 23,account.data_account_type_current_liabilities,0,isme_chart_template
-210_06,210.06,UTANG PAJAK PPh 25,account.data_account_type_current_liabilities,0,isme_chart_template
-210_07,210.07,UTANG PAJAK PASAL 4 (2),account.data_account_type_current_liabilities,0,isme_chart_template
-210_08,210.08,UTANG PPN,account.data_account_type_current_liabilities,0,isme_chart_template
-210_09,210.09,PENDAPATAN DITERIMA DIMUKA,account.data_account_type_current_liabilities,0,isme_chart_template
-210_10,210.10,PPN KELUARAN,account.data_account_type_current_liabilities,1,isme_chart_template
-210_11,210.11,UTANG CREDIT CARD,account.data_account_type_payable,1,isme_chart_template
-210_12,210.12,UTANG DEBIT CARD,account.data_account_type_payable,1,isme_chart_template
-220,220,UTANG BANK,account.data_account_type_payable,1,isme_chart_template
-310_01,310.01,MODAL DISETOR,account.data_account_type_equity,0,isme_chart_template
-320_01,320.01,LABA RUGI TAHUN LALU,account.data_account_type_equity,0,isme_chart_template
-320_02,320.02,LABA RUGI TAHUN BERJALAN,account.data_account_type_equity,0,isme_chart_template
-320_03,320.03,LABA RUGI BULAN BERJALAN,account.data_account_type_equity,0,isme_chart_template
-410_01,410.01,PENDAPATAN USAHA,account.data_account_type_revenue,0,isme_chart_template
-410_02,410.02,RETUR PENJUALAN,account.data_account_type_revenue,0,isme_chart_template
-410_03,410.03,PENDAPATAN USAHA LAINNYA,account.data_account_type_revenue,0,isme_chart_template
-510,510,HPP BARANG,account.data_account_type_direct_costs,0,isme_chart_template
-610_01,610.01,BEBAN GAJI KARYAWAN,account.data_account_type_expenses,0,isme_chart_template
-610_02,610.02,BEBAN TUNJANGAN / BONUS KARYAWAN,account.data_account_type_expenses,0,isme_chart_template
-610_03,610.03,BEBAN LEMBUR KARYAWAN,account.data_account_type_expenses,0,isme_chart_template
-610_04,610.04,BEBAN IKLAN DAN PROMOSI,account.data_account_type_expenses,0,isme_chart_template
-610_05,610.05,BEBAN PENGIRIMAN BARANG DAGANG,account.data_account_type_expenses,0,isme_chart_template
-610_06,610.06,BEBAN AIR MINUM,account.data_account_type_expenses,0,isme_chart_template
-610_07,610.07,"BEBAN TELEPON, LISTRIK, AIR",account.data_account_type_expenses,0,isme_chart_template
-610_08,610.08,BEBAN INTERNET,account.data_account_type_expenses,0,isme_chart_template
-610_09,610.09,"BEBAN POS, SURAT, METERAI",account.data_account_type_expenses,0,isme_chart_template
-610_10,610.10,"BEBAN MAJALAH, SURAT KABAR",account.data_account_type_expenses,0,isme_chart_template
-610_11,610.11,BEBAN JASA PROFESIONAL,account.data_account_type_expenses,0,isme_chart_template
-610_12,610.12,BEBAN PERLENGKAPAN KANTOR,account.data_account_type_expenses,0,isme_chart_template
-610_13,610.13,BEBAN PERLENGKAPAN KEBERSIHAN,account.data_account_type_expenses,0,isme_chart_template
-610_14,610.14,BEBAN PERIZINAN,account.data_account_type_expenses,0,isme_chart_template
-610_15,610.15,BEBAN ADMINISTRASI BANK,account.data_account_type_expenses,0,isme_chart_template
-610_16,610.16,BEBAN SEWA,account.data_account_type_expenses,0,isme_chart_template
-610_17,610.17,BEBAN PEMELIHARAAN DAN PERAWATAN ASET,account.data_account_type_expenses,0,isme_chart_template
-610_18,610.18,BEBAN BBM,account.data_account_type_expenses,0,isme_chart_template
-610_19,610.19,BEBAN PAJAK KENDARAAN,account.data_account_type_expenses,0,isme_chart_template
-610_20,610.20,BEBAN PARKIR KENDARAAN,account.data_account_type_expenses,0,isme_chart_template
-610_21,610.21,BEBAN BUNGA,account.data_account_type_expenses,0,isme_chart_template
-610_22,610.22,BEBAN ASURANSI,account.data_account_type_expenses,0,isme_chart_template
-610_23,610.23,BEBAN KERUGIAN PENJUALAN AKTIVA TETAP,account.data_account_type_expenses,0,isme_chart_template
-610_25,610.25,BEBAN PENYUSUTAN TANAH,account.data_account_type_fixed_assets,0,isme_chart_template
-610_26,610.26,BEBAN PENYUSUTAN BANGUNAN,account.data_account_type_fixed_assets,0,isme_chart_template
-610_27,610.27,BEBAN PENYUSUTAN KENDARAAN,account.data_account_type_fixed_assets,0,isme_chart_template
-610_28,610.28,BEBAN PENYUSUTAN INVENTARIS KANTOR,account.data_account_type_fixed_assets,0,isme_chart_template
-610_29,610.29,BEBAN PENYUSUTAN LAIN-LAIN,account.data_account_type_fixed_assets,0,isme_chart_template
-710_01,710.01,PENDAPATAN BUNGA BANK,account.data_account_type_other_income,0,isme_chart_template
-710_02,710.02,PENDAPATAN BUNGA DEPOSITO,account.data_account_type_expenses,0,isme_chart_template
-710_03,710.03,PENDAPATAN PENJUALAN AKTIVA TETAP,account.data_account_type_expenses,0,isme_chart_template
-710_04,710.04,PENDAPATAN LAINYA,account.data_account_type_expenses,0,isme_chart_template
-810_01,810.01,BEBAN PAJAK PENGHASILAN,account.data_account_type_expenses,0,isme_chart_template
-810_02,810.02,BEBAN PAJAK BUMI DAN BANGUNAN,account.data_account_type_expenses,0,isme_chart_template
-810_03,810.03,BEBAN PAJAK KENDARAAN,account.data_account_type_expenses,0,isme_chart_template
+id,reconcile,code,name,tag_ids:id,user_type_id:id,chart_template_id:id
+100_001,FALSE,100.001,Kas Endang,,account.data_account_type_current_assets,isme_chart_template
+100_002,FALSE,100.002,Kas Sales,,account.data_account_type_current_assets,isme_chart_template
+110_001,FALSE,110.001,Bank BCA 3841380205 a/n Enny Juana,,account.data_account_type_current_assets,isme_chart_template
+110_002,FALSE,110.002,Bank Panin,,account.data_account_type_current_assets,isme_chart_template
+110_990,FALSE,110.990,Ayat Silang,,account.data_account_type_current_assets,isme_chart_template
+120_000,FALSE,120.000,WT,,account.data_account_type_current_assets,isme_chart_template
+130_000,TRUE,130.000,Piutang Usaha,,account.data_account_type_receivable,isme_chart_template
+130_001,TRUE,130.001,Piutang Usaha Kontan,,account.data_account_type_receivable,isme_chart_template
+130_002,TRUE,130.002,Piutang Usaha Ekspedisi,,account.data_account_type_receivable,isme_chart_template
+140_001,TRUE,140.001,Piutang Karyawan,,account.data_account_type_receivable,isme_chart_template
+140_002,TRUE,140.002,Piutang Direksi,,account.data_account_type_receivable,isme_chart_template
+140_999,TRUE,140.999,Piutang Lain,,account.data_account_type_receivable,isme_chart_template
+150_000,FALSE,150.000,Persediaan Barang Dagang,,account.data_account_type_current_assets,isme_chart_template
+160_000,FALSE,160.000,Biaya Dibayar Di Muka,,account.data_account_type_prepayments,isme_chart_template
+160_001,FALSE,160.001,Sewa Dibayar Di Muka,,account.data_account_type_prepayments,isme_chart_template
+160_002,FALSE,160.002,Asuransi Dibayar Di Muka,,account.data_account_type_prepayments,isme_chart_template
+170_000,FALSE,170.000,Uang Muka Pembelian,,account.data_account_type_prepayments,isme_chart_template
+180_000,FALSE,180.000,Investasi,,account.data_account_type_current_assets,isme_chart_template
+200_000,FALSE,200.000,Aset Tetap,,account.data_account_type_fixed_assets,isme_chart_template
+200_001,FALSE,200.001,Tanah,,account.data_account_type_fixed_assets,isme_chart_template
+200_002,FALSE,200.002,Bangunan,,account.data_account_type_fixed_assets,isme_chart_template
+200_003,FALSE,200.003,Mesin,,account.data_account_type_fixed_assets,isme_chart_template
+200_004,FALSE,200.004,Kendaraan,,account.data_account_type_fixed_assets,isme_chart_template
+200_005,FALSE,200.005,Inventaris Kantor,,account.data_account_type_fixed_assets,isme_chart_template
+210_000,FALSE,210.000,Akumulasi Penyusutan,,account.data_account_type_fixed_assets,isme_chart_template
+210_001,FALSE,210.001,Akumulasi Penyusutan Bangunan,,account.data_account_type_fixed_assets,isme_chart_template
+210_002,FALSE,210.002,Akumulasi Penyusutan Mesin,,account.data_account_type_fixed_assets,isme_chart_template
+210_003,FALSE,210.003,Akumulasi Penyusutan Kendaraan,,account.data_account_type_fixed_assets,isme_chart_template
+210_004,FALSE,210.004,Akumulasi Penyusutan Inventaris Kantor,,account.data_account_type_fixed_assets,isme_chart_template
+300_000,FALSE,300.000,Wesel Bayar,,account.data_account_type_current_liabilities,isme_chart_template
+310_000,TRUE,310.000,Utang Usaha,,account.data_account_type_payable,isme_chart_template
+320_000,FALSE,320.000,Beban yang masih harus dibayar,,account.data_account_type_current_liabilities,isme_chart_template
+320_001,FALSE,320.001,Utang Gaji,,account.data_account_type_current_liabilities,isme_chart_template
+320_002,FALSE,320.002,Utang Utilitas,,account.data_account_type_current_liabilities,isme_chart_template
+330_000,FALSE,330.000,Utang Lain,,account.data_account_type_current_liabilities,isme_chart_template
+330_001,FALSE,330.001,Utang Direksi,,account.data_account_type_current_liabilities,isme_chart_template
+330_999,FALSE,330.999,Utang Lain,,account.data_account_type_current_liabilities,isme_chart_template
+340_000,FALSE,340.000,Uang Muka Penjualan,,account.data_account_type_current_liabilities,isme_chart_template
+350_000,FALSE,350.000,Utang Bank,,account.data_account_type_non_current_liabilities,isme_chart_template
+400_000,FALSE,400.000,Modal,,account.data_account_type_equity,isme_chart_template
+410_000,FALSE,410.000,Akumulasi Laba,,account.data_account_type_equity,isme_chart_template
+420_000,FALSE,420.000,Akumulasi Laba Tahun Berjalan,,account.data_account_type_equity,isme_chart_template
+500_001,FALSE,500.001,Penjualan Barang Dagang,,account.data_account_type_revenue,isme_chart_template
+500_002,FALSE,500.002,Pendapatan Angkutan,,account.data_account_type_revenue,isme_chart_template
+510_001,FALSE,510.001,Potongan Penjualan Barang Dagang,,account.data_account_type_revenue,isme_chart_template
+510_002,FALSE,510.002,Potongan Penjualan Angkutan,,account.data_account_type_revenue,isme_chart_template
+520_001,FALSE,520.001,Retur Penjualan Barang Dagang,,account.data_account_type_revenue,isme_chart_template
+700_001,FALSE,700.001,Komisi Penjualan,,account.data_account_type_direct_costs,isme_chart_template
+700_002,FALSE,700.002,"BBM, Parkir, Tol",,account.data_account_type_direct_costs,isme_chart_template
+700_003,FALSE,700.003,Entertainment,,account.data_account_type_direct_costs,isme_chart_template
+700_004,FALSE,700.004,Perjalanan Dinas,,account.data_account_type_direct_costs,isme_chart_template
+700_005,FALSE,700.005,Ongkos Bongkar,,account.data_account_type_direct_costs,isme_chart_template
+700_006,FALSE,700.006,Ongkos Kuli,,account.data_account_type_direct_costs,isme_chart_template
+700_007,FALSE,700.007,"Gaji Supir, Kuli, Kernet",,account.data_account_type_direct_costs,isme_chart_template
+700_008,FALSE,700.008,Ongkos Tronton,,account.data_account_type_direct_costs,isme_chart_template
+700_999,FALSE,700.999,Beban Penjualan Lain-Lain,,account.data_account_type_direct_costs,isme_chart_template
+800_001,FALSE,800.001,Beban Gaji Karyawan,,account.data_account_type_expenses,isme_chart_template
+800_002,FALSE,800.002,"Beban Bonus, Lembur",,account.data_account_type_expenses,isme_chart_template
+800_003,FALSE,800.003,Biaya Kesejahteraan Karyawan,,account.data_account_type_expenses,isme_chart_template
+800_004,FALSE,800.004,"Biaya Listrik, Air, Telp, Internet",,account.data_account_type_expenses,isme_chart_template
+800_005,FALSE,800.005,Perijinan dan Akte,,account.data_account_type_expenses,isme_chart_template
+800_006,FALSE,800.006,"PPh 21, 25",,account.data_account_type_expenses,isme_chart_template
+800_007,FALSE,800.007,Pemeliharaan Bangunan,,account.data_account_type_expenses,isme_chart_template
+800_008,FALSE,800.008,Pemeliharaan Inventaris,,account.data_account_type_expenses,isme_chart_template
+800_009,FALSE,800.009,Pemeliharaan Surat & Kendaraan Kantor,,account.data_account_type_expenses,isme_chart_template
+800_010,FALSE,800.010,Sumbangan,,account.data_account_type_expenses,isme_chart_template
+800_011,FALSE,800.011,Biaya Penyusutan Bangunan,,account.data_account_type_expenses,isme_chart_template
+800_012,FALSE,800.012,Biaya Penyusutan Kendaraan,,account.data_account_type_expenses,isme_chart_template
+800_013,FALSE,800.013,Biaya Penyusutan Inventaris Kantor,,account.data_account_type_expenses,isme_chart_template
+800_014,FALSE,800.014,Biaya Asuransi,,account.data_account_type_expenses,isme_chart_template
+800_015,FALSE,800.015,Biaya Rumah Tangga,,account.data_account_type_expenses,isme_chart_template
+800_016,FALSE,800.016,"Fotocopy, ATK & Alat admin, Materai",,account.data_account_type_expenses,isme_chart_template
+800_017,FALSE,800.017,PBB,,account.data_account_type_expenses,isme_chart_template
+800_018,FALSE,800.018,Adm bank,,account.data_account_type_expenses,isme_chart_template
+800_019,FALSE,800.019,Honorarium Konsultan,,account.data_account_type_expenses,isme_chart_template
+800_020,FALSE,800.020,"Konsumsi, Pengobatan",,account.data_account_type_expenses,isme_chart_template
+800_021,FALSE,800.021,Biaya Direksi,,account.data_account_type_expenses,isme_chart_template
+800_022,FALSE,800.022,Administrasi Bank,,account.data_account_type_expenses,isme_chart_template
+900_000,FALSE,900.000,Pendapatan / Biaya Non Operasional,,account.data_account_type_expenses,isme_chart_template
+900_001,FALSE,900.001,Pendapatan Jasa Giro,,account.data_account_type_expenses,isme_chart_template
+900_002,FALSE,900.002,Pendapatan Selisih Kurs,,account.data_account_type_expenses,isme_chart_template
+900_999,FALSE,900.999,Pendapatan Lain-lain,,account.data_account_type_expenses,isme_chart_template
+910_001,FALSE,910.001,Biaya Bunga Pinjaman,,account.data_account_type_expenses,isme_chart_template
+910_002,FALSE,910.002,Biaya Selisih Kurs,,account.data_account_type_expenses,isme_chart_template
+910_003,FALSE,910.003,Biaya Pajak,,account.data_account_type_expenses,isme_chart_template
+910_999,FALSE,910.999,Biaya Lain-lain,,account.data_account_type_expenses,isme_chart_template
