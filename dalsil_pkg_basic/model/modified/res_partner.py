@@ -19,6 +19,7 @@ class ResPartner(models.Model):
     kecamatan = fields.Char('Kecamatan')
 
     is_driver = fields.Boolean("Is a Driver", default=False)
+    is_sales = fields.Boolean("Is a Sales", default=False)
 
     @api.model
     @api.returns("self", lambda x: x.id)

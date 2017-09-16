@@ -22,19 +22,25 @@
         <menuitem id="dalsil_menu_sales" name="Sales" sequence="20"
                   parent="dalsil_menu"/>
 
-        <menuitem id="dalsil_menu_cust_invoice" name="Customer Invoices" sequence="10"
-                  action="account.action_invoice_tree1" parent="dalsil_menu_sales"/>
+        <menuitem id="dalsil_menu_partner_sales" name="Sales" sequence="10"
+                  action="action_partner_sales_form" parent="dalsil_menu_sales"/>
 
-        <menuitem id="dalsil_menu_cust_payments" name="Payments" sequence="20"
+        <menuitem id="dalsil_menu_cust_invoice" name="Customer Invoices" sequence="20"
+                  action="act_dalsil_acc_inv_tree_inv" parent="dalsil_menu_sales"/>
+
+        <menuitem id="dalsil_menu_fee_sales" name="Fee Sales" sequence="30"
+                  action="act_dalsil_fee_sales" parent="dalsil_menu_sales"/>
+
+        <menuitem id="dalsil_menu_cust_payments" name="Payments" sequence="40"
                   action="account.action_account_payments" parent="dalsil_menu_sales"/>
 
-        <menuitem id="dalsil_menu_cg_in" name="Incoming Check Giro" sequence="30"
+        <menuitem id="dalsil_menu_cg_in" name="Incoming Check Giro" sequence="50"
                   action="act_dalsil_cg_in" parent="dalsil_menu_sales"/>
 
-        <menuitem id="dalsil_menu_customer" name="Customers" sequence="40"
+        <menuitem id="dalsil_menu_customer" name="Customers" sequence="60"
                   action="base.action_partner_customer_form" parent="dalsil_menu_sales"/>
 
-        <menuitem id="dalsil_menu_product" name="Sellable Product" sequence="50"
+        <menuitem id="dalsil_menu_product" name="Sellable Product" sequence="70"
                   action="product.product_template_action" parent="dalsil_menu_sales"/>
 
 
@@ -43,7 +49,7 @@
                   parent="dalsil_menu"/>
 
         <menuitem id="dalsil_menu_vendor_bill" name="Vendor Bills" sequence="10"
-                  action="account.action_invoice_tree2" parent="dalsil_menu_purchase"/>
+                  action="act_dalsil_acc_inv_tree_purc" parent="dalsil_menu_purchase"/>
 
         <menuitem id="dalsil_menu_vendor_payments" name="Payments" sequence="20"
                   action="account.action_account_payments_payable" parent="dalsil_menu_purchase"/>

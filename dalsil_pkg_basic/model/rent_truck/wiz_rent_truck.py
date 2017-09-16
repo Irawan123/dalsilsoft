@@ -57,6 +57,7 @@ class WizRentTruck(models.TransientModel):
         setting = self.env["ir.model.data"].xmlid_to_object("dalsil_pkg_basic.dalsil_config")
         # setting = self.env['dalsil.wiz_config'].get_default_setting()
         vals = {
+            'jenis_inv': "sangu",
             'partner_id': self.rent_truck_id.driver_id.id,
             'origin': self.rent_truck_id.name,
             'type': 'in_invoice',
@@ -78,6 +79,7 @@ class WizRentTruck(models.TransientModel):
         setting = self.env["ir.model.data"].xmlid_to_object("dalsil_pkg_basic.dalsil_config")
         # setting = self.env['dalsil.wiz_config'].get_default_setting()
         vals = {
+            'jenis_inv': "rent",
             'partner_id': self.rent_truck_id.customer_rent_id.id,
             'origin': self.rent_truck_id.name,
             'type': 'out_invoice',
@@ -97,9 +99,10 @@ class WizRentTruck(models.TransientModel):
         Generate Journal entry
         """
         vals = {
+            'jenis_inv': "purchase",
             'partner_id': self.rent_truck_id.customer_rent_id.id,
             'origin': self.rent_truck_id.name,
-            'type': 'out_invoice',
+            'type': 'in_invoice',
             'payment_term_id': self.rent_payment_term_id.id,
             'invoice_line': tuple((0, 0, {
                 'product_id': line.product_id.id,
@@ -116,6 +119,7 @@ class WizRentTruck(models.TransientModel):
         Generate Journal entry
         """
         vals = {
+            'jenis_inv': "invoice",
             'partner_id': self.rent_truck_id.customer_rent_id.id,
             'origin': self.rent_truck_id.name,
             'type': 'out_invoice',

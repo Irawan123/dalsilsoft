@@ -10,10 +10,12 @@
     ],
     "data": [
         'view/modified/res_partner.xml',
+        'view/modified/account_invoice.xml',
 
         'view/config/config.xml',
         'view/config/wiz_config.xml',
         'view/master/truck.xml',
+        'view/fee_sales/fee_sales.xml',
         'view/rent_truck/rent_truck.xml',
         'view/rent_truck/rent_truck_line.xml',
         'view/rent_truck/wiz_rent_truck.xml',
