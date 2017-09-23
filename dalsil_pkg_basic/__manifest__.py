@@ -6,12 +6,12 @@
     "license": "AGPL-3",
     "category": "DalSil",
     "depends": [
-        "base", "product", "sale", "account", "ss_common", "account_accountant", "account_financial_report_qweb"
+        "base", "product", "stock", "sale", "account", "ss_common", "account_accountant", "account_financial_report_qweb"
     ],
     "data": [
         'view/modified/res_partner.xml',
         'view/modified/account_invoice.xml',
-
+        'view/modified/product_template.xml',
         'view/config/config.xml',
         'view/config/wiz_config.xml',
         'view/master/truck.xml',

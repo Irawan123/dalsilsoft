@@ -28,19 +28,25 @@
         <menuitem id="dalsil_menu_cust_invoice" name="Customer Invoices" sequence="20"
                   action="act_dalsil_acc_inv_tree_inv" parent="dalsil_menu_sales"/>
 
-        <menuitem id="dalsil_menu_fee_sales" name="Fee Sales" sequence="30"
+        <menuitem id="dalsil_menu_invoice_rent" name="Sewa Truck Invoices" sequence="30"
+                  action="act_dalsil_acc_inv_tree_rent" parent="dalsil_menu_sales"/>
+
+        <menuitem id="dalsil_menu_invoice_fee" name="Fee Invoices" sequence="40"
+                  action="act_dalsil_acc_inv_tree_fee" parent="dalsil_menu_sales"/>
+
+        <menuitem id="dalsil_menu_fee_sales" name="Fee Sales" sequence="50"
                   action="act_dalsil_fee_sales" parent="dalsil_menu_sales"/>
 
-        <menuitem id="dalsil_menu_cust_payments" name="Payments" sequence="40"
+        <menuitem id="dalsil_menu_cust_payments" name="Payments" sequence="60"
                   action="account.action_account_payments" parent="dalsil_menu_sales"/>
 
-        <menuitem id="dalsil_menu_cg_in" name="Incoming Check Giro" sequence="50"
+        <menuitem id="dalsil_menu_cg_in" name="Incoming Check Giro" sequence="70"
                   action="act_dalsil_cg_in" parent="dalsil_menu_sales"/>
 
-        <menuitem id="dalsil_menu_customer" name="Customers" sequence="60"
+        <menuitem id="dalsil_menu_customer" name="Customers" sequence="80"
                   action="base.action_partner_customer_form" parent="dalsil_menu_sales"/>
 
-        <menuitem id="dalsil_menu_product" name="Sellable Product" sequence="70"
+        <menuitem id="dalsil_menu_product" name="Sellable Product" sequence="90"
                   action="product.product_template_action" parent="dalsil_menu_sales"/>
 
 
@@ -51,7 +57,10 @@
         <menuitem id="dalsil_menu_vendor_bill" name="Vendor Bills" sequence="10"
                   action="act_dalsil_acc_inv_tree_purc" parent="dalsil_menu_purchase"/>
 
-        <menuitem id="dalsil_menu_vendor_payments" name="Payments" sequence="20"
+        <menuitem id="dalsil_menu_sangu_bill" name="Sangu Bills" sequence="20"
+                  action="act_dalsil_acc_inv_tree_sangu" parent="dalsil_menu_purchase"/>
+
+        <menuitem id="dalsil_menu_vendor_payments" name="Payments" sequence="30"
                   action="account.action_account_payments_payable" parent="dalsil_menu_purchase"/>
 
         <menuitem id="dalsil_menu_cg_out" name="Outgoing Check Giro" sequence="40"

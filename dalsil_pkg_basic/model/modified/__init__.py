@@ -1,2 +1,4 @@
+import stock_move
 import account_invoice
 import res_partner
+import product_template

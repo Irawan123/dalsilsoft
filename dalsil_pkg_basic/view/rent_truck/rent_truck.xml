@@ -83,6 +83,7 @@
                                 <field name="driver_id" create="0"
                                        context="{'default_is_driver': True, 'default_customer': False}"/>
                                 <field name="customer_id" create="0" context="{'default_customer': False}"/>
+                                <field name="customer_rent_id" create="0"/>
                                 <field name="dest_type"/>
                             </group>
                             <group>

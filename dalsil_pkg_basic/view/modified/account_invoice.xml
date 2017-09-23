@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <record id="inherit_account_invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="priority">16</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='partner_id']" position="after">
+                        <field name="picking_type_id"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
         <record id="act_dalsil_acc_inv_tree_inv" model="ir.actions.act_window">
             <field name="name">Customer Invoices</field>
             <field name="res_model">account.invoice</field>
@@ -8,7 +22,7 @@
             <field name="view_mode">tree,form</field>
             <field eval="False" name="view_id"/>
             <field name="domain">[('type','in',('out_invoice', 'out_refund')), ('jenis_inv','=','invoice')]</field>
-            <field name="context">{'type':'out_invoice', 'journal_type': 'sale','jenis_inv':'invoice'}</field>
+            <field name="context">{'default_type':'out_invoice', 'default_journal_type': 'sale','default_jenis_inv':'invoice'}</field>
             <field name="search_view_id" ref="account.view_account_invoice_filter"/>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
@@ -32,7 +46,7 @@
             <field name="view_mode">tree,form</field>
             <field eval="False" name="view_id"/>
             <field name="domain">[('type','in',('in_invoice', 'in_refund')), ('jenis_inv','=','purchase')]</field>
-            <field name="context">{'default_type': 'in_invoice', 'type': 'in_invoice', 'journal_type': 'purchase', 'jenis_inv':'purchase'}</field>
+            <field name="context">{'default_type': 'in_invoice', 'default_type': 'in_invoice', 'default_journal_type': 'purchase', 'default_jenis_inv':'purchase'}</field>
             <field name="search_view_id" ref="account.view_account_invoice_filter"/>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
@@ -41,6 +55,54 @@
                 You can control the invoice from your vendor according to
                 what you purchased or received.
               </p>
+            </field>
+        </record>
+
+        <record id="act_dalsil_acc_inv_tree_sangu" model="ir.actions.act_window">
+            <field name="name">Invoice Sangu</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('type','in',('in_invoice', 'in_refund')), ('jenis_inv','=','sangu')]</field>
+            <field name="context">{'default_type':'in_invoice', 'default_jenis_inv':'sangu'}</field>
+            <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create a Sangu.
+                </p>
+            </field>
+        </record>
+
+        <record id="act_dalsil_acc_inv_tree_rent" model="ir.actions.act_window">
+            <field name="name">Invoice Sewa Truck</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('type','in',('out_invoice', 'out_refund')), ('jenis_inv','=','rent')]</field>
+            <field name="context">{'default_type':'out_invoice', 'default_jenis_inv':'rent'}</field>
+            <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create a Invoice Sewa Truck.
+                </p>
+            </field>
+        </record>
+
+        <record id="act_dalsil_acc_inv_tree_fee" model="ir.actions.act_window">
+            <field name="name">Invoice Fee Sales</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('type','in',('out_invoice', 'out_refund')), ('jenis_inv','=','fee')]</field>
+            <field name="context">{'default_type':'out_invoice', 'default_jenis_inv':'fee'}</field>
+            <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create a Invoice Fee Sales.
+                </p>
             </field>
         </record>
     </data>

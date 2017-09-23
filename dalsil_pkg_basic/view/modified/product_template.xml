@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <data>
+        <!--#########################################################################################################-->
+        <!--Group Tree View-->
+        <!--#########################################################################################################-->
+        <!-- <record model="ir.ui.view" id="view_dalsil_product_template_fs_tree">
+            <field name="name">product.template.fee_sales.tree</field>
+            <field name="model">product.template.fee_sales</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                    <field name="sales_id"/>
+                    <field name="invoice_id"/>
+                    <field name="due_date"/>
+                    <field name="fee_sales"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record> -->
+        <!-- partner view form -->
+        <record id="inherit_product_template_form" model="ir.ui.view">
+            <field name="name">product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="priority">16</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//page[@name='variants']" position="after">
+                        <page name="fee_sales" string="Fee Sales">
+                            <group>
+                                <field name="fee"/>
+                            </group>
+                        </page>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</odoo>
