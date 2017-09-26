@@ -103,10 +103,12 @@
         <menuitem id="dalsil_config_accounting" name="Accounting" sequence="20"
                   parent="dalsil_menu_config"/>
 
-        <menuitem id="dalsil_menu_account_journal" name="Journals" sequence="10"
-                  action="account.action_account_journal_form" parent="dalsil_config_accounting"/>
+        <menuitem id="dalsil_menu_account_tax" name="Taxes" sequence="10"
+                  action="account.action_tax_form" parent="dalsil_config_accounting"/>
         <menuitem id="dalsil_menu_account_bank" name="Bank Accounts" sequence="20"
                   action="account.action_account_bank_journal_form" parent="dalsil_config_accounting"/>
+        <menuitem id="dalsil_menu_account_journal" name="Journals" sequence="30"
+                  action="account.action_account_journal_form" parent="dalsil_config_accounting"/>
 
         <menuitem id="dalsil_menu_date_range" name="Date ranges" parent="dalsil_config_accounting" sequence="30"/>
         <menuitem id="dalsil_menu_date_range_action"
