@@ -14,6 +14,7 @@
                     <field name="uom_id" readonly="1"/>
                     <field name="qty" readonly="1"/>
                     <field name="unit_price" required="1"/>
+                    <field name="invoice_line_tax_id" options="{'no_create': True}"/>
                     <field name="sub_total"/>
                 </tree>
             </field>

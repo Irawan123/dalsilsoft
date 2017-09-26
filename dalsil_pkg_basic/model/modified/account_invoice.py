@@ -64,10 +64,35 @@ class AccountInvoice(models.Model):
                         "date_expected": fields.Date.today(),
 
                         "origin": "[PEMBELIAN]-{}".format(record.name),
-                        "acc_inv_id": record.id
+                        "acc_inv_id": record.id,
+                        "price_unit": line_id.price_unit
                     }
                     stock_move = self.env['stock.move'].suspend_security().create(stock_move_data)
                     stock_move.action_done()
             elif record.jenis_inv == 'invoice':
-                pass
+                for line_id in record.invoice_line_ids:
+                    stock_move_data = {
+                        "state": "assigned",
+
+                        "picking_type_id": record.picking_type_id.id,
+                        "location_id": record.picking_type_id.default_location_dest_id.id,
+                        "location_dest_id": record.partner_id.property_stock_supplier.id,
+                        # "picking_id": stock_picking_id.id,
+                        "warehouse_id": record.picking_type_id.warehouse_id.id,
+
+                        "name": line_id.product_id.name,
+                        "product_id": line_id.product_id.id,
+                        "product_uom_qty": line_id.quantity,
+                        "product_uom": line_id.product_id.uom_id.id,
+                        "product_uos_qty": line_id.quantity,
+                        "product_uos": line_id.product_id.uom_id.id,
+
+                        "date": fields.Date.today(),
+                        "date_expected": fields.Date.today(),
+
+                        "origin": "[PEMBELIAN]-{}".format(record.name),
+                        "acc_inv_id": record.id
+                    }
+                    stock_move = self.env['stock.move'].suspend_security().create(stock_move_data)
+                    stock_move.action_done()
             return acc_inv

@@ -35,17 +35,26 @@ class WizRentTruck(models.TransientModel):
         :param rent_truck_id: Object/ID general expense
         """
         rent_truck_id = self.env["dalsil.rent_truck"].browse(rent_truck_id) if isinstance(rent_truck_id, int) else rent_truck_id
-        lines = []
+        inv_line_ids = []
+        pur_line_ids = []
         for line_id in rent_truck_id.line_ids:
-            lines.append([0, 0, {
+            inv_line_ids.append([0, 0, {
                 'product_id': line_id.product_id.id,
+                'uom_id': line_id.product_id.uom_id.id,
+                'unit_price': line_id.product_id.list_price,
+                'qty': line_id.qty
+            }])
+            pur_line_ids.append([0, 0, {
+                'product_id': line_id.product_id.id,
+                'uom_id': line_id.product_id.uom_id.id,
+                'unit_price': line_id.product_id.standard_price,
                 'qty': line_id.qty
             }])
         return self.wizard_show("General Invoice", {
             "rent_truck_id": rent_truck_id.id,
             "dest_type": rent_truck_id.dest_type,
-            "inv_line_ids": lines,
-            "pur_line_ids": lines
+            "inv_line_ids": inv_line_ids,
+            "pur_line_ids": pur_line_ids
         }, True)
 
     #################### private ####################
@@ -108,7 +117,8 @@ class WizRentTruck(models.TransientModel):
                 'product_id': line.product_id.id,
                 'name': 'Cost Rent Truck No ({})'.format(self.rent_truck_id.name),
                 'quantity': line.qty,
-                'price_unit': line.unit_price
+                'price_unit': line.unit_price,
+                'invoice_line_tax_ids': [(6, 0, line.invoice_line_tax_id.id)]
             }) for line in self.pur_line_ids)
         }
         self.rent_truck_id.pur_invoice_id = self.env['account.invoice'].create(vals)
@@ -128,7 +138,8 @@ class WizRentTruck(models.TransientModel):
                 'product_id': line.product_id.id,
                 'name': 'Cost Rent Truck No ({})'.format(self.rent_truck_id.name),
                 'quantity': line.qty,
-                'price_unit': line.unit_price
+                'price_unit': line.unit_price,
+                'invoice_line_tax_ids': [(6, 0, line.invoice_line_tax_id.id)]
             }) for line in self.inv_line_ids)
         }
         self.rent_truck_id.inv_invoice_id = self.env['account.invoice'].create(vals)
