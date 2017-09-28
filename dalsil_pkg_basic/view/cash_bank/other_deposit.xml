@@ -59,7 +59,7 @@
                     <sheet>
                         <div>
                             <h1 class="mt0">
-                                <field name="name" attrs="{'invisible': [('name', '=', False)]}"/>
+                                <field name="name"/>
                             </h1>
                         </div>
                         <group>
