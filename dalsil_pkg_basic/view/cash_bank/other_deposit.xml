@@ -59,7 +59,7 @@
                     <sheet>
                         <div>
                             <h1 class="mt0">
-                                <field name="name" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                                <field name="name" attrs="{'invisible': [('state', 'in', ['draft', False])]}"/>
                             </h1>
                         </div>
                         <group>
