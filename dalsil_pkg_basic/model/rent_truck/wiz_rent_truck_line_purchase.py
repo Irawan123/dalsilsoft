@@ -18,7 +18,8 @@ class WizRentTruckLinePurchase(models.TransientModel):
     invoice_line_tax_id = fields.Many2one('account.tax', string='Taxes', 
         domain=[('type_tax_use','!=','none'), '|', ('active', '=', False), ('active', '=', True)])
     sub_total = fields.Float("Sub Total", digits=(20,2), compute="_get_sub_total")
-
+    account_id = fields.Many2one("account.account", "Account")
+    
     @api.depends("qty", "unit_price", "invoice_line_tax_id")
     def _get_sub_total(self):
         """

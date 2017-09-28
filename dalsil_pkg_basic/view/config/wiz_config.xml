@@ -20,6 +20,17 @@
                             <field name="def_sangu" required="1"/>
                             <field name="product_sangu" required="1"/>
                             <field name="product_rent" required="1"/>
+                            <field name="sangu_acc_id" required="1"/>
+                            <field name="rent_acc_id" required="1"/>
+                        </group>
+                        <group></group>
+                    </group>
+                    <group>
+                        <group string="Account Stock">
+                            <field name="purc_acc_credit_id" required="1"/>
+                            <field name="purc_acc_debit_id" required="1"/>
+                            <field name="inv_acc_credit_id" required="1"/>
+                            <field name="inv_acc_debit_id" required="1"/>
                         </group>
                         <group></group>
                     </group>

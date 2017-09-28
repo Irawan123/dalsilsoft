@@ -40,6 +40,7 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def action_invoice_open(self):
+        setting = self.env["ir.model.data"].xmlid_to_object("dalsil_pkg_basic.dalsil_config")
         acc_inv = super(AccountInvoice, self).action_invoice_open()
         for record in self:
             if record.jenis_inv == 'purchase':
@@ -69,6 +70,28 @@ class AccountInvoice(models.Model):
                     }
                     stock_move = self.env['stock.move'].suspend_security().create(stock_move_data)
                     stock_move.action_done()
+
+                move_data = {
+                    "journal_id": record.journal_id.id,
+                    "ref": record.number,
+                    "date": fields.Date.today(),
+                    "state": "draft",
+                    "line_ids": [(0, 0, {
+                        "name": record.number,
+                        "account_id": setting.purc_acc_debit_id.id,
+                        "debit": record.amount_total,
+                        "credit": 0.0,
+                        "partner_id": record.partner_id.id
+                    }), (0, 0, {
+                        "name": record.number,
+                        "account_id": setting.purc_acc_credit_id.id,
+                        "credit": record.amount_total,
+                        "debit": 0.0,
+                        "partner_id": record.partner_id.id
+                    })]
+                }
+                account_move = self.env['account.move'].create(move_data)
+                account_move.post()
             elif record.jenis_inv == 'invoice':
                 for line_id in record.invoice_line_ids:
                     stock_move_data = {
@@ -95,4 +118,26 @@ class AccountInvoice(models.Model):
                     }
                     stock_move = self.env['stock.move'].suspend_security().create(stock_move_data)
                     stock_move.action_done()
+
+                move_data = {
+                    "journal_id": record.journal_id.id,
+                    "ref": record.number,
+                    "date": fields.Date.today(),
+                    "state": "draft",
+                    "line_ids": [(0, 0, {
+                        "name": record.number,
+                        "account_id": setting.inv_acc_debit_id.id,
+                        "debit": record.amount_total,
+                        "credit": 0.0,
+                        "partner_id": record.partner_id.id
+                    }), (0, 0, {
+                        "name": record.number,
+                        "account_id": setting.inv_acc_credit_id.id,
+                        "credit": record.amount_total,
+                        "debit": 0.0,
+                        "partner_id": record.partner_id.id
+                    })]
+                }
+                account_move = self.env['account.move'].create(move_data)
+                account_move.post()
             return acc_inv

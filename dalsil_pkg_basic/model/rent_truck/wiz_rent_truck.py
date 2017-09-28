@@ -71,12 +71,13 @@ class WizRentTruck(models.TransientModel):
             'origin': self.rent_truck_id.name,
             'type': 'in_invoice',
             'payment_term_id': self.sangu_payment_term_id.id,
-            'invoice_line_ids': (0, 0, {
+            'invoice_line_ids': [(0, 0, {
                 'product_id': setting.product_sangu.id,
                 'name': 'Sangu Driver Rent Truck No ({})'.format(self.rent_truck_id.name),
                 'quantity': 1.0,
-                'price_unit': setting.def_sangu
-            })
+                'price_unit': setting.def_sangu,
+                'account_id': setting.sangu_acc_id.id
+            })]
         }
         self.rent_truck_id.sangu_invoice_id = self.env['account.invoice'].create(vals)
 
@@ -93,12 +94,13 @@ class WizRentTruck(models.TransientModel):
             'origin': self.rent_truck_id.name,
             'type': 'out_invoice',
             'payment_term_id': self.rent_payment_term_id.id,
-            'invoice_line_ids': (0, 0, {
+            'invoice_line_ids': [(0, 0, {
                 'product_id': setting.product_rent.id,
                 'name': 'Cost Rent Truck No ({})'.format(self.rent_truck_id.name),
                 'quantity': 1.0,
-                'price_unit': self.rent_truck_id.total_rent
-            })
+                'price_unit': self.rent_truck_id.total_rent,
+                'account_id': setting.rent_acc_id.id
+            })]
         }
         self.rent_truck_id.rent_invoice_id = self.env['account.invoice'].create(vals)
 
@@ -118,7 +120,8 @@ class WizRentTruck(models.TransientModel):
                 'name': 'Cost Rent Truck No ({})'.format(self.rent_truck_id.name),
                 'quantity': line.qty,
                 'price_unit': line.unit_price,
-                'invoice_line_tax_ids': [(6, 0, line.invoice_line_tax_id.id)]
+                'invoice_line_tax_ids': [(6, 0, [line.invoice_line_tax_id.id])] if line.invoice_line_tax_id else False,
+                'account_id': line.account_id.id
             }) for line in self.pur_line_ids)
         }
         self.rent_truck_id.pur_invoice_id = self.env['account.invoice'].create(vals)
@@ -139,7 +142,8 @@ class WizRentTruck(models.TransientModel):
                 'name': 'Cost Rent Truck No ({})'.format(self.rent_truck_id.name),
                 'quantity': line.qty,
                 'price_unit': line.unit_price,
-                'invoice_line_tax_ids': [(6, 0, line.invoice_line_tax_id.id)]
+                'invoice_line_tax_ids': [(6, 0, [line.invoice_line_tax_id.id])] if line.invoice_line_tax_id else False,
+                'account_id': line.account_id.id
             }) for line in self.inv_line_ids)
         }
         self.rent_truck_id.inv_invoice_id = self.env['account.invoice'].create(vals)
@@ -162,5 +166,5 @@ class WizRentTruck(models.TransientModel):
             self._generate_rent()
             self._generate_purchase()
             self._generate_invoice()
-
+        self.rent_truck_id.to_done()
         return {}
