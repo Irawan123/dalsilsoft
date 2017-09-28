@@ -66,11 +66,12 @@
                             <group>
                                 <field name="account_id" create="0"/>
                                 <field name="date"/>
-                                <field name="memo"/>
                                 <field name="amount" widget="monetary"/>
+                                <field name="memo"/>
                             </group>
                             <group>
                                 <field name="journal_id" invisible="0"/>
+                                <field name="move_id" attrs="{'invisible': [('move_id', '=', False)]}"/>
                             </group>
                         </group>
                         <field name="id" invisible="1"/>

@@ -15,6 +15,7 @@ class OtherDeposit(models.Model):
     _name = "dalsil.cash_bank.od"
     _inherit = "ss.model"
     _state_start = STATE[0][0]
+    _seq_code = ("name", "dalsil_cash_bank_od")
 
     name = fields.Char('Voucher No.')
     date = fields.Date('Date', required=True, default=fields.Date.today())
@@ -58,13 +59,13 @@ class OtherDeposit(models.Model):
                     "debit": 0,
                     "date_maturity": record.date
                 }))
-            move_env.create({
+            move_id = move_env.create({
                 "journal_id": record.journal_id.id,
                 "date": record.date,
-                "line_ids": lines
+                "line_ids": lines,
+                "ref": record.name
             }).post()
 
-            record.move_id = move_env
-            record.name = move_env.name
+            record.move_id = move_id
 
         return self._cstate(STATE[1][0])

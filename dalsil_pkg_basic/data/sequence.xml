@@ -6,12 +6,23 @@
             <field name="name">Fee Sales</field>
             <field name="code">dalsil_fee_sales</field>
         </record>
-
         <record id="seq_dalsil_fee_sales" model="ir.sequence">
             <field name="name">Fee Sales</field>
             <field name="code">dalsil_fee_sales</field>
             <field name="company_id" eval="False"/>
-            <field name="prefix">SRJ/FS/%(year)s/%(month)s/</field>
+            <field name="prefix">SRP/FS/%(year)s/%(month)s/</field>
+            <field name="padding">6</field>
+        </record>
+
+        <record id="seq_code_dalsil_cash_bank_od" model="ir.sequence.type">
+            <field name="name">Other Deposit</field>
+            <field name="code">dalsil_cash_bank_od</field>
+        </record>
+        <record id="seq_dalsil_cash_bank_od" model="ir.sequence">
+            <field name="name">Other Deposit</field>
+            <field name="code">dalsil_cash_bank_od</field>
+            <field name="company_id" eval="False"/>
+            <field name="prefix">SRP/OD/%(year)s/%(month)s/</field>
             <field name="padding">6</field>
         </record>
 
