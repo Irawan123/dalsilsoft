@@ -77,6 +77,9 @@
         <menuitem id="dalsil_menu_account" name="Chart of Accounts" sequence="10"
                   action="account.action_account_form" parent="dalsil_menu_accounting"/>
 
+        <menuitem id="dalsil_menu_cash_bank_od" name="Other Deposit" sequence="20"
+                  action="act_dalsil_cash_bank_od" parent="dalsil_menu_accounting"/>
+
         <menuitem id="dalsil_menu_account_move_line" name="Journal Items" sequence="40"
                   action="account.action_account_moves_all_a" parent="dalsil_menu_accounting"/>
 

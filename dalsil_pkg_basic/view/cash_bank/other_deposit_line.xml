@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--#########################################################################################################-->
+        <!--Group Tree View-->
+        <!--#########################################################################################################-->
+        <record model="ir.ui.view" id="view_dalsil_cash_bank_od_line_tree">
+            <field name="name">dalsil.cash_bank.od.line.tree</field>
+            <field name="model">dalsil.cash_bank.od.line</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="parent_id" invisible="1"/>
+                    <field name="account_id"/>
+                    <field name="partner_id"/>
+                    <field name="amount" widget="monetary"/>
+                    <field name="memo"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--#########################################################################################################-->
+    </data>
+</odoo>

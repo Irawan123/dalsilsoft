@@ -7,7 +7,7 @@ class OutgoingCheckGiroLine(models.Model):
     """
     _name = "dalsil.check_giro.out.line"
 
-    parent_id = fields.Many2one("dalsil.check_giro.out", required=True, ondelete="CASCADE")
+    parent_id = fields.Many2one("dalsil.check_giro.out", ondelete="CASCADE")
     vendor_id = fields.Many2one("res.partner", related="parent_id.vendor_id")
 
     invoice_id = fields.Many2one(
