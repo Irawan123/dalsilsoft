@@ -4,9 +4,9 @@
         <!--#########################################################################################################-->
         <!-- SEARCH -->
         <!--#########################################################################################################-->
-        <record id="view_dalsil_cash_bank_od_search" model="ir.ui.view">
-            <field name="name">dalsil.cash_bank.od.search</field>
-            <field name="model">dalsil.cash_bank.od</field>
+        <record id="view_dalsil_cash_bank_op_search" model="ir.ui.view">
+            <field name="name">dalsil.cash_bank.op.search</field>
+            <field name="model">dalsil.cash_bank.op</field>
             <field name="arch" type="xml">
                 <search>
                     <field name="name"/>
@@ -24,9 +24,9 @@
         <!--#########################################################################################################-->
         <!--Group Tree View-->
         <!--#########################################################################################################-->
-        <record model="ir.ui.view" id="view_dalsil_cash_bank_od_tree">
-            <field name="name">dalsil.cash_bank.od.tree</field>
-            <field name="model">dalsil.cash_bank.od</field>
+        <record model="ir.ui.view" id="view_dalsil_cash_bank_op_tree">
+            <field name="name">dalsil.cash_bank.op.tree</field>
+            <field name="model">dalsil.cash_bank.op</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -41,9 +41,9 @@
         <!--#########################################################################################################-->
         <!-- FORM -->
         <!--#########################################################################################################-->
-        <record id="view_dalsil_cash_bank_od_form" model="ir.ui.view">
-            <field name="name">dalsil.cash_bank.od.form</field>
-            <field name="model">dalsil.cash_bank.od</field>
+        <record id="view_dalsil_cash_bank_op_form" model="ir.ui.view">
+            <field name="name">dalsil.cash_bank.op.form</field>
+            <field name="model">dalsil.cash_bank.op</field>
             <field name="arch" type="xml">
                 <form>
                     <header>
@@ -93,15 +93,15 @@
         <!--#########################################################################################################-->
         <!--Act Window-->
         <!--#########################################################################################################-->
-        <record model="ir.actions.act_window" id="act_dalsil_cash_bank_od">
-            <field name="name">Other Deposit</field>
-            <field name="res_model">dalsil.cash_bank.od</field>
+        <record model="ir.actions.act_window" id="act_dalsil_cash_bank_op">
+            <field name="name">Other Payment</field>
+            <field name="res_model">dalsil.cash_bank.op</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[]</field>
             <field name="context">{}</field>
             <field name="view_type">form</field>
             <field name="help" type="html">
-                <p class="oe_view_nocontent_create">Click here to create Other Deposit.</p>
+                <p class="oe_view_nocontent_create">Click here to create Other Payment.</p>
             </field>
         </record>
 

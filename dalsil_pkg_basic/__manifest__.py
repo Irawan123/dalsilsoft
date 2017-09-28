@@ -32,6 +32,8 @@
         'view/check_giro/out_check_giro_line.xml',
         'view/cash_bank/other_deposit.xml',
         'view/cash_bank/other_deposit_line.xml',
+        'view/cash_bank/other_payment.xml',
+        'view/cash_bank/other_payment_line.xml',
 
         'view/menu.xml'
     ],

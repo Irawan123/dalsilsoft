@@ -15,5 +15,11 @@
             <field name="padding">6</field>
         </record>
 
+        <record id="seq_dalsil_cash_bank_op" model="ir.sequence">
+            <field name="name">Other Payment</field>
+            <field name="code">dalsil.cash_bank.op</field>
+            <field name="prefix">OP/%(year)s/%(month)s/</field>
+            <field name="padding">6</field>
+        </record>
     </data>
 </odoo>

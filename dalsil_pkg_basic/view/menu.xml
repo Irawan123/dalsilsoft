@@ -80,10 +80,13 @@
         <menuitem id="dalsil_menu_cash_bank_od" name="Other Deposit" sequence="20"
                   action="act_dalsil_cash_bank_od" parent="dalsil_menu_accounting"/>
 
-        <menuitem id="dalsil_menu_account_move_line" name="Journal Items" sequence="40"
+        <menuitem id="dalsil_menu_cash_bank_op" name="Other Payment" sequence="30"
+                  action="act_dalsil_cash_bank_op" parent="dalsil_menu_accounting"/>
+
+        <menuitem id="dalsil_menu_account_move_line" name="Journal Items" sequence="60"
                   action="account.action_account_moves_all_a" parent="dalsil_menu_accounting"/>
 
-        <menuitem id="dalsil_menu_account_move" name="Journal Entries" sequence="50"
+        <menuitem id="dalsil_menu_account_move" name="Journal Entries" sequence="70"
                   action="account.action_move_journal_line" parent="dalsil_menu_accounting"/>
 
 
