@@ -15,7 +15,7 @@ class OtherDeposit(models.Model):
     _name = "dalsil.cash_bank.od"
     _inherit = "ss.model"
     _state_start = STATE[0][0]
-    _seq_code = ("name", "dalsil_cash_bank_od")
+    _seq_code = {"name": "dalsil.cash_bank.od"}
 
     name = fields.Char('Voucher No.')
     date = fields.Date('Date', required=True, default=fields.Date.today())
@@ -64,7 +64,8 @@ class OtherDeposit(models.Model):
                 "date": record.date,
                 "line_ids": lines,
                 "ref": record.name
-            }).post()
+            })
+            move_id.post()
 
             record.move_id = move_id
 
