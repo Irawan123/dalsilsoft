@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--#########################################################################################################-->
+        <!--Group Tree View-->
+        <!--#########################################################################################################-->
+        <record model="ir.ui.view" id="view_journal_voucher_line_tree">
+            <field name="name">dalsil.journal_voucher.line.tree</field>
+            <field name="model">dalsil.journal_voucher.line</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="parent_id" invisible="1"/>
+                    <field name="account_id"/>
+                    <field name="partner_id"/>
+                    <field name="debit" widget="monetary"/>
+                    <field name="credit" widget="monetary"/>
+                    <field name="memo"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--#########################################################################################################-->
+    </data>
+</odoo>

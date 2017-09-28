@@ -34,6 +34,8 @@
         'view/cash_bank/other_deposit_line.xml',
         'view/cash_bank/other_payment.xml',
         'view/cash_bank/other_payment_line.xml',
+        'view/journal_voucher/journal_voucher.xml',
+        'view/journal_voucher/journal_voucher_line.xml',
 
         'view/menu.xml'
     ],

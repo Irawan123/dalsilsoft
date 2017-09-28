@@ -83,6 +83,9 @@
         <menuitem id="dalsil_menu_cash_bank_op" name="Other Payment" sequence="30"
                   action="act_dalsil_cash_bank_op" parent="dalsil_menu_accounting"/>
 
+        <menuitem id="dalsil_menu_journal_voucher" name="Journal Voucher" sequence="40"
+                  action="act_dalsil_journal_voucher" parent="dalsil_menu_accounting"/>
+
         <menuitem id="dalsil_menu_account_move_line" name="Journal Items" sequence="60"
                   action="account.action_account_moves_all_a" parent="dalsil_menu_accounting"/>
 

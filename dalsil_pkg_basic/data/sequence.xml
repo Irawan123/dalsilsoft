@@ -21,5 +21,12 @@
             <field name="prefix">OP/%(year)s/%(month)s/</field>
             <field name="padding">6</field>
         </record>
+
+        <record id="seq_dalsil_journal_voucher" model="ir.sequence">
+            <field name="name">Journal Voucher</field>
+            <field name="code">dalsil.journal_voucher</field>
+            <field name="prefix">JV/%(year)s/%(month)s/</field>
+            <field name="padding">6</field>
+        </record>
     </data>
 </odoo>

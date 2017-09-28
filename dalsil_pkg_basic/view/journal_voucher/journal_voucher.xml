@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--#########################################################################################################-->
+        <!-- SEARCH -->
+        <!--#########################################################################################################-->
+        <record id="view_dalsil_journal_voucher_search" model="ir.ui.view">
+            <field name="name">dalsil.journal_voucher.search</field>
+            <field name="model">dalsil.journal_voucher</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="description"/>
+                    <field name="state"/>
+                    <group string="Group By">
+                        <filter name="group_state" string="State" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--#########################################################################################################-->
+        <!--Group Tree View-->
+        <!--#########################################################################################################-->
+        <record model="ir.ui.view" id="view_dalsil_journal_voucher_tree">
+            <field name="name">dalsil.journal_voucher.tree</field>
+            <field name="model">dalsil.journal_voucher</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="description"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--#########################################################################################################-->
+        <!-- FORM -->
+        <!--#########################################################################################################-->
+        <record id="view_dalsil_journal_voucher_form" model="ir.ui.view">
+            <field name="name">dalsil.journal_voucher.form</field>
+            <field name="model">dalsil.journal_voucher</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button type="object" name="to_post" string="Post"
+                                class="oe_highlight"
+                                states="draft"/>
+                        <!--<button type="object" name="to_cancel" string="Cancel"-->
+                                <!--states="draft"/>-->
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,post"/>
+                    </header>
+
+                    <sheet>
+                        <div>
+                            <h1 class="mt0">
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="date"/>
+                                <field name="description"/>
+                            </group>
+                            <group>
+                                <field name="journal_id" invisible="0"/>
+                                <field name="move_id" attrs="{'invisible': [('move_id', '=', False)]}"/>
+                            </group>
+                        </group>
+                        <field name="id" invisible="1"/>
+                        <notebook>
+                            <page string="Items">
+                                <field name="line_ids" context="{'default_parent_id':id}"
+                                       attrs="{'readonly': [('state', 'not in', ['draft',False])]}" nolabel="1"/>
+                                <!--<group class="oe_subtotal_footer oe_right">-->
+                                    <!--<field name="total_debit" widget="monetary"/>-->
+                                <!--</group>-->
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--#########################################################################################################-->
+        <!--Act Window-->
+        <!--#########################################################################################################-->
+        <record model="ir.actions.act_window" id="act_dalsil_journal_voucher">
+            <field name="name">Journal Voucher</field>
+            <field name="res_model">dalsil.journal_voucher</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Click here to create Journal Voucher.</p>
+            </field>
+        </record>
+
+        <!--#########################################################################################################-->
+    </data>
+</odoo>
