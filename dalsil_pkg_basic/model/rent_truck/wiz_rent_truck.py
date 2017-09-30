@@ -18,9 +18,9 @@ class WizRentTruck(models.TransientModel):
 
     rent_truck_id = fields.Many2one("dalsil.rent_truck", string="Rent Truck")
     dest_type = fields.Selection(DEST_TYPE, "Destination Type")
-    
+
     sangu_payment_term_id = fields.Many2one('account.payment.term', string='Sangu Payment Terms')
-    
+
     rent_payment_term_id = fields.Many2one('account.payment.term', string='Rent Payment Terms')
 
     inv_line_ids = fields.One2many("dalsil.wiz_rent_truck.line_inv", "parent_id", "Product")
@@ -31,25 +31,27 @@ class WizRentTruck(models.TransientModel):
     def show(self, rent_truck_id):
         """
         Tampilkan wizard ini
-        
+
         :param rent_truck_id: Object/ID general expense
         """
         rent_truck_id = self.env["dalsil.rent_truck"].browse(rent_truck_id) if isinstance(rent_truck_id, int) else rent_truck_id
         inv_line_ids = []
         pur_line_ids = []
         for line_id in rent_truck_id.line_ids:
-            inv_line_ids.append([0, 0, {
-                'product_id': line_id.product_id.id,
-                'uom_id': line_id.product_id.uom_id.id,
-                'unit_price': line_id.product_id.list_price,
-                'qty': line_id.qty
-            }])
-            pur_line_ids.append([0, 0, {
-                'product_id': line_id.product_id.id,
-                'uom_id': line_id.product_id.uom_id.id,
-                'unit_price': line_id.product_id.standard_price,
-                'qty': line_id.qty
-            }])
+            if rent_truck_id.dest_type in ['warehouse', 'customer']:
+                inv_line_ids.append([0, 0, {
+                    'product_id': line_id.product_id.id,
+                    'uom_id': line_id.product_id.uom_id.id,
+                    'unit_price': line_id.product_id.list_price,
+                    'qty': line_id.qty
+                }])
+            if rent_truck_id.dest_type == 'customer':
+                pur_line_ids.append([0, 0, {
+                    'product_id': line_id.product_id.id,
+                    'uom_id': line_id.product_id.uom_id.id,
+                    'unit_price': line_id.product_id.standard_price,
+                    'qty': line_id.qty
+                }])
         return self.wizard_show("General Invoice", {
             "rent_truck_id": rent_truck_id.id,
             "dest_type": rent_truck_id.dest_type,
