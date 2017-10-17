@@ -15,28 +15,9 @@
             </field>
         </record>
 
-        <record id="act_dalsil_acc_inv_tree_inv" model="ir.actions.act_window">
-            <field name="name">Customer Invoices</field>
-            <field name="res_model">account.invoice</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field eval="False" name="view_id"/>
+        <record id="account.action_invoice_tree1" model="ir.actions.act_window">
             <field name="domain">[('type','in',('out_invoice', 'out_refund')), ('jenis_inv','=','invoice')]</field>
             <field name="context">{'default_type':'out_invoice', 'default_journal_type': 'sale','default_jenis_inv':'invoice'}</field>
-            <field name="search_view_id" ref="account.view_account_invoice_filter"/>
-            <field name="help" type="html">
-              <p class="oe_view_nocontent_create">
-                Click to create a customer invoice.
-              </p><p>
-                Odoo's electronic invoicing allows to ease and fasten the
-                collection of customer payments. Your customer receives the
-                invoice by email and he can pay online and/or import it
-                in his own system.
-              </p><p>
-                The discussions with your customer are automatically displayed at
-                the bottom of each invoice.
-              </p>
-            </field>
         </record>
 
         <record id="act_dalsil_acc_inv_tree_purc" model="ir.actions.act_window">
@@ -46,7 +27,7 @@
             <field name="view_mode">tree,form</field>
             <field eval="False" name="view_id"/>
             <field name="domain">[('type','in',('in_invoice', 'in_refund')), ('jenis_inv','=','purchase')]</field>
-            <field name="context">{'default_type': 'in_invoice', 'default_type': 'in_invoice', 'default_journal_type': 'purchase', 'default_jenis_inv':'purchase'}</field>
+            <field name="context">{'default_type': 'in_invoice', 'default_journal_type': 'purchase', 'default_jenis_inv':'purchase'}</field>
             <field name="search_view_id" ref="account.view_account_invoice_filter"/>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
