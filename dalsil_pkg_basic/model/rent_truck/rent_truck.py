@@ -21,6 +21,7 @@ class RentTruck(models.Model):
     _name = "dalsil.rent_truck"
     _inherit = "ss.model"
     _state_start = STATE[0][0]
+    _seq_code = {"name": "dalsil_rent_truck"}
 
     name = fields.Char("Rent Truck No.")
     state = fields.Selection(STATE, "State")

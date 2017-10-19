@@ -23,6 +23,9 @@
                     <field name="inv_line_ids" attrs="{'invisible': [('dest_type', 'not in', ['warehouse', 'customer'])]}"/>
 
                     <separator string="Purchase Vendor" attrs="{'invisible': [('dest_type', '!=', 'customer')]}"/>
+                    <group >
+                        <field name="location_id" attrs="{'invisible': [('dest_type', '!=', 'customer')], 'required': [('dest_type', '=', 'customer')]}"/>
+                    </group>
                     <field name="pur_line_ids" attrs="{'invisible': [('dest_type', '!=', 'customer')]}"/>
                     <footer>
                         <button name="do_continue" string="Create Invoice" type="object" class="oe_highlight"/>

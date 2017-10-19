@@ -17,6 +17,7 @@ class AccountInvoice(models.Model):
     sales_id = fields.Many2one("res.partner", "Sales")
     jenis_inv = fields.Selection(JENIS_INVOICE, "Jenis Invoice", default=JENIS_INVOICE[0][0])
     picking_type_id = fields.Many2one("stock.picking.type", "Picking Type")
+    location_id = fields.Many2one("stock.location", "Destination Location", domain=[('usage','=','internal'), ('active', '=', True)])
 
     @api.model
     def create(self, vals):
@@ -48,11 +49,13 @@ class AccountInvoice(models.Model):
                     stock_move_data = {
                         "state": "assigned",
 
-                        "picking_type_id": record.picking_type_id.id,
-                        "location_dest_id": record.picking_type_id.default_location_dest_id.id,
+                        # "picking_type_id": record.picking_type_id.id,
+                        "location_dest_id": record.location_id.id,
                         "location_id": record.partner_id.property_stock_supplier.id,
+
+                        "partner_id": record.partner_id.id,
                         # "picking_id": stock_picking_id.id,
-                        "warehouse_id": record.picking_type_id.warehouse_id.id,
+                        # "warehouse_id": record.picking_type_id.warehouse_id.id,
 
                         "name": line_id.product_id.name,
                         "product_id": line_id.product_id.id,
@@ -97,11 +100,12 @@ class AccountInvoice(models.Model):
                     stock_move_data = {
                         "state": "assigned",
 
-                        "picking_type_id": record.picking_type_id.id,
-                        "location_id": record.picking_type_id.default_location_dest_id.id,
+                        # "picking_type_id": record.picking_type_id.id,
+                        "location_id": line_id.location_id.id,
                         "location_dest_id": record.partner_id.property_stock_supplier.id,
                         # "picking_id": stock_picking_id.id,
-                        "warehouse_id": record.picking_type_id.warehouse_id.id,
+                        # "warehouse_id": record.picking_type_id.warehouse_id.id,
+                        "partner_id": record.partner_id.id,
 
                         "name": line_id.product_id.name,
                         "product_id": line_id.product_id.id,

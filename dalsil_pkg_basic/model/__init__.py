@@ -5,3 +5,6 @@ import check_giro
 import cash_bank
 import rent_truck
 import modified
+import supplier_return
+import start_stock
+import report

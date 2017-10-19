@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <data>
+        <!-- #################################################################################################### -->
+        <!-- FORM VIEW -->
+        <!-- #################################################################################################### -->
+        <record id="view_dalsil_report_stock_form" model="ir.ui.view">
+            <field name="name">dalsil.wiz_report_stock.form</field>
+            <field name="model">dalsil.wiz_report_stock</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="product_id" required="1" create="0"/>
+                        <field name="location_id" required="1" create="0"/>
+                        <field name="month" required="1"/>
+                        <field name="year" required="1"/>
+                    </group>
+                    <footer>
+                        <button type="object" name="generate_excel" string="Generate Excel"
+                                class="oe_highlight"/>
+                        <button string="Close" special="cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <!-- #################################################################################################### -->
+        <!-- ACT WINDOW -->
+        <!-- #################################################################################################### -->
+        <record id="act_dalsil_report_stock" model="ir.actions.act_window">
+            <field name="name">Report Stock</field>
+            <field name="res_model">dalsil.wiz_report_stock</field>
+            <field name="view_mode">form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="target">new</field>
+            <field name="view_type">form</field>
+        </record>
+        <!-- #################################################################################################### -->
+    </data>
+</odoo>

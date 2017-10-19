@@ -57,16 +57,19 @@
         <menuitem id="dalsil_menu_vendor_bill" name="Vendor Bills" sequence="10"
                   action="act_dalsil_acc_inv_tree_purc" parent="dalsil_menu_purchase"/>
 
-        <menuitem id="dalsil_menu_sangu_bill" name="Sangu Bills" sequence="20"
+        <menuitem id="dalsil_menu_supplier_return" name="Supplier Return" sequence="20"
+                  action="act_dalsil_supplier_return" parent="dalsil_menu_purchase"/>
+
+        <menuitem id="dalsil_menu_sangu_bill" name="Sangu Bills" sequence="30"
                   action="act_dalsil_acc_inv_tree_sangu" parent="dalsil_menu_purchase"/>
 
-        <menuitem id="dalsil_menu_vendor_payments" name="Payments" sequence="30"
+        <menuitem id="dalsil_menu_vendor_payments" name="Payments" sequence="40"
                   action="account.action_account_payments_payable" parent="dalsil_menu_purchase"/>
 
-        <menuitem id="dalsil_menu_cg_out" name="Outgoing Check Giro" sequence="40"
+        <menuitem id="dalsil_menu_cg_out" name="Outgoing Check Giro" sequence="50"
                   action="act_dalsil_cg_out" parent="dalsil_menu_purchase"/>
 
-        <menuitem id="dalsil_menu_vendor" name="Vendors" sequence="50"
+        <menuitem id="dalsil_menu_vendor" name="Vendors" sequence="60"
                   action="base.action_partner_supplier_form" parent="dalsil_menu_purchase"/>
 
 
@@ -93,7 +96,10 @@
 
         <menuitem id="dalsil_menu_general_ledger" name="General Ledger" sequence="10"
                   action="account_financial_report_qweb.action_general_ledger_wizard" parent="dalsil_menu_report"/>
-
+        <menuitem id="dalsil_menu_report_stock" name="Laporan Stok" sequence="20"
+                  action="act_dalsil_report_stock" parent="dalsil_menu_report"/>
+        <menuitem id="dalsil_menu_report_summary_stock" name="Laporan Summary Stok" sequence="30"
+                  action="act_dalsil_report_summary_stock" parent="dalsil_menu_report"/>
 
 
         <!-- Menu Configuration -->
@@ -121,5 +127,7 @@
                   action="date_range.date_range_type_action" sequence="20"
                   parent="dalsil_menu_date_range"/>
 
+        <menuitem id="dalsil_start_stock" name="Stock Awal Bulan" sequence="40"
+                  action="act_dalsil_start_stock" parent="dalsil_menu_config"/>
     </data>
 </odoo>

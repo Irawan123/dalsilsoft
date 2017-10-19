@@ -25,6 +25,10 @@
         'view/rent_truck/wiz_rent_truck.xml',
         'view/rent_truck/wiz_rent_truck_line_invoice.xml',
         'view/rent_truck/wiz_rent_truck_line_purchase.xml',
+        'view/supplier_return/supplier_return.xml',
+        'view/supplier_return/supplier_return_line.xml',
+        'view/start_stock/start_stock.xml',
+        'view/start_stock/start_stock_line.xml',
 
         'view/check_giro/in_check_giro.xml',
         'view/check_giro/in_check_giro_line.xml',
@@ -32,6 +36,9 @@
         'view/check_giro/out_check_giro_line.xml',
         'view/cash_bank/other_deposit.xml',
         'view/cash_bank/other_deposit_line.xml',
+
+        'view/report/report_stock.xml',
+        'view/report/report_summary_stock.xml',
 
         'view/menu.xml'
     ],

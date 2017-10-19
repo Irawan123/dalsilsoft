@@ -8,7 +8,7 @@ class RentTruckLine(models.Model):
     _name = "dalsil.rent_truck.line"
 
     parent_id = fields.Many2one("dalsil.rent_truck.in", ondelete="CASCADE")
-    product_id = fields.Many2one("product.product", "Product")
+    product_id = fields.Many2one("product.product", "Product", domain=[('type', '=', 'product'), ('active', '=', True)])
     uom_id = fields.Many2one("product.uom", "Unit of Measure", compute="_get_data_product", store=True)
     qty = fields.Float("Quantity", digits=(20,2))
     cost = fields.Float("Cost", digits=(20,2))

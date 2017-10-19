@@ -8,3 +8,4 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     acc_inv_id = fields.Many2one("account.invoice", "Invoice")
+    partner_id = fields.Many2one("res.partner", "Partner")

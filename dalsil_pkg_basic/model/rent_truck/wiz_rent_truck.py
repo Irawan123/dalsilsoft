@@ -25,6 +25,7 @@ class WizRentTruck(models.TransientModel):
 
     inv_line_ids = fields.One2many("dalsil.wiz_rent_truck.line_inv", "parent_id", "Product")
 
+    location_id = fields.Many2one("stock.location", "Destination Location", domain=[('usage','=','internal'), ('active', '=', True)])
     pur_line_ids = fields.One2many("dalsil.wiz_rent_truck.line_pur", "parent_id", "Product")
 
     #################### public ####################
@@ -115,6 +116,7 @@ class WizRentTruck(models.TransientModel):
             'origin': self.rent_truck_id.name,
             'type': 'in_invoice',
             'payment_term_id': self.rent_payment_term_id.id,
+            'location_id': self.location_id.id,
             'invoice_line_ids': tuple((0, 0, {
                 'product_id': line.product_id.id,
                 'name': 'Cost Rent Truck No ({})'.format(self.rent_truck_id.name),
@@ -143,7 +145,8 @@ class WizRentTruck(models.TransientModel):
                 'quantity': line.qty,
                 'price_unit': line.unit_price,
                 'invoice_line_tax_ids': [(6, 0, [line.invoice_line_tax_id.id])] if line.invoice_line_tax_id else False,
-                'account_id': line.account_id.id
+                'account_id': line.account_id.id,
+                'location_id': line.location_id.id
             }) for line in self.inv_line_ids)
         }
         self.rent_truck_id.inv_invoice_id = self.env['account.invoice'].create(vals)

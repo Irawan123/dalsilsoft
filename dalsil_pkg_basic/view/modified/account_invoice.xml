@@ -9,7 +9,13 @@
             <field name="arch" type="xml">
                 <data>
                     <xpath expr="//field[@name='partner_id']" position="after">
-                        <field name="picking_type_id"/>
+                        <field name="jenis_inv" invisible="1"/>
+                        <!-- <field name="picking_type_id" attrs="{'invisible': [('jenis_inv', 'not in', ['purchase', 'invoice'])], 'required': [('jenis_inv', 'in', ['purchase', 'invoice'])]}"/> -->
+                        <field name="location_id" create="0" attrs="{'invisible': [('jenis_inv', 'not in', ['purchase'])], 'required': [('jenis_inv', 'in', ['purchase'])]}"/>
+                    </xpath>
+                    <xpath expr="//field[@name='quantity']" position="after">
+                        <field name="jenis_inv" invisible="1"/>
+                        <field name="location_id" create="0" ttrs="{'readonly': [('jenis_inv', 'not in', ['invoice'])], 'required': [('jenis_inv', 'in', ['invoice'])]}"/>
                     </xpath>
                 </data>
             </field>

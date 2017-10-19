@@ -15,7 +15,7 @@ class FeeSales(models.Model):
     _name = "dalsil.fee_sales"
     _inherit = "ss.model"
     _state_start = STATE[0][0]
-    _seq_code = ("name", "dalsil_fee_sales")
+    _seq_code = {"name": "dalsil_fee_sales"}
 
     name = fields.Char("Name")
     sales_id = fields.Many2one("res.partner", "Sales")

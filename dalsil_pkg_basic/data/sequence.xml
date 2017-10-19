@@ -8,6 +8,20 @@
             <field name="padding">6</field>
         </record>
 
+        <record id="seq_dalsil_sup_ret" model="ir.sequence">
+            <field name="name">Supplier Return</field>
+            <field name="code">dalsil_supplier_return</field>
+            <field name="prefix">SR/%(year)s/%(month)s/</field>
+            <field name="padding">6</field>
+        </record>
+
+        <record id="seq_dalsil_rent_truck" model="ir.sequence">
+            <field name="name">Rent Truck</field>
+            <field name="code">dalsil_rent_truck</field>
+            <field name="prefix">RT/%(year)s/%(month)s/</field>
+            <field name="padding">6</field>
+        </record>
+
         <record id="seq_dalsil_cash_bank_od" model="ir.sequence">
             <field name="name">Other Deposit</field>
             <field name="code">dalsil.cash_bank.od</field>

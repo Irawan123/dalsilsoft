@@ -11,7 +11,7 @@ class WizRentTruckLinePurchase(models.TransientModel):
     _description = "Wizard Generate Account Invoice"
 
     parent_id = fields.Many2one("dalsil.wiz_rent_truck", "Wizard Rent Truck")
-    product_id = fields.Many2one("product.product", "Product")
+    product_id = fields.Many2one("product.product", "Product", domain=[('type', '=', 'product'), ('active', '=', True)])
     uom_id = fields.Many2one("product.uom", "Unit of Measure", readonly=True)
     qty = fields.Float("Quantity", digits=(20,2))
     unit_price = fields.Float("Unit Price", digits=(20,2))
