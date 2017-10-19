@@ -36,6 +36,10 @@
         'view/check_giro/out_check_giro_line.xml',
         'view/cash_bank/other_deposit.xml',
         'view/cash_bank/other_deposit_line.xml',
+        'view/cash_bank/other_payment.xml',
+        'view/cash_bank/other_payment_line.xml',
+        'view/journal_voucher/journal_voucher.xml',
+        'view/journal_voucher/journal_voucher_line.xml',
 
         'view/report/report_stock.xml',
         'view/report/report_summary_stock.xml',

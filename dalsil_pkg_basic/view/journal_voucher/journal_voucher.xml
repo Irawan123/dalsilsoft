@@ -4,15 +4,14 @@
         <!--#########################################################################################################-->
         <!-- SEARCH -->
         <!--#########################################################################################################-->
-        <record id="view_dalsil_cash_bank_od_search" model="ir.ui.view">
-            <field name="name">dalsil.cash_bank.od.search</field>
-            <field name="model">dalsil.cash_bank.od</field>
+        <record id="view_dalsil_journal_voucher_search" model="ir.ui.view">
+            <field name="name">dalsil.journal_voucher.search</field>
+            <field name="model">dalsil.journal_voucher</field>
             <field name="arch" type="xml">
                 <search>
                     <field name="name"/>
                     <field name="date"/>
-                    <field name="account_id"/>
-                    <field name="memo"/>
+                    <field name="description"/>
                     <field name="state"/>
                     <group string="Group By">
                         <filter name="group_state" string="State" context="{'group_by': 'state'}"/>
@@ -24,15 +23,14 @@
         <!--#########################################################################################################-->
         <!--Group Tree View-->
         <!--#########################################################################################################-->
-        <record model="ir.ui.view" id="view_dalsil_cash_bank_od_tree">
-            <field name="name">dalsil.cash_bank.od.tree</field>
-            <field name="model">dalsil.cash_bank.od</field>
+        <record model="ir.ui.view" id="view_dalsil_journal_voucher_tree">
+            <field name="name">dalsil.journal_voucher.tree</field>
+            <field name="model">dalsil.journal_voucher</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
                     <field name="date"/>
-                    <field name="account_id"/>
-                    <field name="memo"/>
+                    <field name="description"/>
                     <field name="state"/>
                 </tree>
             </field>
@@ -41,9 +39,9 @@
         <!--#########################################################################################################-->
         <!-- FORM -->
         <!--#########################################################################################################-->
-        <record id="view_dalsil_cash_bank_od_form" model="ir.ui.view">
-            <field name="name">dalsil.cash_bank.od.form</field>
-            <field name="model">dalsil.cash_bank.od</field>
+        <record id="view_dalsil_journal_voucher_form" model="ir.ui.view">
+            <field name="name">dalsil.journal_voucher.form</field>
+            <field name="model">dalsil.journal_voucher</field>
             <field name="arch" type="xml">
                 <form>
                     <header>
@@ -64,10 +62,8 @@
                         </div>
                         <group>
                             <group>
-                                <field name="account_id" create="0"/>
                                 <field name="date"/>
-                                <field name="amount" widget="monetary"/>
-                                <field name="memo"/>
+                                <field name="description"/>
                             </group>
                             <group>
                                 <field name="journal_id" invisible="0"/>
@@ -79,9 +75,9 @@
                             <page string="Items">
                                 <field name="line_ids" context="{'default_parent_id':id}"
                                        attrs="{'readonly': [('state', 'not in', ['draft',False])]}" nolabel="1"/>
-                                <group class="oe_subtotal_footer oe_right">
-                                    <field name="total_pay" widget="monetary"/>
-                                </group>
+                                <!--<group class="oe_subtotal_footer oe_right">-->
+                                    <!--<field name="total_debit" widget="monetary"/>-->
+                                <!--</group>-->
                             </page>
                         </notebook>
                     </sheet>
@@ -93,15 +89,15 @@
         <!--#########################################################################################################-->
         <!--Act Window-->
         <!--#########################################################################################################-->
-        <record model="ir.actions.act_window" id="act_dalsil_cash_bank_od">
-            <field name="name">Other Deposit</field>
-            <field name="res_model">dalsil.cash_bank.od</field>
+        <record model="ir.actions.act_window" id="act_dalsil_journal_voucher">
+            <field name="name">Journal Voucher</field>
+            <field name="res_model">dalsil.journal_voucher</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[]</field>
             <field name="context">{}</field>
             <field name="view_type">form</field>
             <field name="help" type="html">
-                <p class="oe_view_nocontent_create">Click here to create Other Deposit.</p>
+                <p class="oe_view_nocontent_create">Click here to create Journal Voucher.</p>
             </field>
         </record>
 

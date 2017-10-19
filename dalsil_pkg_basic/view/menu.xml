@@ -26,7 +26,7 @@
                   action="action_partner_sales_form" parent="dalsil_menu_sales"/>
 
         <menuitem id="dalsil_menu_cust_invoice" name="Customer Invoices" sequence="20"
-                  action="act_dalsil_acc_inv_tree_inv" parent="dalsil_menu_sales"/>
+                  action="account.action_invoice_tree1" parent="dalsil_menu_sales"/>
 
         <menuitem id="dalsil_menu_invoice_rent" name="Sewa Truck Invoices" sequence="30"
                   action="act_dalsil_acc_inv_tree_rent" parent="dalsil_menu_sales"/>
@@ -83,10 +83,16 @@
         <menuitem id="dalsil_menu_cash_bank_od" name="Other Deposit" sequence="20"
                   action="act_dalsil_cash_bank_od" parent="dalsil_menu_accounting"/>
 
-        <menuitem id="dalsil_menu_account_move_line" name="Journal Items" sequence="40"
+        <menuitem id="dalsil_menu_cash_bank_op" name="Other Payment" sequence="30"
+                  action="act_dalsil_cash_bank_op" parent="dalsil_menu_accounting"/>
+
+        <menuitem id="dalsil_menu_journal_voucher" name="Journal Voucher" sequence="40"
+                  action="act_dalsil_journal_voucher" parent="dalsil_menu_accounting"/>
+
+        <menuitem id="dalsil_menu_account_move_line" name="Journal Items" sequence="60"
                   action="account.action_account_moves_all_a" parent="dalsil_menu_accounting"/>
 
-        <menuitem id="dalsil_menu_account_move" name="Journal Entries" sequence="50"
+        <menuitem id="dalsil_menu_account_move" name="Journal Entries" sequence="70"
                   action="account.action_move_journal_line" parent="dalsil_menu_accounting"/>
 
 
