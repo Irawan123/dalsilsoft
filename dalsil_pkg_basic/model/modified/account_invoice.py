@@ -18,6 +18,7 @@ class AccountInvoice(models.Model):
     jenis_inv = fields.Selection(JENIS_INVOICE, "Jenis Invoice", default=JENIS_INVOICE[0][0])
     picking_type_id = fields.Many2one("stock.picking.type", "Picking Type")
     location_id = fields.Many2one("stock.location", "Destination Location", domain=[('usage','=','internal'), ('active', '=', True)])
+    is_allowed_plafon = fields.Boolean("Is Allowed Plafon", default=False)
 
     @api.model
     def create(self, vals):
@@ -38,6 +39,11 @@ class AccountInvoice(models.Model):
             })
 
         return acc_inv_id
+
+    @api.multi
+    def to_allowed_plafon(self):
+        for record in self:
+            record.is_allowed_plafon = True
 
     @api.multi
     def action_invoice_open(self):
@@ -96,6 +102,14 @@ class AccountInvoice(models.Model):
                 account_move = self.env['account.move'].create(move_data)
                 account_move.post()
             elif record.jenis_inv == 'invoice':
+                if not record.is_allowed_plafon:
+                    inv_ids = self.env["account.invoice"].sudo().search([
+                        ("state", "=", 'open'),
+                        ("jenis_inv", "=", 'invoice')
+                    ])
+                    total_credit = sum(inv_ids.mapped("amount_total"))
+                    if total_credit > record.partner_id.plafon:
+                        raise ValidationError("Credit customer sudah melibihi batas plafon.")
                 for line_id in record.invoice_line_ids:
                     stock_move_data = {
                         "state": "assigned",

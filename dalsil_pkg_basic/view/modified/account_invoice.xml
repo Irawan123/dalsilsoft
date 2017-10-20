@@ -14,6 +14,13 @@
                     <xpath expr="//button[@name='action_invoice_sent']" position="attributes">
                         <attribute name="invisible">1</attribute>
                     </xpath>
+                    <xpath expr="//button[@name='action_invoice_proforma2']" position="after">
+                        <button name="to_allowed_plafon" type="object" states="draft" string="Allowed bypass plafon" class="oe_highlight" groups="account.group_account_invoice"/>
+                    </xpath>
+                    <xpath expr="//tree/field[@name='quantity']" position="after">
+                        <field name="jenis_inv" invisible="1"/>
+                        <field name="location_id" create="0" ttrs="{'readonly': [('jenis_inv', 'not in', ['invoice'])], 'required': [('jenis_inv', 'in', ['invoice'])]}"/>
+                    </xpath>
                 </data>
             </field>
         </record>
@@ -29,10 +36,6 @@
                         <field name="jenis_inv" invisible="1"/>
                         <!-- <field name="picking_type_id" attrs="{'invisible': [('jenis_inv', 'not in', ['purchase', 'invoice'])], 'required': [('jenis_inv', 'in', ['purchase', 'invoice'])]}"/> -->
                         <field name="location_id" create="0" attrs="{'invisible': [('jenis_inv', 'not in', ['purchase'])], 'required': [('jenis_inv', 'in', ['purchase'])]}"/>
-                    </xpath>
-                    <xpath expr="//field[@name='quantity']" position="after">
-                        <field name="jenis_inv" invisible="1"/>
-                        <field name="location_id" create="0" ttrs="{'readonly': [('jenis_inv', 'not in', ['invoice'])], 'required': [('jenis_inv', 'in', ['invoice'])]}"/>
                     </xpath>
                     <xpath expr="//button[@name='%(account.action_account_invoice_refund)d']" position="attributes">
                         <attribute name="invisible">1</attribute>

@@ -18,6 +18,8 @@ class ResPartner(models.Model):
     kelurahan = fields.Char('Kelurahan')
     kecamatan = fields.Char('Kecamatan')
 
+    plafon = fields.Float("Plafon", digits=(20,2))
+
     is_driver = fields.Boolean("Is a Driver", default=False)
     is_sales = fields.Boolean("Is a Sales", default=False)
 

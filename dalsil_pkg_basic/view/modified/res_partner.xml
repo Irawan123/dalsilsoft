@@ -31,6 +31,9 @@
                         <group string="Sales" name="sales">
                             <field name="is_sales"/>
                         </group>
+                        <group>
+                            <field name="plafon"/>
+                        </group>
                     </xpath>
                 </data>
             </field>
