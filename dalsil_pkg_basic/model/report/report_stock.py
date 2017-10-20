@@ -46,8 +46,8 @@ class ReportStock(models.TransientModel):
     # _inherit = "ss.wizard"
     _description = "Wizard Generate Report Stock"
 
-    product_id = fields.Many2one("product.product", domain=[('type', '=', 'product'), ('active', '=', True)])
-    location_id = fields.Many2one("stock.location", domain=[('usage','=','internal'), ('active', '=', True)])
+    product_id = fields.Many2one("product.product", 'Product', domain=[('type', '=', 'product'), ('active', '=', True)])
+    location_id = fields.Many2one("stock.location", 'Location', domain=[('usage','=','internal'), ('active', '=', True)])
     month = fields.Selection(MONTH, "Bulan")
     year = fields.Char("Year", size=4)
 
@@ -149,7 +149,7 @@ class ReportStock(models.TransientModel):
         fp.seek(0)
         data = fp.read()
         fp.close()
-        
+
         return self.env["ss.download"].download(
             "Laporan_Stock_{}.xls".format(datetime.today().strftime("%d%m%Y_%H %M")),
             wb.get_biff_data()

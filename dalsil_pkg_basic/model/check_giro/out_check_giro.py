@@ -67,7 +67,7 @@ class OutgoingCheckGiro(models.Model):
                 raise ValidationError(_("Please Add a Transaction first!"))
             if record.cg_amount != record.total_pay:
                 msg = _(
-                    "Ingoing Check Giro Unbalanced!\n"
+                    "Outgoing Check Giro Unbalanced!\n"
                     "Check Giro Amount ({cg_amount}) != Total Payment Amount ({total_pay})"
                 )
                 raise ValidationError(msg.format(cg_amount=record.cg_amount, total_pay=record.total_pay))
