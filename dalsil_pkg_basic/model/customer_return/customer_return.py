@@ -7,24 +7,24 @@ STATE = (
     ("cancel", _("Cancelled")),
 )
 
-class SupllierReturn(models.Model):
+class CustomerReturn(models.Model):
     """
-    Supplier Return
+    Customer Return
     """
-    _name = "dalsil.supplier_return"
+    _name = "dalsil.customer_return"
     _inherit = "ss.model"
     _state_start = STATE[0][0]
-    _seq_code = {"name": "dalsil_supplier_return"}
+    _seq_code = {"name": "dalsil_customer_return"}
 
-    name = fields.Char("Supplier Return No.")
+    name = fields.Char("Customer Return No.")
     state = fields.Selection(STATE, "State")
-    acc_inv_id = fields.Many2one("account.invoice", "Vendor Bill", domain=[("jenis_inv", "=", "purchase"),("state", "=", "open")])
+    acc_inv_id = fields.Many2one("account.invoice", "Customer Invoice", domain=[("jenis_inv", "=", "invoice"),("state", "=", "open")])
     partner_id = fields.Many2one("res.partner", "Vendor", compute="_get_data_invoice", store=True)
     picking_type_id = fields.Many2one("stock.picking.type", "Stock Picking Type", compute="_get_data_invoice", store=True)
     date_invoice = fields.Date("Bill Date", compute="_get_data_invoice", store=True)
     date_due = fields.Date("Due Date", compute="_get_data_invoice", store=True)
     location_id = fields.Many2one("stock.location", "Destination Location", compute="_get_data_invoice", store=True)
-    line_ids = fields.One2many("dalsil.supplier_return.line", "parent_id", string="Products")
+    line_ids = fields.One2many("dalsil.customer_return.line", "parent_id", string="Products")
     note = fields.Text("Internal Note")
 
     @api.depends("acc_inv_id")
@@ -41,9 +41,9 @@ class SupllierReturn(models.Model):
         """
         Mencegah user create kalo state != draft
         """
-        supp_ret_id = super(SupllierReturn, self).create(vals)
+        cust_ret_id = super(SupllierReturn, self).create(vals)
         line_ids = []
-        for line_id in supp_ret_id.acc_inv_id.invoice_line_ids:
+        for line_id in cust_ret_id.acc_inv_id.invoice_line_ids:
             line_ids.append([0, 0, {
                 'product_id': line_id.product_id.id,
                 'qty': line_id.quantity,
@@ -51,9 +51,9 @@ class SupllierReturn(models.Model):
                 'invoice_line_tax_ids': [(6, 0, line_id.invoice_line_tax_ids.ids)],
                 'account_id': line_id.account_id.id
             }])
-        supp_ret_id.line_ids = line_ids
+        cust_ret_id.line_ids = line_ids
 
-        return supp_ret_id
+        return cust_ret_id
 
     @api.multi
     def to_cancel(self):
@@ -75,8 +75,8 @@ class SupllierReturn(models.Model):
                     "state": "assigned",
 
                     # "picking_type_id": record.picking_type_id.id,
-                    "location_id": record.location_id.id,
-                    "location_dest_id": record.partner_id.property_stock_supplier.id,
+                    "location_dest_id": record.location_id.id,
+                    "location_id": record.partner_id.property_stock_supplier.id,
                     # "picking_id": stock_picking_id.id,
                     # "warehouse_id": record.picking_type_id.warehouse_id.id,
 
@@ -103,8 +103,8 @@ class SupllierReturn(models.Model):
                     line_ids.append([0, 0, {
                         "name": line_id.product_id.name,
                         "account_id": line_id.account_id.id,
-                        "debit": 0.0,
-                        "credit": return_price,
+                        "credit": 0.0,
+                        "debit": return_price,
                         "partner_id": record.partner_id.id
                     }])
                     for tax_id in line_id.invoice_line_tax_ids:
@@ -120,15 +120,15 @@ class SupllierReturn(models.Model):
                 line_ids.append([0, 0, {
                     "name": tax_name,
                     "account_id": account_id,
-                    "debit": 0.0,
-                    "credit": value,
+                    "credit": 0.0,
+                    "debit": value,
                     "partner_id": record.partner_id.id
                 }])
             line_ids.append([0, 0, {
                 "name": "/",
-                "account_id": record.partner_id.property_account_payable_id.id,
-                "debit": total_amount,
-                "credit": 0.0,
+                "account_id": record.partner_id.property_account_receivable_id.id,
+                "credit": total_amount,
+                "debit": 0.0,
                 "partner_id": record.partner_id.id
             }])
 

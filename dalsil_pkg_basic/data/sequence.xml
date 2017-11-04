@@ -15,6 +15,13 @@
             <field name="padding">6</field>
         </record>
 
+        <record id="seq_dalsil_cus_ret" model="ir.sequence">
+            <field name="name">Customer Return</field>
+            <field name="code">dalsil_customer_return</field>
+            <field name="prefix">CR/%(year)s/%(month)s/</field>
+            <field name="padding">6</field>
+        </record>
+
         <record id="seq_dalsil_rent_truck" model="ir.sequence">
             <field name="name">Rent Truck</field>
             <field name="code">dalsil_rent_truck</field>

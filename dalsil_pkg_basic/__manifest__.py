@@ -27,6 +27,8 @@
         'view/rent_truck/wiz_rent_truck_line_purchase.xml',
         'view/supplier_return/supplier_return.xml',
         'view/supplier_return/supplier_return_line.xml',
+        'view/customer_return/customer_return.xml',
+        'view/customer_return/customer_return_line.xml',
         'view/start_stock/start_stock.xml',
         'view/start_stock/start_stock_line.xml',
 

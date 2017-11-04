@@ -7,5 +7,6 @@ import journal_voucher
 import rent_truck
 import modified
 import supplier_return
+import customer_return
 import start_stock
 import report
