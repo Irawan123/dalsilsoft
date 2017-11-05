@@ -3,6 +3,15 @@
     <data>
         <!-- Parent Menu -->
         <menuitem id="dalsil_menu" name="Menu" sequence="1"/>
+        <!-- Gudang -->
+        <menuitem id="dalsil_menu_gudang" name="Gudang" sequence="9"
+                  parent="dalsil_menu"/>
+        <menuitem id="dalsil_menu_product" name="Product" sequence="10"
+                  action="product.product_template_action" parent="dalsil_menu_gudang"/>
+        <menuitem id="dalsil_menu_stock_picking" name="Internal Transfer" sequence="20"
+                  action="stock.action_picking_tree_all" parent="dalsil_menu_gudang"/>
+        <menuitem id="dalsil_menu_stock_inv_adj" name="Inventory Adjusment" sequence="30"
+                  action="stock.action_inventory_form" parent="dalsil_menu_gudang"/>
 
         <!-- Trucking -->
         <menuitem id="dalsil_menu_trucking" name="Trucking" sequence="10"
@@ -49,8 +58,7 @@
         <menuitem id="dalsil_menu_customer" name="Customers" sequence="90"
                   action="base.action_partner_customer_form" parent="dalsil_menu_sales"/>
 
-        <menuitem id="dalsil_menu_product" name="Sellable Product" sequence="100"
-                  action="product.product_template_action" parent="dalsil_menu_sales"/>
+        
 
 
         <!-- Pembelian -->

@@ -9,6 +9,7 @@
         "base", "product", "stock", "sale", "account", "ss_common", "account_accountant", "account_financial_report_qweb"
     ],
     "data": [
+        'security/group_security.xml',
         'data/sequence.xml',
 
         'view/modified/res_partner.xml',
