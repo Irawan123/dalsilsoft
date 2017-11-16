@@ -34,6 +34,13 @@
                         </group>
                         <group></group>
                     </group>
+                    <group>
+                        <group string="Fee Sales">
+                            <field name="product_fee" required="1"/>
+                            <field name="fee_acc_id" required="1"/>
+                        </group>
+                        <group></group>
+                    </group>
                 </form>
             </field>
         </record>

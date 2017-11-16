@@ -14,11 +14,13 @@ class AccountInvoice(models.Model):
     Account Invoice
     """
     _inherit = "account.invoice"
-    sales_id = fields.Many2one("res.partner", "Sales")
+    sales_id = fields.Many2one("res.partner", "Sales", domain="[('active', '=', True), ('is_sales', '=', True)]")
     jenis_inv = fields.Selection(JENIS_INVOICE, "Jenis Invoice", default=JENIS_INVOICE[0][0])
     picking_type_id = fields.Many2one("stock.picking.type", "Picking Type")
     location_id = fields.Many2one("stock.location", "Destination Location", domain=[('usage','=','internal'), ('active', '=', True)])
     is_allowed_plafon = fields.Boolean("Is Allowed Plafon", default=False)
+    gen_fee_sales_id = fields.Many2one("dalsil.gen_fee_sales", "Source Document")
+    dt_full_paid = fields.Datetime("Datetime Full Paid")
 
     @api.model
     def create(self, vals):
@@ -27,16 +29,16 @@ class AccountInvoice(models.Model):
         """
         acc_inv_id = super(AccountInvoice, self).create(vals)
         if acc_inv_id.jenis_inv == 'invoice':
-            fee = 0
             for line_id in acc_inv_id.invoice_line_ids:
-                fee += line_id.product_id.fee * line_id.quantity
-            self.env['dalsil.fee_sales'].create({
-                'sales_id': acc_inv_id.sales_id.id,
-                'invoice_id': acc_inv_id.id,
-                'due_date': acc_inv_id.date_due,
-                'fee_sales': fee,
-                'note': ""
-            })
+                fee = line_id.product_id.fee * line_id.quantity
+                self.env['dalsil.fee_sales'].create({
+                    'sales_id': acc_inv_id.sales_id.id,
+                    'invoice_id': acc_inv_id.id,
+                    'invoice_line_id': line_id.id,
+                    'due_date': acc_inv_id.date_due,
+                    'fee_sales': fee,
+                    'note': ""
+                })
 
         return acc_inv_id
 
@@ -159,3 +161,18 @@ class AccountInvoice(models.Model):
                 account_move = self.env['account.move'].create(move_data)
                 account_move.post()
             return acc_inv
+
+    @api.multi
+    def action_invoice_paid(self):
+        acc_inv = super(AccountInvoice, self).action_invoice_paid()
+        for record in self:
+            record = record.suspend_security()
+            record.dt_full_paid = fields.Datetime.now()
+            if record.gen_fee_sales_id:
+                record.gen_fee_sales_id.to_paid()
+            if record.jenis_inv == 'invoice':
+                fee_sales_ids = self.env["dalsil.fee_sales"].suspend_security().search([
+                    ("invoice_line_id", "in", record.invoice_line_ids.ids)
+                ])
+                fee_sales_ids.to_open()
+        return acc_inv

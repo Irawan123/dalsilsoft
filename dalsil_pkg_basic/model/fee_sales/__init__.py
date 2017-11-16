@@ -1,1 +1,2 @@
 import fee_sales
+import gen_fee_sales

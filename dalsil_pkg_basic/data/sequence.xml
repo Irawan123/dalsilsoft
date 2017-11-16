@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <record id="seq_dalsil_gen_fee_sales" model="ir.sequence">
+            <field name="name">Generate Fee Sales</field>
+            <field name="code">dalsil_gen_fee_sales</field>
+            <field name="prefix">GFEE/%(year)s/%(month)s/</field>
+            <field name="padding">6</field>
+        </record>
+
         <record id="seq_dalsil_fee_sales" model="ir.sequence">
             <field name="name">Fee Sales</field>
             <field name="code">dalsil_fee_sales</field>

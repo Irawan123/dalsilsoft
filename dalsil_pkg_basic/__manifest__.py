@@ -10,7 +10,10 @@
     ],
     "data": [
         'security/group_security.xml',
+        'security/ir.model.access.csv',
         'data/sequence.xml',
+        'cron/cron_start_stock.xml',
+        'cron/cron_expired_fee_sales.xml',
 
         'view/modified/res_partner.xml',
         'view/modified/account_invoice.xml',
@@ -21,6 +24,7 @@
 
         'view/master/truck.xml',
         'view/fee_sales/fee_sales.xml',
+        'view/fee_sales/gen_fee_sales.xml',
         'view/rent_truck/rent_truck.xml',
         'view/rent_truck/rent_truck_line.xml',
         'view/rent_truck/wiz_rent_truck.xml',

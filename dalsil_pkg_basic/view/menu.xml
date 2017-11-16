@@ -49,6 +49,10 @@
         <menuitem id="dalsil_menu_fee_sales" name="Fee Sales" sequence="60"
                   action="act_dalsil_fee_sales" parent="dalsil_menu_sales"/>
 
+        <menuitem id="dalsil_menu_gen_fee_sales" name="Generate Invoice Fee Sales" 
+                  sequence="70" action="act_dalsil_gen_fee_sales" 
+                  parent="dalsil_menu_sales"/>
+
         <menuitem id="dalsil_menu_cust_payments" name="Payments" sequence="70"
                   action="account.action_account_payments" parent="dalsil_menu_sales"/>
 

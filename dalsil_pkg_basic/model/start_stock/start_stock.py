@@ -32,7 +32,7 @@ class StartStock(models.Model):
     def cron_last_stock(self):
         current_month = str(int(fields.Date.from_string(fields.Date.today()).month))
         current_year = str(int(fields.Date.from_string(fields.Date.today()).year))
-        start_stock = self.env["dalsil.start_stock"].sudo().search([
+        start_stock = self.env["dalsil.start_stock"].suspend_security().search([
             ("month", "=", current_month),
             ("year", "=", current_year)
         ], limit=1)
@@ -45,12 +45,12 @@ class StartStock(models.Model):
                 'year': current_year
             })
 
-        location_ids = self.env["stock.location"].sudo().search([
+        location_ids = self.env["stock.location"].suspend_security().search([
             ("usage", "=", 'internal'),
             ("active", "=", True)
         ])
         for location_id in location_ids:
-            quant_ids = self.env["stock.quant"].sudo().search([
+            quant_ids = self.env["stock.quant"].suspend_security().search([
                 ("location_id", "=", location_id.id)
             ])
             dict_quant = {}

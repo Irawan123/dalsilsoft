@@ -1,0 +1,24 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+acl_dir_location,Location Direktur,stock.model_stock_location,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_other_deposit,Other Deposit Direktur,dalsil_pkg_basic.model_dalsil_cash_bank_od,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_other_deposit_line,Other Deposit Line Direktur,dalsil_pkg_basic.model_dalsil_cash_bank_od_line,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_other_payment,Other Payment Direktur,dalsil_pkg_basic.model_dalsil_cash_bank_op,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_other_payment_line,Other Payment Line Direktur,dalsil_pkg_basic.model_dalsil_cash_bank_op_line,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_in_cg,In Check Giro Direktur,dalsil_pkg_basic.model_dalsil_check_giro_in,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_in_cg_line,In Check Giro Line Direktur,dalsil_pkg_basic.model_dalsil_check_giro_in_line,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_out_cg,Out Check Giro Direktur,dalsil_pkg_basic.model_dalsil_check_giro_out,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_out_cg_line,Out Check Giro Line Direktur,dalsil_pkg_basic.model_dalsil_check_giro_out_line,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_config,Config Direktur,dalsil_pkg_basic.model_dalsil_config,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_cust_ret,Customer Return Direktur,dalsil_pkg_basic.model_dalsil_customer_return,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_cust_ret_line,Customer Return Line Direktur,dalsil_pkg_basic.model_dalsil_customer_return_line,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_fee_sales,Fee Sales Direktur,dalsil_pkg_basic.model_dalsil_fee_sales,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_gen_fee_sales,Generate Fee Sales Invoice Direktur,dalsil_pkg_basic.model_dalsil_gen_fee_sales,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_journal_vouche,Journal Voucher Direktur,dalsil_pkg_basic.model_dalsil_journal_voucher,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_journal_vouche_line,Journal Voucher Line Direktur,dalsil_pkg_basic.model_dalsil_journal_voucher_line,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_truck,Truck Direktur,dalsil_pkg_basic.model_dalsil_truck,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_rent_truck,Rent Truck Direktur,dalsil_pkg_basic.model_dalsil_rent_truck,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_rent_truck_line,Rent Truck Line Direktur,dalsil_pkg_basic.model_dalsil_rent_truck_line,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_start_stock,Start Stock Direktur,dalsil_pkg_basic.model_dalsil_start_stock,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_start_stock_line,Start Stock Line Direktur,dalsil_pkg_basic.model_dalsil_start_stock_line,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_supp_ret,Supplier Return Direktur,dalsil_pkg_basic.model_dalsil_supplier_return,dalsil_pkg_basic.group_direktur,1,1,1,1
+acl_dir_supp_ret_line,Supplier Return Line Direktur,dalsil_pkg_basic.model_dalsil_supplier_return_line,dalsil_pkg_basic.group_direktur,1,1,1,1

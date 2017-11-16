@@ -15,7 +15,7 @@
                         <attribute name="invisible">1</attribute>
                     </xpath>
                     <xpath expr="//button[@name='action_invoice_proforma2']" position="after">
-                        <button name="to_allowed_plafon" type="object" states="draft" string="Allowed bypass plafon" class="oe_highlight" groups="account.group_account_invoice"/>
+                        <button name="to_allowed_plafon" type="object" states="draft" string="Allowed bypass plafon" class="oe_highlight" groups="dalsil_pkg_basic.group_direktur"/>
                     </xpath>
                     <xpath expr="//tree/field[@name='quantity']" position="after">
                         <field name="jenis_inv" invisible="1"/>

@@ -10,8 +10,10 @@ class Config(models.Model):
     def_sangu = fields.Float("Default Sangu Sopir", digits=(20,2))
     product_sangu = fields.Many2one("product.product", "Product Sangu")
     product_rent = fields.Many2one("product.product", "Product Rent Truck")
+    product_fee = fields.Many2one("product.product", "Product Fee Sales")
     sangu_acc_id = fields.Many2one("account.account", "Account Sangu")
     rent_acc_id = fields.Many2one("account.account", "Account Rent")
+    fee_acc_id = fields.Many2one("account.account", "Account Fee Sales")
 
     purc_acc_credit_id = fields.Many2one("account.account", "Account Credit Purchase")
     purc_acc_debit_id = fields.Many2one("account.account", "Account Debit Purchase")
