@@ -22,3 +22,51 @@ acl_dir_start_stock,Start Stock Direktur,dalsil_pkg_basic.model_dalsil_start_sto
 acl_dir_start_stock_line,Start Stock Line Direktur,dalsil_pkg_basic.model_dalsil_start_stock_line,dalsil_pkg_basic.group_direktur,1,1,1,1
 acl_dir_supp_ret,Supplier Return Direktur,dalsil_pkg_basic.model_dalsil_supplier_return,dalsil_pkg_basic.group_direktur,1,1,1,1
 acl_dir_supp_ret_line,Supplier Return Line Direktur,dalsil_pkg_basic.model_dalsil_supplier_return_line,dalsil_pkg_basic.group_direktur,1,1,1,1
+,,,,,,,
+acl_penjualan_location,Location Penjualan,stock.model_stock_location,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_other_deposit,Other Deposit Penjualan,dalsil_pkg_basic.model_dalsil_cash_bank_od,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_other_deposit_line,Other Deposit Line Penjualan,dalsil_pkg_basic.model_dalsil_cash_bank_od_line,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_other_payment,Other Payment Penjualan,dalsil_pkg_basic.model_dalsil_cash_bank_op,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_other_payment_line,Other Payment Line Penjualan,dalsil_pkg_basic.model_dalsil_cash_bank_op_line,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_in_cg,In Check Giro Penjualan,dalsil_pkg_basic.model_dalsil_check_giro_in,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_in_cg_line,In Check Giro Line Penjualan,dalsil_pkg_basic.model_dalsil_check_giro_in_line,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_out_cg,Out Check Giro Penjualan,dalsil_pkg_basic.model_dalsil_check_giro_out,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_out_cg_line,Out Check Giro Line Penjualan,dalsil_pkg_basic.model_dalsil_check_giro_out_line,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_config,Config Penjualan,dalsil_pkg_basic.model_dalsil_config,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_cust_ret,Customer Return Penjualan,dalsil_pkg_basic.model_dalsil_customer_return,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_cust_ret_line,Customer Return Line Penjualan,dalsil_pkg_basic.model_dalsil_customer_return_line,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_fee_sales,Fee Sales Penjualan,dalsil_pkg_basic.model_dalsil_fee_sales,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_gen_fee_sales,Generate Fee Sales Invoice Penjualan,dalsil_pkg_basic.model_dalsil_gen_fee_sales,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_journal_vouche,Journal Voucher Penjualan,dalsil_pkg_basic.model_dalsil_journal_voucher,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_journal_vouche_line,Journal Voucher Line Penjualan,dalsil_pkg_basic.model_dalsil_journal_voucher_line,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_truck,Truck Penjualan,dalsil_pkg_basic.model_dalsil_truck,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_rent_truck,Rent Truck Penjualan,dalsil_pkg_basic.model_dalsil_rent_truck,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_rent_truck_line,Rent Truck Line Penjualan,dalsil_pkg_basic.model_dalsil_rent_truck_line,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_start_stock,Start Stock Penjualan,dalsil_pkg_basic.model_dalsil_start_stock,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_start_stock_line,Start Stock Line Penjualan,dalsil_pkg_basic.model_dalsil_start_stock_line,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_supp_ret,Supplier Return Penjualan,dalsil_pkg_basic.model_dalsil_supplier_return,dalsil_pkg_basic.group_penjualan,1,1,1,1
+acl_penjualan_supp_ret_line,Supplier Return Line Penjualan,dalsil_pkg_basic.model_dalsil_supplier_return_line,dalsil_pkg_basic.group_penjualan,1,1,1,1
+,,,,,,,
+acl_pembelian_location,Location Pembelian,stock.model_stock_location,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_other_deposit,Other Deposit Pembelian,dalsil_pkg_basic.model_dalsil_cash_bank_od,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_other_deposit_line,Other Deposit Line Pembelian,dalsil_pkg_basic.model_dalsil_cash_bank_od_line,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_other_payment,Other Payment Pembelian,dalsil_pkg_basic.model_dalsil_cash_bank_op,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_other_payment_line,Other Payment Line Pembelian,dalsil_pkg_basic.model_dalsil_cash_bank_op_line,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_in_cg,In Check Giro Pembelian,dalsil_pkg_basic.model_dalsil_check_giro_in,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_in_cg_line,In Check Giro Line Pembelian,dalsil_pkg_basic.model_dalsil_check_giro_in_line,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_out_cg,Out Check Giro Pembelian,dalsil_pkg_basic.model_dalsil_check_giro_out,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_out_cg_line,Out Check Giro Line Pembelian,dalsil_pkg_basic.model_dalsil_check_giro_out_line,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_config,Config Pembelian,dalsil_pkg_basic.model_dalsil_config,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_cust_ret,Customer Return Pembelian,dalsil_pkg_basic.model_dalsil_customer_return,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_cust_ret_line,Customer Return Line Pembelian,dalsil_pkg_basic.model_dalsil_customer_return_line,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_fee_sales,Fee Sales Pembelian,dalsil_pkg_basic.model_dalsil_fee_sales,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_gen_fee_sales,Generate Fee Sales Invoice Pembelian,dalsil_pkg_basic.model_dalsil_gen_fee_sales,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_journal_vouche,Journal Voucher Pembelian,dalsil_pkg_basic.model_dalsil_journal_voucher,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_journal_vouche_line,Journal Voucher Line Pembelian,dalsil_pkg_basic.model_dalsil_journal_voucher_line,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_truck,Truck Pembelian,dalsil_pkg_basic.model_dalsil_truck,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_rent_truck,Rent Truck Pembelian,dalsil_pkg_basic.model_dalsil_rent_truck,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_rent_truck_line,Rent Truck Line Pembelian,dalsil_pkg_basic.model_dalsil_rent_truck_line,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_start_stock,Start Stock Pembelian,dalsil_pkg_basic.model_dalsil_start_stock,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_start_stock_line,Start Stock Line Pembelian,dalsil_pkg_basic.model_dalsil_start_stock_line,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_supp_ret,Supplier Return Pembelian,dalsil_pkg_basic.model_dalsil_supplier_return,dalsil_pkg_basic.group_pembelian,1,1,1,1
+acl_pembelian_supp_ret_line,Supplier Return Line Pembelian,dalsil_pkg_basic.model_dalsil_supplier_return_line,dalsil_pkg_basic.group_pembelian,1,1,1,1

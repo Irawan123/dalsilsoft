@@ -30,15 +30,16 @@ class AccountInvoice(models.Model):
         acc_inv_id = super(AccountInvoice, self).create(vals)
         if acc_inv_id.jenis_inv == 'invoice':
             for line_id in acc_inv_id.invoice_line_ids:
-                fee = line_id.product_id.fee * line_id.quantity
-                self.env['dalsil.fee_sales'].create({
-                    'sales_id': acc_inv_id.sales_id.id,
-                    'invoice_id': acc_inv_id.id,
-                    'invoice_line_id': line_id.id,
-                    'due_date': acc_inv_id.date_due,
-                    'fee_sales': fee,
-                    'note': ""
-                })
+                if acc_inv_id.sales_id:
+                    fee = line_id.product_id.fee * line_id.quantity
+                    self.env['dalsil.fee_sales'].create({
+                        'sales_id': acc_inv_id.sales_id.id,
+                        'invoice_id': acc_inv_id.id,
+                        'invoice_line_id': line_id.id,
+                        'due_date': acc_inv_id.date_due,
+                        'fee_sales': fee,
+                        'note': ""
+                    })
 
         return acc_inv_id
 

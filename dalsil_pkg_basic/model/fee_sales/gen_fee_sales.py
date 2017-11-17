@@ -1,5 +1,6 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, UserError
+from datetime import datetime, date, time, timedelta
 import xlwt
 
 try:
@@ -68,6 +69,7 @@ class GenFeeSales(models.Model):
                 'origin': record.name,
                 'type': 'in_invoice',
                 'payment_term_id': record.fee_payment_term_id.id,
+                'gen_fee_sales_id': record.id,
                 'invoice_line_ids': [(0, 0, {
                     'product_id': setting.product_fee.id,
                     'name': 'Fee Sales No ({})'.format(record.name),
@@ -76,7 +78,7 @@ class GenFeeSales(models.Model):
                     'account_id': setting.fee_acc_id.id
                 })]
             }
-            self.env['account.invoice'].suspend_security().create(vals)
+            self.env['account.invoice'].sudo().create(vals)
 
             record._cstate(STATE[1][0])
 
