@@ -31,9 +31,6 @@
                         <group string="Sales" name="sales">
                             <field name="is_sales"/>
                         </group>
-                        <group>
-                            <field name="plafon"/>
-                        </group>
                     </xpath>
                 </data>
             </field>
@@ -54,6 +51,9 @@
                         <field name="rw" placeholder="RW" class="o_address_zip"/>
                         <field name="kelurahan" placeholder="Kelurahan" class="o_address_city"/>
                         <field name="kecamatan" placeholder="Kecamatan" class="o_address_city"/>
+                    </xpath>
+                    <xpath expr="//field[@name='customer']" position="after">
+                        <field name="plafon"/>
                     </xpath>
                 </data>
             </field>

@@ -6,14 +6,15 @@
     "license": "AGPL-3",
     "category": "DalSil",
     "depends": [
-        "base", "product", "stock", "sale", "account", "ss_common", "account_accountant", "account_financial_report_qweb"
+        "base", "product", "stock", "sale", "account", "ss_common", "account_accountant",
+        "account_financial_report_qweb", "purchase", "dalsil"
     ],
     "data": [
-        'security/group_security.xml',
-        'security/ir.model.access.csv',
         'data/sequence.xml',
         'cron/cron_start_stock.xml',
         'cron/cron_expired_fee_sales.xml',
+
+        'security/group_security.xml',
 
         'view/modified/res_partner.xml',
         'view/modified/account_invoice.xml',
@@ -51,6 +52,8 @@
         'view/report/report_stock.xml',
         'view/report/report_summary_stock.xml',
 
-        'view/menu.xml'
+        'view/menu.xml',
+
+        'security/ir.model.access.csv',
     ],
 }
