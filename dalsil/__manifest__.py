@@ -11,7 +11,7 @@
         "ss_common"
     ],
     "data": [
-        "view/inherit/branding.xml",
+        # "view/inherit/branding.xml",
         "view/control_panel.xml",
 
         "view/menu.xml",
