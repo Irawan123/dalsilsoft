@@ -12,6 +12,8 @@
                   action="stock.action_picking_tree_all" parent="dalsil_menu_gudang"/>
         <menuitem id="dalsil_menu_stock_inv_adj" name="Inventory Adjusment" sequence="30"
                   action="stock.action_inventory_form" parent="dalsil_menu_gudang"/>
+        <menuitem id="dalsil_menu_stock_location" name="Location" sequence="40"
+                  action="stock.action_location_form" parent="dalsil_menu_gudang"/>
 
         <!-- Trucking -->
         <menuitem id="dalsil_menu_trucking" name="Trucking" sequence="10"

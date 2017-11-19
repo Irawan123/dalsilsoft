@@ -152,5 +152,5 @@ class ReportStock(models.TransientModel):
 
         return self.env["ss.download"].download(
             "Laporan_Stock_{}.xls".format(datetime.today().strftime("%d%m%Y_%H %M")),
-            wb.get_biff_data()
+            data
         )

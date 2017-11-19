@@ -146,6 +146,6 @@ class GenFeeSales(models.Model):
         fp.close()
 
         return self.env["ss.download"].download(
-            "Laporan_Fee_Sales_{}_{}.xls".format(self.sales_id.name, datetime.today().strftime("%d%m%Y_%H %M")),
-            wb.get_biff_data()
+            "Laporan_Fee_Sales_{}_{}.xls".format(self.sales_id.name, datetime.today().strftime("%d%m%Y")),
+            data
         )
