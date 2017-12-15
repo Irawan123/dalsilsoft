@@ -41,7 +41,7 @@ class CustomerReturn(models.Model):
         """
         Mencegah user create kalo state != draft
         """
-        cust_ret_id = super(SupllierReturn, self).create(vals)
+        cust_ret_id = super(CustomerReturn, self).create(vals)
         line_ids = []
         for line_id in cust_ret_id.acc_inv_id.invoice_line_ids:
             line_ids.append([0, 0, {
@@ -49,7 +49,8 @@ class CustomerReturn(models.Model):
                 'qty': line_id.quantity,
                 'unit_price': line_id.price_unit,
                 'invoice_line_tax_ids': [(6, 0, line_id.invoice_line_tax_ids.ids)],
-                'account_id': line_id.account_id.id
+                'account_id': line_id.account_id.id,
+                'acc_inv_line_id': line_id.id
             }])
         cust_ret_id.line_ids = line_ids
 
@@ -71,11 +72,12 @@ class CustomerReturn(models.Model):
             total_amount = 0.0
             
             for line_id in record.line_ids:
+                line_id.acc_inv_line_id.qty_return += line_id.qty_return
                 stock_move_data = {
                     "state": "assigned",
 
                     # "picking_type_id": record.picking_type_id.id,
-                    "location_dest_id": record.location_id.id,
+                    "location_dest_id": line_id.acc_inv_line_id.location_id.id,
                     "location_id": record.partner_id.property_stock_supplier.id,
                     # "picking_id": stock_picking_id.id,
                     # "warehouse_id": record.picking_type_id.warehouse_id.id,
@@ -99,6 +101,7 @@ class CustomerReturn(models.Model):
 
                 return_price = line_id.qty_return * line_id.unit_price
                 if return_price > 0:
+                    return_price_total_item = return_price
                     total_amount += return_price
                     line_ids.append([0, 0, {
                         "name": line_id.product_id.name,
@@ -109,10 +112,20 @@ class CustomerReturn(models.Model):
                     }])
                     for tax_id in line_id.invoice_line_tax_ids:
                         key = (tax_id.name, tax_id.account_id.id)
+                        tax_price = return_price * tax_id.amount / 100.00
+                        return_price_total_item += tax_price
                         if key in tax_line_ids:
-                            tax_line_ids[key] += return_price * tax_id.amount / 100.00
+                            tax_line_ids[key] += tax_price
                         else:
-                            tax_line_ids[key] = return_price * tax_id.amount / 100.00
+                            tax_line_ids[key] = tax_price
+                    # record.acc_inv_id.residual -= return_price_total_item
+                    # move_line_id = self.env["account.move.line"].suspend_security().search([
+                    #     ("move_id", "=", record.acc_inv_id.move_id.id),
+                    #     ("product_id", "=", line_id.product_id.id)
+                    # ], limit=1)
+                    # if move_line_id:
+                    #     move_line_id.amount_residual -= return_price_total_item
+
             for key, value in tax_line_ids.items():
                 tax_name = key[0]
                 account_id = key[1]

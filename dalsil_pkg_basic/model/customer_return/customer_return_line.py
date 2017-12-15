@@ -16,7 +16,8 @@ class CustomerReturnLine(models.Model):
     invoice_line_tax_ids = fields.Many2many('account.tax', 'dalsil_cus_ret_tax_rel',string='Taxes')
     sub_total = fields.Float("Sub Total", digits=(20,2), compute="_get_sub_total")
     account_id = fields.Many2one("account.account", "Account")
-
+    acc_inv_line_id = fields.Many2one("account.invoice.line")
+    
     @api.depends("qty_return", "unit_price", "invoice_line_tax_ids")
     def _get_sub_total(self):
         """
