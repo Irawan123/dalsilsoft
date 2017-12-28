@@ -49,6 +49,8 @@
         'view/journal_voucher/journal_voucher.xml',
         'view/journal_voucher/journal_voucher_line.xml',
 
+        'view/gen_payment_invoice/gen_payment_invoice.xml',
+
         'view/report/report_stock.xml',
         'view/report/report_summary_stock.xml',
 

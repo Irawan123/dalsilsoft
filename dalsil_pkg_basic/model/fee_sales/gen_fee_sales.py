@@ -86,7 +86,7 @@ class GenFeeSales(models.Model):
     def to_paid(self):
         for record in self:
             record = record.suspend_security()
-            if record.state != STATE[0][0]:
+            if record.state != STATE[1][0]:
                 continue
             record.fee_ids.to_paid()
             record._cstate(STATE[2][0])

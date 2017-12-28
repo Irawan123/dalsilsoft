@@ -21,7 +21,8 @@ class AccountInvoice(models.Model):
     is_allowed_plafon = fields.Boolean("Is Allowed Plafon", default=False)
     gen_fee_sales_id = fields.Many2one("dalsil.gen_fee_sales", "Source Document")
     dt_full_paid = fields.Datetime("Datetime Full Paid")
-
+    is_generated_pay_inv = fields.Boolean("Is Generated Payment Invoice", default=False)
+    
     @api.model
     def create(self, vals):
         """

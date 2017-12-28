@@ -45,6 +45,9 @@
         <menuitem id="dalsil_menu_invoice_rent" name="Sewa Truck Invoices" sequence="40"
                   action="act_dalsil_acc_inv_tree_rent" parent="dalsil_menu_sales"/>
 
+        <menuitem id="dalsil_menu_rent_payment" name="Sewa Truck Payment" sequence="45"
+                  action="act_dalsil_gen_pay_inv_rent" parent="dalsil_menu_sales"/>
+
         <menuitem id="dalsil_menu_invoice_fee" name="Fee Invoices" sequence="50"
                   action="act_dalsil_acc_inv_tree_fee" parent="dalsil_menu_sales"/>
 
@@ -79,6 +82,9 @@
 
         <menuitem id="dalsil_menu_sangu_bill" name="Sangu Bills" sequence="30"
                   action="act_dalsil_acc_inv_tree_sangu" parent="dalsil_menu_purchase"/>
+
+        <menuitem id="dalsil_menu_sangu_payment" name="Sangu Payment" sequence="35"
+                  action="act_dalsil_gen_pay_inv_sangu" parent="dalsil_menu_purchase"/>
 
         <menuitem id="dalsil_menu_vendor_payments" name="Payments" sequence="40"
                   action="account.action_account_payments_payable" parent="dalsil_menu_purchase"/>

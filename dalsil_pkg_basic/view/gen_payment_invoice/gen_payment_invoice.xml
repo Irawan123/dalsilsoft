@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--#########################################################################################################-->
+        <!-- SEARCH -->
+        <!--#########################################################################################################-->
+        <record id="view_dalsil_gen_pay_inv_search" model="ir.ui.view">
+            <field name="name">dalsil.gen_pay_inv.search</field>
+            <field name="model">dalsil.gen_pay_inv</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="jenis_inv"/>
+                    <field name="partner_id"/>
+                    <field name="journal_id"/>
+                    <field name="total_pay_invoice"/>
+                    <field name="state"/>
+                    <group string="Group By">
+                        <filter name="group_partner_id" string="Partner" context="{'group_by': 'partner_id'}"/>
+                        <filter name="group_jenis_inv" string="Jenis Invoice" context="{'group_by': 'jenis_inv'}"/>
+                        <filter name="group_state" string="State" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--#########################################################################################################-->
+        <!--Group Tree View-->
+        <!--#########################################################################################################-->
+        <record model="ir.ui.view" id="view_dalsil_gen_pay_inv_tree">
+            <field name="name">dalsil.gen_pay_inv.tree</field>
+            <field name="model">dalsil.gen_pay_inv</field>
+            <field name="arch" type="xml">
+                <tree delete="0">
+                    <field name="name"/>
+                    <field name="jenis_inv"/>
+                    <field name="partner_id"/>
+                    <field name="journal_id"/>
+                    <field name="total_pay_invoice"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--#########################################################################################################-->
+        <!-- FORM -->
+        <!--#########################################################################################################-->
+        <record id="view_dalsil_gen_pay_inv_form" model="ir.ui.view">
+            <field name="name">dalsil.gen_pay_inv.form</field>
+            <field name="model">dalsil.gen_pay_inv</field>
+            <field name="arch" type="xml">
+                <form delete="0">
+                    <header>
+                        <button type="object" name="to_open" string="Open"
+                                class="oe_highlight"
+                                states="draft"/>
+                        <button type="object" name="to_paid" string="Paid"
+                                class="oe_highlight" 
+                                states="open"/>
+                        <button type="object" name="to_print" string="Print"
+                                class="oe_highlight"
+                                states="open,paid"/>
+                        <button type="object" name="to_cancel" string="Cancel"
+                                states="draft"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,open,paid"/>
+                    </header>
+
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="jenis_inv" required="1"/>
+                                <field name="partner_id" required="1"/>
+                                <field name="journal_id" required="1"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Account Invoice">
+                                <field name="invoice_ids"/>
+                                <group class="oe_subtotal_footer oe_right">
+                                    <field name="total_pay_invoice" widget="monetary" class="oe_subtotal_footer_separator"/>
+                                </group>
+                            </page>
+                            <page string="Other Info">
+                                <group>
+                                    <group attrs="{'invisible': [('create_uid', '=', False)]}">
+                                        <field name="create_uid" readonly="1"/>
+                                        <field name="create_date" readonly="1"/>
+                                    </group>
+                                    <group>
+                                    </group>
+                                </group>
+                                <separator string="Note"/>
+                                <field name="note"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--#########################################################################################################-->
+        <!--Act Window-->
+        <!--#########################################################################################################-->
+        <record model="ir.actions.act_window" id="act_dalsil_gen_pay_inv_sangu">
+            <field name="name">Generate Invoice Sangu Payment</field>
+            <field name="res_model">dalsil.gen_pay_inv</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('jenis_inv','=','sangu')]</field>
+            <field name="context">{'default_jenis_inv': 'sangu'}</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Click here to create Generate Invoice Payment.</p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_dalsil_gen_pay_inv_rent">
+            <field name="name">Generate Invoice Rent Payment</field>
+            <field name="res_model">dalsil.gen_pay_inv</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('jenis_inv','=','rent')]</field>
+            <field name="context">{'default_jenis_inv': 'rent'}</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Click here to create Generate Invoice Payment.</p>
+            </field>
+        </record>
+
+        <!--#########################################################################################################-->
+    </data>
+</odoo>
