@@ -54,6 +54,12 @@ class GenPaymentInvoice(models.Model):
             ("is_generated_pay_inv", "=", False)
         ])
         self.invoice_ids = inv_ids
+        ret = {'domain': {'partner_id': [('active', '=', True)]}}
+        if self.jenis_inv == 'sangu':
+            ret = {'domain': {'partner_id': [('active', '=', True), ("is_driver", "=", True)]}}
+        elif self.jenis_inv == 'rent':
+            ret = {'domain': {'partner_id': [('active', '=', True), ("customer", "=", True)]}}
+        return ret
 
     @api.multi
     def to_open(self):
@@ -119,19 +125,24 @@ class GenPaymentInvoice(models.Model):
 
         ws.write(y, x, "Tanggal Invoice", style=style_bold)
         ws.write(y, x+1, "Document Invoice", style=style_bold)
-        ws.write(y, x+2, "Tanggal Pembayaran", style=style_bold)        
-        ws.write(y, x+3, "Subtotal", style=style_bold)
+        ws.write(y, x+2, "Keterangan", style=style_bold)
+        ws.write(y, x+3, "Tanggal Pembayaran", style=style_bold)
+        ws.write(y, x+4, "Subtotal", style=style_bold)
         y += 1
         grand_total_fee = 0
         for inv_id in self.invoice_ids:
+            keterangan = ""
+            for line_id in inv_id.invoice_line_ids:
+                keterangan += "{},".format(line_id.name)
             grand_total_fee += inv_id.amount_total
             ws.write(y, x, inv_id.date_invoice, style=style_table)
             ws.write(y, x+1, inv_id.number, style=style_table)
-            ws.write(y, x+2, inv_id.dt_full_paid, style=style_table)
-            ws.write(y, x+3, inv_id.amount_total, style=style_table)
+            ws.write(y, x+2, keterangan, style=style_table)
+            ws.write(y, x+3, inv_id.dt_full_paid, style=style_table)
+            ws.write(y, x+4, inv_id.amount_total, style=style_table)
             y += 1
-        ws.write(y, x+2, "Total Payment Invoice:", style=style_table)
-        ws.write(y, x+3, grand_total_fee, style=style_table)
+        ws.write(y, x+3, "Total Payment Invoice:", style=style_table)
+        ws.write(y, x+4, grand_total_fee, style=style_table)
         fp = StringIO()
         wb.save(fp)
         fp.seek(0)
