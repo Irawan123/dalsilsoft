@@ -1,0 +1,744 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* dalsil_pkg_basic
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-11 07:15+0000\n"
+"PO-Revision-Date: 2018-01-11 07:15+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_config_accounting
+msgid "Accounting"
+msgstr "Akuntansi"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_truck_search
+msgid "Active"
+msgstr "Aktif"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_accounting
+msgid "Adviser"
+msgstr "Penasihat"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_config_form
+msgid "Apply"
+msgstr "Terapkan"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/report/report_stock.py:15
+#: code:addons/dalsil_pkg_basic/model/report/report_summary_stock.py:15
+#: code:addons/dalsil_pkg_basic/model/start_stock/start_stock.py:8
+#, python-format
+msgid "April"
+msgstr "April"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/report/report_stock.py:19
+#: code:addons/dalsil_pkg_basic/model/report/report_summary_stock.py:19
+#: code:addons/dalsil_pkg_basic/model/start_stock/start_stock.py:12
+#, python-format
+msgid "August"
+msgstr "August"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_account_bank
+msgid "Bank Accounts"
+msgstr "Akun Bank"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.inherit_res_partner_form
+msgid "Blok"
+msgstr "Blok"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/fee_sales/gen_fee_sales.py:15
+#: code:addons/dalsil_pkg_basic/model/gen_payment_invoice/gen_payment_invoice.py:15
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_in_form
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_out_form
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_config_form
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_rent_truck_form
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_wiz_rent_truck
+#, python-format
+msgid "Cancel"
+msgstr "Batalkan"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/cash_bank/other_deposit.py:7
+#: code:addons/dalsil_pkg_basic/model/cash_bank/other_payment.py:7
+#: code:addons/dalsil_pkg_basic/model/check_giro/in_check_giro.py:8
+#: code:addons/dalsil_pkg_basic/model/check_giro/out_check_giro.py:8
+#: code:addons/dalsil_pkg_basic/model/customer_return/customer_return.py:7
+#: code:addons/dalsil_pkg_basic/model/journal_voucher/journal_voucher.py:7
+#: code:addons/dalsil_pkg_basic/model/rent_truck/rent_truck.py:8
+#: code:addons/dalsil_pkg_basic/model/supplier_return/supplier_return.py:7
+#, python-format
+msgid "Cancelled"
+msgstr "Dibatalkan"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_in_form
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_out_form
+msgid "Cek Giro Amount"
+msgstr "Jumlah Cek Giro"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_in_form
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_out_form
+msgid "Cek Giro Information"
+msgstr "Informasi Cek Giro"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_account
+msgid "Chart of Accounts"
+msgstr "Bagan Akun"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/check_giro/in_check_giro.py:11
+#: code:addons/dalsil_pkg_basic/model/check_giro/out_check_giro.py:11
+#, python-format
+msgid "Check"
+msgstr "Cek"
+
+#. module: dalsil_pkg_basic
+#: model:ir.actions.act_window,help:dalsil_pkg_basic.act_dalsil_cg_in
+msgid "Click here to create Ingoing Cek Giro."
+msgstr "Klik disini untuk membuat Cek Giro Masuk."
+
+#. module: dalsil_pkg_basic
+#: model:ir.actions.act_window,help:dalsil_pkg_basic.act_dalsil_cg_out
+msgid "Click here to create Outgoing Cek Giro."
+msgstr "Klik disini untuk membuat Cek Giro Keluar."
+
+#. module: dalsil_pkg_basic
+#: model:ir.actions.act_window,help:dalsil_pkg_basic.act_dalsil_rent_truck
+msgid "Click here to create Rent Truck."
+msgstr "Klik disini untuk membuat Sewa Truk."
+
+#. module: dalsil_pkg_basic
+#: model:ir.actions.act_window,help:dalsil_pkg_basic.act_dalsil_truck
+msgid "Click here to create Truck."
+msgstr "Klik disini untuk membuat Truk."
+
+#. module: dalsil_pkg_basic
+#: model:ir.actions.act_window,help:dalsil_pkg_basic.action_partner_driver_form
+msgid "Click to add a contact in your address book."
+msgstr "Klik untuk menambah kenalan di daftar kenalan."
+
+#. module: dalsil_pkg_basic
+#: model:ir.actions.act_window,name:dalsil_pkg_basic.act_dalsil_config
+msgid "Config"
+msgstr "Konfigurasi"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_config
+msgid "Configuration"
+msgstr "Konfigurasi"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_wiz_rent_truck
+msgid "Create Invoice"
+msgstr "Buat Faktur"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/rent_truck/rent_truck.py:13
+#: code:addons/dalsil_pkg_basic/model/rent_truck/wiz_rent_truck.py:8
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_rent_truck_search
+#, python-format
+msgid "Customer"
+msgstr "Pelanggan"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_wiz_rent_truck
+msgid "Customer Invoice"
+msgstr "Faktur Pelanggan"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_cust_invoice
+msgid "Customer Invoices"
+msgstr "Tagihan Pelanggan"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_customer
+msgid "Customers"
+msgstr "Pelanggan"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_date_range_type_action
+msgid "Date Range Types"
+msgstr "Tipe Range Tanggal"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_date_range_action
+msgid "Date Ranges"
+msgstr "Range Tanggal"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_date_range
+msgid "Date ranges"
+msgstr "Range Tanggal"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/report/report_stock.py:23
+#: code:addons/dalsil_pkg_basic/model/report/report_summary_stock.py:23
+#: code:addons/dalsil_pkg_basic/model/start_stock/start_stock.py:16
+#, python-format
+msgid "December"
+msgstr "Desember"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_rent_truck_search
+msgid "Destination Type"
+msgstr "Tipe Destinasi"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/customer_return/customer_return.py:6
+#: code:addons/dalsil_pkg_basic/model/rent_truck/rent_truck.py:7
+#: code:addons/dalsil_pkg_basic/model/supplier_return/supplier_return.py:6
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_rent_truck_form
+#, python-format
+msgid "Done"
+msgstr "Selesai"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/cash_bank/other_deposit.py:5
+#: code:addons/dalsil_pkg_basic/model/cash_bank/other_payment.py:5
+#: code:addons/dalsil_pkg_basic/model/check_giro/in_check_giro.py:5
+#: code:addons/dalsil_pkg_basic/model/check_giro/out_check_giro.py:5
+#: code:addons/dalsil_pkg_basic/model/customer_return/customer_return.py:5
+#: code:addons/dalsil_pkg_basic/model/fee_sales/fee_sales.py:5
+#: code:addons/dalsil_pkg_basic/model/fee_sales/gen_fee_sales.py:12
+#: code:addons/dalsil_pkg_basic/model/gen_payment_invoice/gen_payment_invoice.py:12
+#: code:addons/dalsil_pkg_basic/model/journal_voucher/journal_voucher.py:5
+#: code:addons/dalsil_pkg_basic/model/rent_truck/rent_truck.py:5
+#: code:addons/dalsil_pkg_basic/model/supplier_return/supplier_return.py:5
+#, python-format
+msgid "Draft"
+msgstr "Konsep"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.inherit_res_partner_driver_form
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_rent_truck_search
+msgid "Driver"
+msgstr "Sopir"
+
+#. module: dalsil_pkg_basic
+#: model:ir.actions.act_window,name:dalsil_pkg_basic.action_partner_driver_form
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_driver
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.inherit_res_partner_driver_search
+msgid "Drivers"
+msgstr "Sopir"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/fee_sales/fee_sales.py:8
+#, python-format
+msgid "Expired"
+msgstr "Kadaluarsa"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/report/report_stock.py:13
+#: code:addons/dalsil_pkg_basic/model/report/report_summary_stock.py:13
+#: code:addons/dalsil_pkg_basic/model/start_stock/start_stock.py:6
+#, python-format
+msgid "February"
+msgstr "Februari"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/modified/account_invoice.py:9
+#: code:addons/dalsil_pkg_basic/model/modified/account_invoice_line.py:9
+#, python-format
+msgid "Fee Sales"
+msgstr "Fee Sales"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_general_ledger
+msgid "General Ledger"
+msgstr "Buku Besar Umum"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/check_giro/in_check_giro.py:12
+#: code:addons/dalsil_pkg_basic/model/check_giro/out_check_giro.py:12
+#, python-format
+msgid "Giro"
+msgstr "Giro"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_in_search
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_out_search
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_rent_truck_search
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_truck_search
+msgid "Group By"
+msgstr "Dikelompokkan berdasarkan"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_cg_in
+msgid "Incoming Check Giro"
+msgstr "Cek Giro Masuk"
+
+#. module: dalsil_pkg_basic
+#: model:ir.actions.act_window,name:dalsil_pkg_basic.act_dalsil_cg_in
+msgid "Ingoing Cek Giro"
+msgstr "Cek Giro Masuk"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/check_giro/in_check_giro.py:69
+#, python-format
+msgid "Ingoing Check Giro Unbalanced!\n"
+"Check Giro Amount ({cg_amount}) != Total Payment Amount ({total_pay})"
+msgstr "Cek Giro Masuk tidak balance!\n"
+"Check Giro Amount ({cg_amount}) != Total Payment Amount ({total_pay})"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/modified/account_invoice.py:6
+#: code:addons/dalsil_pkg_basic/model/modified/account_invoice_line.py:6
+#, python-format
+msgid "Invoice"
+msgstr "Faktur"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/report/report_stock.py:12
+#: code:addons/dalsil_pkg_basic/model/report/report_summary_stock.py:12
+#: code:addons/dalsil_pkg_basic/model/start_stock/start_stock.py:5
+#, python-format
+msgid "January"
+msgstr "Januari"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_account_move
+msgid "Journal Entries"
+msgstr "Entri jurnal"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_account_move_line
+msgid "Journal Items"
+msgstr "Item Jurnal"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_account_journal
+msgid "Journals"
+msgstr "Jurnal-jurnal"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/report/report_stock.py:18
+#: code:addons/dalsil_pkg_basic/model/report/report_summary_stock.py:18
+#: code:addons/dalsil_pkg_basic/model/start_stock/start_stock.py:11
+#, python-format
+msgid "July"
+msgstr "Juli"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/report/report_stock.py:17
+#: code:addons/dalsil_pkg_basic/model/report/report_summary_stock.py:17
+#: code:addons/dalsil_pkg_basic/model/start_stock/start_stock.py:10
+#, python-format
+msgid "June"
+msgstr "Juni"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.inherit_res_partner_form
+msgid "Kecamatan"
+msgstr "Kecamatan"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.inherit_res_partner_form
+msgid "Kelurahan"
+msgstr "Kelurahan"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/report/report_stock.py:14
+#: code:addons/dalsil_pkg_basic/model/report/report_summary_stock.py:14
+#: code:addons/dalsil_pkg_basic/model/start_stock/start_stock.py:7
+#, python-format
+msgid "March"
+msgstr "Maret"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/report/report_stock.py:16
+#: code:addons/dalsil_pkg_basic/model/report/report_summary_stock.py:16
+#: code:addons/dalsil_pkg_basic/model/start_stock/start_stock.py:9
+#, python-format
+msgid "May"
+msgstr "Mei"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_in_form
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_out_form
+msgid "Memo"
+msgstr "Memo"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu
+msgid "Menu"
+msgstr "Menu"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/check_giro/in_check_giro.py:96
+#: code:addons/dalsil_pkg_basic/model/check_giro/out_check_giro.py:96
+#, python-format
+msgid "No appropriate payment method enabled on journal {journal}"
+msgstr "Tidak ada metode pembayaran yang sesuai pada jurnal {journal}"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_rent_truck_form
+msgid "Note"
+msgstr "Catatan"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/report/report_stock.py:22
+#: code:addons/dalsil_pkg_basic/model/report/report_summary_stock.py:22
+#: code:addons/dalsil_pkg_basic/model/start_stock/start_stock.py:15
+#, python-format
+msgid "November"
+msgstr "November"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.inherit_res_partner_form
+msgid "Number"
+msgstr "Nomor"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/report/report_stock.py:21
+#: code:addons/dalsil_pkg_basic/model/report/report_summary_stock.py:21
+#: code:addons/dalsil_pkg_basic/model/start_stock/start_stock.py:14
+#, python-format
+msgid "October"
+msgstr "Oktober"
+
+#. module: dalsil_pkg_basic
+#: model:ir.actions.act_window,help:dalsil_pkg_basic.action_partner_driver_form
+msgid "Odoo helps you easily track all activities related to\n"
+"                a driver: discussions, documents, etc."
+msgstr "Odoo helps you easily track all activities related to\n"
+"                a driver: discussions, documents, etc."
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/check_giro/in_check_giro.py:6
+#: code:addons/dalsil_pkg_basic/model/check_giro/out_check_giro.py:6
+#: code:addons/dalsil_pkg_basic/model/fee_sales/fee_sales.py:6
+#: code:addons/dalsil_pkg_basic/model/fee_sales/gen_fee_sales.py:13
+#: code:addons/dalsil_pkg_basic/model/gen_payment_invoice/gen_payment_invoice.py:13
+#: code:addons/dalsil_pkg_basic/model/rent_truck/rent_truck.py:6
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_rent_truck_form
+#, python-format
+msgid "Open"
+msgstr "Open"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_in_form
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_out_form
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_rent_truck_form
+msgid "Other Info"
+msgstr "Info lainnya"
+
+#. module: dalsil_pkg_basic
+#: model:ir.actions.act_window,name:dalsil_pkg_basic.act_dalsil_cg_out
+msgid "Outgoing Cek Giro"
+msgstr "Cek Giro Keluar"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_cg_out
+msgid "Outgoing Check Giro"
+msgstr "Cek Giro Keluar"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/check_giro/out_check_giro.py:69
+#, python-format
+msgid "Outgoing Check Giro Unbalanced!\n"
+"Check Giro Amount ({cg_amount}) != Total Payment Amount ({total_pay})"
+msgstr "Cek Giro Keluar tidak balance!\n"
+"Check Giro Amount ({cg_amount}) != Total Payment Amount ({total_pay})"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/fee_sales/fee_sales.py:7
+#: code:addons/dalsil_pkg_basic/model/fee_sales/gen_fee_sales.py:14
+#: code:addons/dalsil_pkg_basic/model/gen_payment_invoice/gen_payment_invoice.py:14
+#, python-format
+msgid "Paid"
+msgstr "Lunas"
+
+#. module: dalsil_pkg_basic
+#: model:ir.model,name:dalsil_pkg_basic.model_res_partner
+msgid "Partner"
+msgstr "Rekanan"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_cust_payments
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_vendor_payments
+msgid "Payments"
+msgstr "Pembayaran"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_config_form
+msgid "Penyewaan Truck"
+msgstr "Penyewaan Truk"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/check_giro/in_check_giro.py:67
+#: code:addons/dalsil_pkg_basic/model/check_giro/out_check_giro.py:67
+#, python-format
+msgid "Please Add a Transaction first!"
+msgstr "Tambahkan transaksi terlebih dahulu!"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/check_giro/in_check_giro.py:172
+#: code:addons/dalsil_pkg_basic/model/check_giro/out_check_giro.py:172
+#, python-format
+msgid "Please set default debit in withdraw journal"
+msgstr "Isikan default debit pada withdraw journal"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/cash_bank/other_deposit.py:6
+#: code:addons/dalsil_pkg_basic/model/cash_bank/other_payment.py:6
+#: code:addons/dalsil_pkg_basic/model/journal_voucher/journal_voucher.py:6
+#, python-format
+msgid "Posted"
+msgstr "Posted"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_rent_truck_form
+msgid "Product"
+msgstr "Produk"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/modified/account_invoice.py:5
+#: code:addons/dalsil_pkg_basic/model/modified/account_invoice_line.py:5
+#, python-format
+msgid "Purchase"
+msgstr "Pembelian"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_wiz_rent_truck
+msgid "Purchase Vendor"
+msgstr "Vendor Pembelian"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_purchase
+msgid "Purchases"
+msgstr "Pembelian"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.inherit_res_partner_form
+msgid "RT"
+msgstr "RT"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/modified/res_partner.py:36
+#: code:addons/dalsil_pkg_basic/model/modified/res_partner.py:53
+#, python-format
+msgid "RT harus angka"
+msgstr "RT harus angka"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.inherit_res_partner_form
+msgid "RW"
+msgstr "RW"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/modified/res_partner.py:31
+#: code:addons/dalsil_pkg_basic/model/modified/res_partner.py:50
+#, python-format
+msgid "RW harus angka"
+msgstr "RW harus angka"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/gen_payment_invoice/gen_payment_invoice.py:20
+#: code:addons/dalsil_pkg_basic/model/modified/account_invoice.py:8
+#: code:addons/dalsil_pkg_basic/model/modified/account_invoice_line.py:8
+#: code:addons/dalsil_pkg_basic/model/rent_truck/rent_truck.py:11
+#: code:addons/dalsil_pkg_basic/model/rent_truck/wiz_rent_truck.py:6
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_wiz_rent_truck
+#, python-format
+msgid "Rent"
+msgstr "Sewa"
+
+#. module: dalsil_pkg_basic
+#: model:ir.actions.act_window,name:dalsil_pkg_basic.act_dalsil_rent_truck
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_rent_truck
+msgid "Rent Truck"
+msgstr "Sewa Truk"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_report
+msgid "Reports"
+msgstr "Laporan"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_sales
+msgid "Sales"
+msgstr "Penjualan"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/gen_payment_invoice/gen_payment_invoice.py:19
+#: code:addons/dalsil_pkg_basic/model/modified/account_invoice.py:7
+#: code:addons/dalsil_pkg_basic/model/modified/account_invoice_line.py:7
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_wiz_rent_truck
+#, python-format
+msgid "Sangu"
+msgstr "Sangu"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_product
+msgid "Sellable Product"
+msgstr "Sellable Produk "
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/report/report_stock.py:20
+#: code:addons/dalsil_pkg_basic/model/report/report_summary_stock.py:20
+#: code:addons/dalsil_pkg_basic/model/start_stock/start_stock.py:13
+#, python-format
+msgid "September"
+msgstr "September"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_config_setting
+msgid "Settings"
+msgstr "Pengaturan"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_rent_truck_search
+msgid "State"
+msgstr "Status"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_in_form
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_out_form
+msgid "Transaction"
+msgstr "Transaksi"
+
+#. module: dalsil_pkg_basic
+#: model:ir.actions.act_window,name:dalsil_pkg_basic.act_dalsil_truck
+#: model:ir.model,name:dalsil_pkg_basic.model_dalsil_truck
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_rent_truck_search
+msgid "Truck"
+msgstr "Truk"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_trucking
+msgid "Trucking"
+msgstr "Truk"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_truck
+msgid "Trucks"
+msgstr "Truk"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_in_search
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_out_search
+msgid "Type"
+msgstr "Tipe"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_truck_search
+msgid "Type Truck"
+msgstr "Tipe Truk"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_in_form
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_out_form
+msgid "Validate"
+msgstr "Validasi"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_vendor_bill
+msgid "Vendor Bills"
+msgstr "Tagihan Vendor"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.menu,name:dalsil_pkg_basic.dalsil_menu_vendor
+msgid "Vendors"
+msgstr "Vendor"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/rent_truck/rent_truck.py:12
+#: code:addons/dalsil_pkg_basic/model/rent_truck/wiz_rent_truck.py:7
+#, python-format
+msgid "Warehouse"
+msgstr "Gudang"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_in_form
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_out_form
+msgid "Withdraw"
+msgstr "Withdraw"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_in_form
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_cg_out_form
+msgid "Withdraw Information"
+msgstr "Informasi Withdraw"
+
+#. module: dalsil_pkg_basic
+#: code:addons/dalsil_pkg_basic/model/check_giro/in_check_giro.py:7
+#: code:addons/dalsil_pkg_basic/model/check_giro/out_check_giro.py:7
+#, python-format
+msgid "Withdrawn"
+msgstr "Withdrawn"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_wiz_rent_truck
+msgid "Wiz Rent Truck"
+msgstr "Wizard Sewa Truk"
+
+#. module: dalsil_pkg_basic
+#: model:ir.model,name:dalsil_pkg_basic.model_dalsil_wiz_rent_truck
+#: model:ir.model,name:dalsil_pkg_basic.model_dalsil_wiz_rent_truck_line_inv
+#: model:ir.model,name:dalsil_pkg_basic.model_dalsil_wiz_rent_truck_line_pur
+msgid "Wizard Generate Account Invoice"
+msgstr "Wizard Generate Account Invoice"
+
+#. module: dalsil_pkg_basic
+#: model:ir.model,name:dalsil_pkg_basic.model_dalsil_check_giro_in
+msgid "dalsil.check_giro.in"
+msgstr "dalsil.check_giro.in"
+
+#. module: dalsil_pkg_basic
+#: model:ir.model,name:dalsil_pkg_basic.model_dalsil_check_giro_in_line
+msgid "dalsil.check_giro.in.line"
+msgstr "dalsil.check_giro.in.line"
+
+#. module: dalsil_pkg_basic
+#: model:ir.model,name:dalsil_pkg_basic.model_dalsil_check_giro_out
+msgid "dalsil.check_giro.out"
+msgstr "dalsil.check_giro.out"
+
+#. module: dalsil_pkg_basic
+#: model:ir.model,name:dalsil_pkg_basic.model_dalsil_check_giro_out_line
+msgid "dalsil.check_giro.out.line"
+msgstr "dalsil.check_giro.out.line"
+
+#. module: dalsil_pkg_basic
+#: model:ir.model,name:dalsil_pkg_basic.model_dalsil_config
+msgid "dalsil.config"
+msgstr "dalsil.config"
+
+#. module: dalsil_pkg_basic
+#: model:ir.model,name:dalsil_pkg_basic.model_dalsil_rent_truck
+msgid "dalsil.rent_truck"
+msgstr "dalsil.rent_truck"
+
+#. module: dalsil_pkg_basic
+#: model:ir.model,name:dalsil_pkg_basic.model_dalsil_rent_truck_line
+msgid "dalsil.rent_truck.line"
+msgstr "dalsil.rent_truck.line"
+
+#. module: dalsil_pkg_basic
+#: model:ir.model,name:dalsil_pkg_basic.model_dalsil_wiz_config
+msgid "dalsil.wiz_config"
+msgstr "dalsil.wiz_config"
+
+#. module: dalsil_pkg_basic
+#: model:ir.ui.view,arch_db:dalsil_pkg_basic.view_dalsil_config_form
+msgid "or"
+msgstr "atau"
+
