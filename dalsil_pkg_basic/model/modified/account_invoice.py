@@ -212,6 +212,7 @@ class AccountInvoice(models.Model):
         Membuatkan journal untuk pembayran expense
         """
         self.ensure_one()
+        style_header = xlwt.easyxf('font: height 320, bold on')
         style_header = xlwt.easyxf('font: height 240, bold on')
         style_bold = xlwt.easyxf('font: bold on; align: horz center; '
                                  'borders: left thin, top thin, bottom thin, right thin')
@@ -219,49 +220,67 @@ class AccountInvoice(models.Model):
 
         wb = xlwt.Workbook("UTF-8")
         ws = wb.add_sheet('Invoice')
+        title = ""
+
+        if self.jenis_inv == 'purchase':
+            title = 'Pembelian'
+        elif self.jenis_inv == 'invoice':
+            title = 'Faktur Penjualan'
+        elif self.jenis_inv == 'sangu':
+            title = 'Sangu'
+        elif self.jenis_inv == 'rent':
+            title = 'Rent'
+        elif self.jenis_inv == 'fee':
+            title = 'Fee Sales'
 
         y = 0
         x = 0
 
-        ws.col(x).width = 4200
-        ws.col(x+1).width = 4200
-        ws.col(x+2).width = 5500
-        ws.col(x+3).width = 4200
-        ws.col(x+4).width = 5500
+        ws.col(x).width = 500
+        ws.col(x+1).width = 5000
+        ws.col(x+2).width = 4500
+        ws.col(x+3).width = 6000
+        ws.col(x+4).width = 4500
+        ws.col(x+5).width = 6000
 
-        ws.write(y, x, self.number, style=style_header)
+        ws.write(y, x, "{} {}".format(title, self.number), style=style_header)
         y += 1
-        ws.write(y, x, "Invoice Date")
+        ws.write(y, x, "Tanggal Invoice")
         ws.write(y, x+1, self.date_invoice)
         y += 1
-        ws.write(y, x, "Customer / Vendor")
+        ws.write(y, x, "Customer")
         ws.write(y, x+1, self.partner_id.name)
         y += 1
         street_name = ""
         if self.partner_id.street:
             street_name = self.partner_id.street
-        ws.write(y, x, "Adrress")
+        ws.write(y, x, "Alamat")
         ws.write(y, x+1, street_name)
         y += 2
 
-        ws.write(y, x, "Item", style=style_bold)
-        ws.write(y, x+1, "Quantity", style=style_bold)
-        ws.write(y, x+2, "Unit Price", style=style_bold)
-        ws.write(y, x+3, "Tax", style=style_bold)
-        ws.write(y, x+4, "Tax Excluded Price", style=style_bold)
+        ws.write(y, x, "No", style=style_bold)
+        ws.write(y, x+1, "Nama Barang", style=style_bold)
+        ws.write(y, x+2, "QTY", style=style_bold)
+        ws.write(y, x+3, "Harga/@", style=style_bold)
+        ws.write(y, x+4, "Pajak", style=style_bold)
+        ws.write(y, x+5, "Subtotal tanpa pajak", style=style_bold)
         y += 1
 
+        idx = 0
         for inv_line_id in self.invoice_line_ids:
+            idx += 1
             tax_name = ""
             for tax_id in inv_line_id.invoice_line_tax_ids:
                 tax_name += tax_id.name
-            ws.write(y, x, inv_line_id.product_id.name, style=style_table)
-            ws.write(y, x+1, inv_line_id.quantity, style=style_table)
-            ws.write(y, x+2, inv_line_id.price_unit, style=style_table)
-            ws.write(y, x+3, tax_name, style=style_table)
-            ws.write(y, x+4, inv_line_id.quantity * inv_line_id.price_unit, style=style_table)
+            ws.write(y, x, idx, style=style_table)
+            ws.write(y, x+1, inv_line_id.product_id.name, style=style_table)
+            ws.write(y, x+2, inv_line_id.quantity, style=style_table)
+            ws.write(y, x+3, inv_line_id.price_unit, style=style_table)
+            ws.write(y, x+4, tax_name, style=style_table)
+            ws.write(y, x+5, inv_line_id.quantity * inv_line_id.price_unit, style=style_table)
             y += 1
 
+        ws.write(y, x, "Pembayaran dgn cek/giro, dianggap sah jika telah diuangkan")
         ws.write(y, x+3, "Subtotal", style=style_table)
         ws.write(y, x+4, self.amount_untaxed, style=style_table)
         y += 1
@@ -271,6 +290,90 @@ class AccountInvoice(models.Model):
         ws.write(y, x+3, "Total", style=style_table)
         ws.write(y, x+4, self.amount_total, style=style_table)
         y += 1
+        ws.write(y, x+1, "Adm. Penjualan,")
+        y += 3
+        ws.write(y, x+1, "(______________)")
+
+        fp = StringIO()
+        wb.save(fp)
+        fp.seek(0)
+        data = fp.read()
+        fp.close()
+
+        return self.env["ss.download"].download(
+            "Invoice_{}.xls".format(self.number),
+            data
+        )
+
+    @api.multi
+    def generate_excel_do(self):
+        """
+        Membuatkan journal untuk pembayran expense
+        """
+        self.ensure_one()
+        style_header = xlwt.easyxf('font: height 320, bold on')
+        style_header = xlwt.easyxf('font: height 240, bold on')
+        style_bold = xlwt.easyxf('font: bold on; align: horz center; '
+                                 'borders: left thin, top thin, bottom thin, right thin')
+        style_table = xlwt.easyxf('borders: left thin, bottom thin, right thin')
+
+        wb = xlwt.Workbook("UTF-8")
+        ws = wb.add_sheet('Invoice')
+        title = "D.O. GUDANG"
+
+        y = 0
+        x = 0
+
+        ws.col(x).width = 5000
+        ws.col(x + 1).width = 15000
+        ws.col(x + 2).width = 6000
+        # ws.col(x + 3).width = 4500
+        # ws.col(x + 4).width = 6000
+
+        ws.write(y, x, "{} {}".format(title, self.number), style=style_header)
+        y += 1
+        ws.write(y, x, "Tanggal Invoice")
+        ws.write(y, x + 1, self.date_invoice)
+        y += 1
+        ws.write(y, x, "Customer")
+        ws.write(y, x + 1, self.partner_id.name)
+        y += 1
+        street_name = ""
+        if self.partner_id.street:
+            street_name = self.partner_id.street
+        ws.write(y, x, "Alamat")
+        ws.write(y, x + 1, street_name)
+        y += 2
+
+        ws.write(y, x, "No", style=style_bold)
+        ws.write(y, x + 1, "Nama Barang", style=style_bold)
+        ws.write(y, x + 2, "QTY", style=style_bold)
+        # ws.write(y, x + 3, "Harga/@", style=style_bold)
+        # ws.write(y, x + 4, "Pajak", style=style_bold)
+        # ws.write(y, x + 5, "Subtotal tanpa pajak", style=style_bold)
+        y += 1
+
+        idx = 0
+        sum_qty = sum(self.invoice_line_ids.mapped("quantity"))
+        for inv_line_id in self.invoice_line_ids:
+            idx += 1
+            tax_name = ""
+            for tax_id in inv_line_id.invoice_line_tax_ids:
+                tax_name += tax_id.name
+            ws.write(y, x, idx, style=style_table)
+            ws.write(y, x + 1, inv_line_id.product_id.name, style=style_table)
+            ws.write(y, x + 2, inv_line_id.quantity, style=style_table)
+            # ws.write(y, x + 3, inv_line_id.price_unit, style=style_table)
+            # ws.write(y, x + 4, tax_name, style=style_table)
+            # ws.write(y, x + 5, inv_line_id.quantity * inv_line_id.price_unit, style=style_table)
+            y += 1
+
+        ws.write(y, x + 1, "Jml. Qty:", style=xlwt.easyxf('align: horiz right'))
+        ws.write(y, x + 2, sum_qty, style=style_table)
+        y += 1
+        ws.write(y, x, "Adm. Penjualan,         Pengambil               Mengetahui, ")
+        y += 3
+        ws.write(y, x, "(_____________)       (_____________)       (_____________)")
 
         fp = StringIO()
         wb.save(fp)
