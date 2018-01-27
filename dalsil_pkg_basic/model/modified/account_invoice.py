@@ -215,7 +215,7 @@ class AccountInvoice(models.Model):
         style_header = xlwt.easyxf('font: height 340, bold on')
         style_header = xlwt.easyxf('font: height 280, bold on')
         style_bold = xlwt.easyxf('font: bold on; align: horz center; '
-                                 'borders: top thin, bottom thin')
+                                 'borders: left thin, top thin, bottom thin, right thin')
         style_table = xlwt.easyxf('borders: left thin, bottom thin, right thin')
 
         wb = xlwt.Workbook("UTF-8")
@@ -247,16 +247,16 @@ class AccountInvoice(models.Model):
         ws.write(y, x, "{} {}".format(title, self.number), style=style_header)
         y += 1
         ws.write(y, x, "Tanggal Invoice")
-        ws.write(y, x+1, self.date_invoice)
+        ws.write(y, x+2, self.date_invoice)
         y += 1
         ws.write(y, x, "Customer")
-        ws.write(y, x+1, self.partner_id.name)
+        ws.write(y, x+2, self.partner_id.name)
         y += 1
         street_name = ""
         if self.partner_id.street:
             street_name = self.partner_id.street
         ws.write(y, x, "Alamat")
-        ws.write(y, x+1, street_name)
+        ws.write(y, x+2, street_name)
         y += 2
 
         ws.write(y, x, "No", style=style_bold)
@@ -326,8 +326,8 @@ class AccountInvoice(models.Model):
         y = 0
         x = 0
 
-        ws.col(x).width = 1000
-        ws.col(x + 1).width = 19000
+        ws.col(x).width = 5000
+        ws.col(x + 1).width = 15000
         ws.col(x + 2).width = 6000
         # ws.col(x + 3).width = 4500
         # ws.col(x + 4).width = 6000
