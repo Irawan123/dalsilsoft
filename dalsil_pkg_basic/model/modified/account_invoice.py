@@ -237,10 +237,10 @@ class AccountInvoice(models.Model):
         x = 0
 
         ws.col(x).width = 500
-        ws.col(x+1).width = 4500
-        ws.col(x+2).width = 4500
+        ws.col(x+1).width = 4200
+        ws.col(x+2).width = 4200
         ws.col(x+3).width = 6000
-        ws.col(x+4).width = 4500
+        ws.col(x+4).width = 4200
         ws.col(x+5).width = 6000
 
         ws.write(y, x, "{} {}".format(title, self.number), style=style_header)
