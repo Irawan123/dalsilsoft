@@ -9,8 +9,10 @@
             <field name="sangu_acc_id"></field>
             <field name="rent_acc_id"></field>
             <field name="fee_acc_id"></field>
+            <field name="purc_journal_id"></field>
             <field name="purc_acc_credit_id"></field>
             <field name="purc_acc_debit_id"></field>
+            <field name="inv_journal_id"></field>
             <field name="inv_acc_credit_id"></field>
             <field name="inv_acc_debit_id"></field>
         </record>

@@ -16,9 +16,11 @@ class WizConfig(models.TransientModel):
     sangu_acc_id = fields.Many2one("account.account", "Account Sangu")
     rent_acc_id = fields.Many2one("account.account", "Account Rent")
     fee_acc_id = fields.Many2one("account.account", "Account Fee Sales")
-    
+
+    purc_journal_id = fields.Many2one("account.journal", "Journal Purchase")
     purc_acc_credit_id = fields.Many2one("account.account", "Account Credit Purchase")
     purc_acc_debit_id = fields.Many2one("account.account", "Account Debit Purchase")
+    inv_journal_id = fields.Many2one("account.journal", "Journal Invoice")
     inv_acc_credit_id = fields.Many2one("account.account", "Account Credit Invoice")
     inv_acc_debit_id = fields.Many2one("account.account", "Account Debit Invoice")
 
@@ -33,8 +35,10 @@ class WizConfig(models.TransientModel):
             "sangu_acc_id": self.sangu_acc_id.id,
             "rent_acc_id": self.rent_acc_id.id,
             "fee_acc_id": self.fee_acc_id.id,
+            "purc_journal_id": self.purc_journal_id.id,
             "purc_acc_credit_id": self.purc_acc_credit_id.id,
             "purc_acc_debit_id": self.purc_acc_debit_id.id,
+            "inv_journal_id": self.inv_journal_id.id,
             "inv_acc_credit_id": self.inv_acc_credit_id.id,
             "inv_acc_debit_id": self.inv_acc_debit_id.id
         })
@@ -51,9 +55,10 @@ class WizConfig(models.TransientModel):
             "sangu_acc_id": config.sangu_acc_id.id,
             "rent_acc_id": config.rent_acc_id.id,
             "fee_acc_id": config.fee_acc_id.id,
+            "purc_journal_id": config.purc_journal_id.id,
             "purc_acc_credit_id": config.purc_acc_credit_id.id,
             "purc_acc_debit_id": config.purc_acc_debit_id.id,
+            "inv_journal_id": config.inv_journal_id.id,
             "inv_acc_credit_id": config.inv_acc_credit_id.id,
             "inv_acc_debit_id": config.inv_acc_debit_id.id
         }
-        

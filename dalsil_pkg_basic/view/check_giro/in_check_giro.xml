@@ -18,6 +18,7 @@
                     <field name="state"/>
                     <group string="Group By">
                         <filter name="group_cg_type" string="Type" context="{'group_by': 'cg_type'}"/>
+                        <filter name="group_state" string="State" context="{'group_by': 'state'}"/>
                     </group>
                 </search>
             </field>

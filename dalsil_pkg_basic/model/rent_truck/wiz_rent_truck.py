@@ -19,6 +19,7 @@ class WizRentTruck(models.TransientModel):
     rent_truck_id = fields.Many2one("dalsil.rent_truck", string="Rent Truck")
     dest_type = fields.Selection(DEST_TYPE, "Destination Type")
 
+    sangu_total = fields.Float("Sangu Sopir", digits=(20,2))
     sangu_payment_term_id = fields.Many2one('account.payment.term', string='Sangu Payment Terms')
 
     rent_payment_term_id = fields.Many2one('account.payment.term', string='Rent Payment Terms')
@@ -53,11 +54,13 @@ class WizRentTruck(models.TransientModel):
                     'unit_price': line_id.product_id.standard_price,
                     'qty': line_id.qty
                 }])
+        setting = self.env["ir.model.data"].xmlid_to_object("dalsil_pkg_basic.dalsil_config")
         return self.wizard_show("General Invoice", {
             "rent_truck_id": rent_truck_id.id,
             "dest_type": rent_truck_id.dest_type,
             "inv_line_ids": inv_line_ids,
-            "pur_line_ids": pur_line_ids
+            "pur_line_ids": pur_line_ids,
+            "sangu_total": setting.def_sangu
         }, True)
 
     #################### private ####################
@@ -78,7 +81,7 @@ class WizRentTruck(models.TransientModel):
                 'product_id': setting.product_sangu.id,
                 'name': 'Sangu Driver Rent Truck No ({})'.format(self.rent_truck_id.name),
                 'quantity': 1.0,
-                'price_unit': setting.def_sangu,
+                'price_unit': self.sangu_total,
                 'account_id': setting.sangu_acc_id.id
             })]
         }

@@ -12,6 +12,7 @@
                     <field name="rent_truck_id" invisible="1"/>
                     <field name="dest_type" invisible="1"/>
                     <group string="Sangu">
+                        <field name="sangu_total" required="1"/>
                         <field name="sangu_payment_term_id" required="1"/>
                     </group>
 

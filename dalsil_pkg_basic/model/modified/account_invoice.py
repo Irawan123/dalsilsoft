@@ -1,5 +1,11 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, UserError
+import xlwt
+from datetime import datetime, date, time, timedelta
+try:
+    from cStringIO import StringIO
+except:
+    from StringIO import StringIO
 
 JENIS_INVOICE = (
     ("purchase", _("Purchase")),
@@ -22,7 +28,7 @@ class AccountInvoice(models.Model):
     gen_fee_sales_id = fields.Many2one("dalsil.gen_fee_sales", "Source Document")
     dt_full_paid = fields.Datetime("Datetime Full Paid")
     is_generated_pay_inv = fields.Boolean("Is Generated Payment Invoice", default=False)
-    
+
     @api.model
     def create(self, vals):
         """
@@ -85,7 +91,7 @@ class AccountInvoice(models.Model):
                     stock_move.action_done()
 
                 move_data = {
-                    "journal_id": record.journal_id.id,
+                    "journal_id": setting.purc_journal_id.id,
                     "ref": record.number,
                     "date": fields.Date.today(),
                     "state": "draft",
@@ -142,7 +148,7 @@ class AccountInvoice(models.Model):
                     stock_move.action_done()
 
                 move_data = {
-                    "journal_id": record.journal_id.id,
+                    "journal_id": setting.inv_journal_id.id,
                     "ref": record.number,
                     "date": fields.Date.today(),
                     "state": "draft",
@@ -199,3 +205,80 @@ class AccountInvoice(models.Model):
         self.amount_total_company_signed = amount_total_company_signed * sign
         self.amount_total_signed = self.amount_total * sign
         self.amount_untaxed_signed = amount_untaxed_signed * sign
+
+    @api.multi
+    def generate_excel(self):
+        """
+        Membuatkan journal untuk pembayran expense
+        """
+        self.ensure_one()
+        style_header = xlwt.easyxf('font: height 240, bold on')
+        style_bold = xlwt.easyxf('font: bold on; align: horz center; '
+                                 'borders: left thin, top thin, bottom thin, right thin')
+        style_table = xlwt.easyxf('borders: left thin, bottom thin, right thin')
+
+        wb = xlwt.Workbook("UTF-8")
+        ws = wb.add_sheet('Invoice')
+
+        y = 0
+        x = 0
+
+        ws.col(x).width = 4200
+        ws.col(x+1).width = 4200
+        ws.col(x+2).width = 5500
+        ws.col(x+3).width = 4200
+        ws.col(x+4).width = 5500
+
+        ws.write(y, x, self.number, style=style_header)
+        y += 1
+        ws.write(y, x, "Invoice Date")
+        ws.write(y, x+1, self.date_invoice)
+        y += 1
+        ws.write(y, x, "Customer / Vendor")
+        ws.write(y, x+1, self.partner_id.name)
+        y += 1
+        street_name = ""
+        if self.partner_id.street:
+            street_name = self.partner_id.street
+        ws.write(y, x, "Adrress")
+        ws.write(y, x+1, street_name)
+        y += 2
+
+        ws.write(y, x, "Item", style=style_bold)
+        ws.write(y, x+1, "Quantity", style=style_bold)
+        ws.write(y, x+2, "Unit Price", style=style_bold)
+        ws.write(y, x+3, "Tax", style=style_bold)
+        ws.write(y, x+4, "Tax Excluded Price", style=style_bold)
+        y += 1
+
+        for inv_line_id in self.invoice_line_ids:
+            tax_name = ""
+            for tax_id in inv_line_id.invoice_line_tax_ids:
+                tax_name += tax_id.name
+            ws.write(y, x, inv_line_id.product_id.name, style=style_table)
+            ws.write(y, x+1, inv_line_id.quantity, style=style_table)
+            ws.write(y, x+2, inv_line_id.price_unit, style=style_table)
+            ws.write(y, x+3, tax_name, style=style_table)
+            ws.write(y, x+4, inv_line_id.quantity * inv_line_id.price_unit, style=style_table)
+            y += 1
+
+        ws.write(y, x+3, "Subtotal", style=style_table)
+        ws.write(y, x+4, self.amount_untaxed, style=style_table)
+        y += 1
+        ws.write(y, x+3, "Taxes", style=style_table)
+        ws.write(y, x+4, self.amount_tax, style=style_table)
+        y += 1
+        ws.write(y, x+3, "Total", style=style_table)
+        ws.write(y, x+4, self.amount_total, style=style_table)
+        y += 1
+
+        fp = StringIO()
+        wb.save(fp)
+        fp.seek(0)
+        data = fp.read()
+        fp.close()
+
+        return self.env["ss.download"].download(
+            "Invoice_{}.xls".format(self.number),
+            data
+        )

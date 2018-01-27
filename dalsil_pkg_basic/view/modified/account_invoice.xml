@@ -8,6 +8,11 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
                 <data>
+                    <xpath expr="//button[@name='%(account.action_account_invoice_refund)d']" position="after">
+                        <button type="object" name="generate_excel" string="Print Excel"
+                                class="oe_highlight"
+                                states="open,paid"/>
+                    </xpath>
                     <xpath expr="//button[@name='%(account.action_account_invoice_refund)d']" position="attributes">
                         <attribute name="invisible">1</attribute>
                     </xpath>

@@ -15,7 +15,9 @@ class Config(models.Model):
     rent_acc_id = fields.Many2one("account.account", "Account Rent")
     fee_acc_id = fields.Many2one("account.account", "Account Fee Sales")
 
+    purc_journal_id = fields.Many2one("account.journal", "Journal Purchase")
     purc_acc_credit_id = fields.Many2one("account.account", "Account Credit Purchase")
     purc_acc_debit_id = fields.Many2one("account.account", "Account Debit Purchase")
+    inv_journal_id = fields.Many2one("account.journal", "Journal Invoice")
     inv_acc_credit_id = fields.Many2one("account.account", "Account Credit Invoice")
     inv_acc_debit_id = fields.Many2one("account.account", "Account Debit Invoice")

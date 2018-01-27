@@ -27,8 +27,10 @@
                     </group>
                     <group>
                         <group string="Account Stock">
+                            <field name="purc_journal_id" required="1"/>
                             <field name="purc_acc_credit_id" required="1"/>
                             <field name="purc_acc_debit_id" required="1"/>
+                            <field name="inv_journal_id" required="1"/>
                             <field name="inv_acc_credit_id" required="1"/>
                             <field name="inv_acc_debit_id" required="1"/>
                         </group>
