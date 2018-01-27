@@ -220,6 +220,7 @@ class AccountInvoice(models.Model):
 
         wb = xlwt.Workbook("UTF-8")
         ws = wb.add_sheet('Invoice')
+        ws.footer_str = ''
         title = ""
 
         if self.jenis_inv == 'purchase':
@@ -319,6 +320,7 @@ class AccountInvoice(models.Model):
 
         wb = xlwt.Workbook("UTF-8")
         ws = wb.add_sheet('Invoice')
+        ws.footer_str = ''
         title = "D.O. GUDANG"
 
         y = 0
