@@ -212,10 +212,10 @@ class AccountInvoice(models.Model):
         Membuatkan journal untuk pembayran expense
         """
         self.ensure_one()
-        style_header = xlwt.easyxf('font: height 320, bold on')
-        style_header = xlwt.easyxf('font: height 240, bold on')
+        style_header = xlwt.easyxf('font: height 340, bold on')
+        style_header = xlwt.easyxf('font: height 280, bold on')
         style_bold = xlwt.easyxf('font: bold on; align: horz center; '
-                                 'borders: left thin, top thin, bottom thin, right thin')
+                                 'borders: top thin, bottom thin')
         style_table = xlwt.easyxf('borders: left thin, bottom thin, right thin')
 
         wb = xlwt.Workbook("UTF-8")
@@ -237,9 +237,9 @@ class AccountInvoice(models.Model):
         y = 0
         x = 0
 
-        ws.col(x).width = 500
-        ws.col(x+1).width = 4200
-        ws.col(x+2).width = 4200
+        ws.col(x).width = 600
+        ws.col(x+1).width = 6200
+        ws.col(x+2).width = 2100
         ws.col(x+3).width = 6000
         ws.col(x+4).width = 4200
         ws.col(x+5).width = 6000
@@ -290,7 +290,7 @@ class AccountInvoice(models.Model):
         y += 1
         ws.write(y, x+4, "Total", style=style_table)
         ws.write(y, x+5, self.amount_total, style=style_table)
-        y += 1
+        y += 3
         ws.write(y, x+1, "Adm. Penjualan,")
         y += 3
         ws.write(y, x+1, "(______________)")
@@ -312,8 +312,8 @@ class AccountInvoice(models.Model):
         Membuatkan journal untuk pembayran expense
         """
         self.ensure_one()
-        style_header = xlwt.easyxf('font: height 320, bold on')
-        style_header = xlwt.easyxf('font: height 240, bold on')
+        style_header = xlwt.easyxf('font: height 340, bold on')
+        style_header = xlwt.easyxf('font: height 280, bold on')
         style_bold = xlwt.easyxf('font: bold on; align: horz center; '
                                  'borders: left thin, top thin, bottom thin, right thin')
         style_table = xlwt.easyxf('borders: left thin, bottom thin, right thin')
@@ -326,8 +326,8 @@ class AccountInvoice(models.Model):
         y = 0
         x = 0
 
-        ws.col(x).width = 5000
-        ws.col(x + 1).width = 15000
+        ws.col(x).width = 1000
+        ws.col(x + 1).width = 19000
         ws.col(x + 2).width = 6000
         # ws.col(x + 3).width = 4500
         # ws.col(x + 4).width = 6000
@@ -372,10 +372,10 @@ class AccountInvoice(models.Model):
 
         ws.write(y, x + 1, "Jml. Qty:", style=xlwt.easyxf('align: horiz right'))
         ws.write(y, x + 2, sum_qty, style=style_table)
-        y += 1
+        y += 3
         ws.write(y, x, "Adm. Penjualan,         Pengambil               Mengetahui, ")
         y += 3
-        ws.write(y, x, "(_____________)       (_____________)       (_____________)")
+        ws.write(y, x, "(____________)       (___________)       (___________)")
 
         fp = StringIO()
         wb.save(fp)
