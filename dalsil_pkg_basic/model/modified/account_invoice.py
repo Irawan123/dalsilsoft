@@ -375,7 +375,7 @@ class AccountInvoice(models.Model):
         y += 3
         ws.write(y, x, "Adm. Penjualan,         Pengambil               Mengetahui, ")
         y += 3
-        ws.write(y, x, "(____________)       (___________)       (___________)")
+        ws.write(y, x, "(____________)       (___________)         (___________)")
 
         fp = StringIO()
         wb.save(fp)
