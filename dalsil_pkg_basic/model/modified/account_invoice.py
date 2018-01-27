@@ -237,7 +237,7 @@ class AccountInvoice(models.Model):
         x = 0
 
         ws.col(x).width = 500
-        ws.col(x+1).width = 5000
+        ws.col(x+1).width = 4500
         ws.col(x+2).width = 4500
         ws.col(x+3).width = 6000
         ws.col(x+4).width = 4500
@@ -281,14 +281,14 @@ class AccountInvoice(models.Model):
             y += 1
 
         ws.write(y, x, "Pembayaran dgn cek/giro, dianggap sah jika telah diuangkan")
-        ws.write(y, x+3, "Subtotal", style=style_table)
-        ws.write(y, x+4, self.amount_untaxed, style=style_table)
+        ws.write(y, x+4, "Subtotal", style=style_table)
+        ws.write(y, x+5, self.amount_untaxed, style=style_table)
         y += 1
-        ws.write(y, x+3, "Taxes", style=style_table)
-        ws.write(y, x+4, self.amount_tax, style=style_table)
+        ws.write(y, x+4, "Taxes", style=style_table)
+        ws.write(y, x+5, self.amount_tax, style=style_table)
         y += 1
-        ws.write(y, x+3, "Total", style=style_table)
-        ws.write(y, x+4, self.amount_total, style=style_table)
+        ws.write(y, x+4, "Total", style=style_table)
+        ws.write(y, x+5, self.amount_total, style=style_table)
         y += 1
         ws.write(y, x+1, "Adm. Penjualan,")
         y += 3
