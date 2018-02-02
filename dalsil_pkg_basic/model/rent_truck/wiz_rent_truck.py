@@ -39,20 +39,26 @@ class WizRentTruck(models.TransientModel):
         rent_truck_id = self.env["dalsil.rent_truck"].browse(rent_truck_id) if isinstance(rent_truck_id, int) else rent_truck_id
         inv_line_ids = []
         pur_line_ids = []
+        
+        
         for line_id in rent_truck_id.line_ids:
             if rent_truck_id.dest_type in ['warehouse', 'customer']:
                 inv_line_ids.append([0, 0, {
                     'product_id': line_id.product_id.id,
                     'uom_id': line_id.product_id.uom_id.id,
                     'unit_price': line_id.product_id.list_price,
-                    'qty': line_id.qty
+                    'qty': line_id.qty,
+                    'sub_total': line_id.product_id.list_price * line_id.qty,
+                    'account_id': line_id.product_id.property_account_income_id.id
                 }])
             if rent_truck_id.dest_type == 'customer':
                 pur_line_ids.append([0, 0, {
                     'product_id': line_id.product_id.id,
                     'uom_id': line_id.product_id.uom_id.id,
                     'unit_price': line_id.product_id.standard_price,
-                    'qty': line_id.qty
+                    'qty': line_id.qty,
+                    'sub_total': line_id.product_id.standard_price * line_id.qty,
+                    'account_id': line_id.product_id.property_account_expense_id.id
                 }])
         setting = self.env["ir.model.data"].xmlid_to_object("dalsil_pkg_basic.dalsil_config")
         return self.wizard_show("General Invoice", {
