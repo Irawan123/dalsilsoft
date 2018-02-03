@@ -115,7 +115,8 @@ class AccountInvoice(models.Model):
                 if not record.is_allowed_plafon:
                     inv_ids = self.env["account.invoice"].sudo().search([
                         ("state", "=", 'open'),
-                        ("jenis_inv", "=", 'invoice')
+                        ("jenis_inv", "=", 'invoice'),
+                        ("partner_id", "=", record.partner_id.id)
                     ])
                     total_credit = sum(inv_ids.mapped("amount_total"))
                     if total_credit > record.partner_id.plafon:
