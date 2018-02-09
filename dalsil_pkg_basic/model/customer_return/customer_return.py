@@ -76,11 +76,8 @@ class CustomerReturn(models.Model):
                 stock_move_data = {
                     "state": "assigned",
 
-                    # "picking_type_id": record.picking_type_id.id,
                     "location_dest_id": line_id.acc_inv_line_id.location_id.id,
                     "location_id": record.partner_id.property_stock_supplier.id,
-                    # "picking_id": stock_picking_id.id,
-                    # "warehouse_id": record.picking_type_id.warehouse_id.id,
 
                     "name": line_id.product_id.name,
                     "product_id": line_id.product_id.id,
@@ -94,7 +91,6 @@ class CustomerReturn(models.Model):
 
                     "origin": "[RETURN]-{}".format(record.name),
                     "acc_inv_id": record.acc_inv_id.id
-                    # "price_unit": line_id.price_unit
                 }
                 stock_move = self.env['stock.move'].suspend_security().create(stock_move_data)
                 stock_move.action_done()
@@ -118,13 +114,6 @@ class CustomerReturn(models.Model):
                             tax_line_ids[key] += tax_price
                         else:
                             tax_line_ids[key] = tax_price
-                    # record.acc_inv_id.residual -= return_price_total_item
-                    # move_line_id = self.env["account.move.line"].suspend_security().search([
-                    #     ("move_id", "=", record.acc_inv_id.move_id.id),
-                    #     ("product_id", "=", line_id.product_id.id)
-                    # ], limit=1)
-                    # if move_line_id:
-                    #     move_line_id.amount_residual -= return_price_total_item
 
             for key, value in tax_line_ids.items():
                 tax_name = key[0]
@@ -137,6 +126,31 @@ class CustomerReturn(models.Model):
                     "debit": value,
                     "partner_id": record.partner_id.id
                 }])
+
+            setting = self.env["ir.model.data"].xmlid_to_object("dalsil_pkg_basic.dalsil_config")
+            move_data_stock = {
+                "journal_id": setting.inv_journal_id.id,
+                "ref": record.acc_inv_id.number,
+                "date": fields.Date.today(),
+                "state": "draft",
+                "line_ids": [(0, 0, {
+                    "name": record.acc_inv_id.number,
+                    "account_id": setting.inv_acc_debit_id.id,
+                    "credit": total_amount,
+                    "debit": 0.0,
+                    "partner_id": record.partner_id.id
+                }), (0, 0, {
+                    "name": record.acc_inv_id.number,
+                    "account_id": setting.inv_acc_credit_id.id,
+                    "debit": total_amount,
+                    "credit": 0.0,
+                    "partner_id": record.partner_id.id
+                })]
+            }
+            account_move = self.env['account.move'].create(move_data_stock)
+            account_move.post()
+
+
             line_ids.append([0, 0, {
                 "name": "/",
                 "account_id": record.partner_id.property_account_receivable_id.id,

@@ -10,11 +10,9 @@
                 <data>
                     <xpath expr="//button[@name='%(account.action_account_invoice_refund)d']" position="after">
                         <button type="object" name="generate_excel" string="Print Excel"
-                                class="oe_highlight"
-                                states="open,paid"/>
+                                class="oe_highlight"/>
                         <button type="object" name="generate_excel_do" string="Print DO Excel"
-                                class="oe_highlight"
-                                states="open,paid"/>
+                                class="oe_highlight"/>
                     </xpath>
                     <xpath expr="//button[@name='%(account.action_account_invoice_refund)d']" position="attributes">
                         <attribute name="invisible">1</attribute>
