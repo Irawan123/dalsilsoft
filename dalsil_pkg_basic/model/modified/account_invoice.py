@@ -20,6 +20,9 @@ class AccountInvoice(models.Model):
     Account Invoice
     """
     _inherit = "account.invoice"
+    _rec_name = "nomor_urut"
+
+    nomor_urut = fields.Char("Nomor")
     sales_id = fields.Many2one("res.partner", "Sales", domain="[('active', '=', True), ('is_sales', '=', True)]")
     jenis_inv = fields.Selection(JENIS_INVOICE, "Jenis Invoice", default=JENIS_INVOICE[0][0])
     picking_type_id = fields.Many2one("stock.picking.type", "Picking Type")
@@ -83,7 +86,7 @@ class AccountInvoice(models.Model):
                         "date": fields.Date.today(),
                         "date_expected": fields.Date.today(),
 
-                        "origin": "[PEMBELIAN]-{}".format(record.name),
+                        "origin": "[PEMBELIAN]-{}".format(record.nomor_urut),
                         "acc_inv_id": record.id,
                         "price_unit": line_id.price_unit
                     }
@@ -92,17 +95,17 @@ class AccountInvoice(models.Model):
 
                 move_data = {
                     "journal_id": setting.purc_journal_id.id,
-                    "ref": record.number,
+                    "ref": record.nomor_urut,
                     "date": fields.Date.today(),
                     "state": "draft",
                     "line_ids": [(0, 0, {
-                        "name": record.number,
+                        "name": record.nomor_urut,
                         "account_id": setting.purc_acc_debit_id.id,
                         "debit": record.amount_total,
                         "credit": 0.0,
                         "partner_id": record.partner_id.id
                     }), (0, 0, {
-                        "name": record.number,
+                        "name": record.nomor_urut,
                         "account_id": setting.purc_acc_credit_id.id,
                         "credit": record.amount_total,
                         "debit": 0.0,
@@ -142,7 +145,7 @@ class AccountInvoice(models.Model):
                         "date": fields.Date.today(),
                         "date_expected": fields.Date.today(),
 
-                        "origin": "[PEMBELIAN]-{}".format(record.name),
+                        "origin": "[PEMBELIAN]-{}".format(record.nomor_urut),
                         "acc_inv_id": record.id
                     }
                     stock_move = self.env['stock.move'].suspend_security().create(stock_move_data)
@@ -150,17 +153,17 @@ class AccountInvoice(models.Model):
 
                 move_data = {
                     "journal_id": setting.inv_journal_id.id,
-                    "ref": record.number,
+                    "ref": record.nomor_urut,
                     "date": fields.Date.today(),
                     "state": "draft",
                     "line_ids": [(0, 0, {
-                        "name": record.number,
+                        "name": record.nomor_urut,
                         "account_id": setting.inv_acc_debit_id.id,
                         "debit": record.amount_total,
                         "credit": 0.0,
                         "partner_id": record.partner_id.id
                     }), (0, 0, {
-                        "name": record.number,
+                        "name": record.nomor_urut,
                         "account_id": setting.inv_acc_credit_id.id,
                         "credit": record.amount_total,
                         "debit": 0.0,
@@ -185,6 +188,118 @@ class AccountInvoice(models.Model):
                 ])
                 fee_sales_ids.to_open()
         return acc_inv
+
+    @api.multi
+    def action_invoice_cancel(self):
+        state_before = ''
+        for record in self:
+            state_before = record.state
+        acc_inv = super(AccountInvoice, self).action_invoice_cancel()
+        if state_before != 'open':
+            return acc_inv
+        setting = self.env["ir.model.data"].xmlid_to_object("dalsil_pkg_basic.dalsil_config")
+        for record in self:
+            if record.jenis_inv == 'purchase':
+                for line_id in record.invoice_line_ids:
+                    stock_move_data = {
+                        "state": "assigned",
+
+                        # "picking_type_id": record.picking_type_id.id,
+                        "location_id": record.location_id.id,
+                        "location_dest_id": record.partner_id.property_stock_supplier.id,
+
+                        "partner_id": record.partner_id.id,
+                        # "picking_id": stock_picking_id.id,
+                        # "warehouse_id": record.picking_type_id.warehouse_id.id,
+
+                        "name": line_id.product_id.name,
+                        "product_id": line_id.product_id.id,
+                        "product_uom_qty": line_id.quantity,
+                        "product_uom": line_id.product_id.uom_id.id,
+                        "product_uos_qty": line_id.quantity,
+                        "product_uos": line_id.product_id.uom_id.id,
+
+                        "date": fields.Date.today(),
+                        "date_expected": fields.Date.today(),
+
+                        "origin": "[CANCEL-PEMBELIAN]-{}".format(record.nomor_urut),
+                        "acc_inv_id": record.id,
+                        "price_unit": line_id.price_unit
+                    }
+                    stock_move = self.env['stock.move'].suspend_security().create(stock_move_data)
+                    stock_move.action_done()
+
+                move_data = {
+                    "journal_id": setting.purc_journal_id.id,
+                    "ref": record.nomor_urut,
+                    "date": fields.Date.today(),
+                    "state": "draft",
+                    "line_ids": [(0, 0, {
+                        "name": record.nomor_urut,
+                        "account_id": setting.purc_acc_debit_id.id,
+                        "credit": record.amount_total,
+                        "debit": 0.0,
+                        "partner_id": record.partner_id.id
+                    }), (0, 0, {
+                        "name": record.nomor_urut,
+                        "account_id": setting.purc_acc_credit_id.id,
+                        "debit": record.amount_total,
+                        "credit": 0.0,
+                        "partner_id": record.partner_id.id
+                    })]
+                }
+                account_move = self.env['account.move'].create(move_data)
+                account_move.post()
+            elif record.jenis_inv == 'invoice':
+                for line_id in record.invoice_line_ids:
+                    stock_move_data = {
+                        "state": "assigned",
+
+                        # "picking_type_id": record.picking_type_id.id,
+                        "location_dest_id": line_id.location_id.id,
+                        "location_id": record.partner_id.property_stock_supplier.id,
+                        # "picking_id": stock_picking_id.id,
+                        # "warehouse_id": record.picking_type_id.warehouse_id.id,
+                        "partner_id": record.partner_id.id,
+
+                        "name": line_id.product_id.name,
+                        "product_id": line_id.product_id.id,
+                        "product_uom_qty": line_id.quantity,
+                        "product_uom": line_id.product_id.uom_id.id,
+                        "product_uos_qty": line_id.quantity,
+                        "product_uos": line_id.product_id.uom_id.id,
+
+                        "date": fields.Date.today(),
+                        "date_expected": fields.Date.today(),
+
+                        "origin": "[CANCEL-PENJUALAN]-{}".format(record.nomor_urut),
+                        "acc_inv_id": record.id
+                    }
+                    stock_move = self.env['stock.move'].suspend_security().create(stock_move_data)
+                    stock_move.action_done()
+                move_data = {
+                    "journal_id": setting.inv_journal_id.id,
+                    "ref": record.nomor_urut,
+                    "date": fields.Date.today(),
+                    "state": "draft",
+                    "line_ids": [(0, 0, {
+                        "name": record.nomor_urut,
+                        "account_id": setting.inv_acc_debit_id.id,
+                        "credit": record.amount_total,
+                        "debit": 0.0,
+                        "partner_id": record.partner_id.id
+                    }), (0, 0, {
+                        "name": record.nomor_urut,
+                        "account_id": setting.inv_acc_credit_id.id,
+                        "debit": record.amount_total,
+                        "credit": 0.0,
+                        "partner_id": record.partner_id.id
+                    })]
+                }
+                account_move = self.env['account.move'].create(move_data)
+                account_move.post()
+            record.nomor_urut = "[CANCEL]-{}".format(record.nomor_urut)
+            return acc_inv
 
     @api.one
     @api.depends('invoice_line_ids.price_subtotal', 'tax_line_ids.amount', 'currency_id', 'company_id', 'date_invoice', 'type')
@@ -245,7 +360,7 @@ class AccountInvoice(models.Model):
         ws.col(x+4).width = 4200
         ws.col(x+5).width = 6000
 
-        ws.write(y, x, "{} {}".format(title, self.number), style=style_header)
+        ws.write(y, x, "{} {}".format(title, self.nomor_urut), style=style_header)
         y += 1
         ws.write(y, x, "Tanggal Invoice")
         ws.write(y, x+2, self.date_invoice)
@@ -303,7 +418,7 @@ class AccountInvoice(models.Model):
         fp.close()
 
         return self.env["ss.download"].download(
-            "Invoice_{}.xls".format(self.number),
+            "Invoice_{}.xls".format(self.nomor_urut),
             data
         )
 
@@ -333,7 +448,7 @@ class AccountInvoice(models.Model):
         # ws.col(x + 3).width = 4500
         # ws.col(x + 4).width = 6000
 
-        ws.write(y, x, "{} {}".format(title, self.number), style=style_header)
+        ws.write(y, x, "{} {}".format(title, self.nomor_urut), style=style_header)
         y += 1
         ws.write(y, x, "Tanggal Invoice")
         ws.write(y, x + 1, self.date_invoice)
@@ -385,6 +500,6 @@ class AccountInvoice(models.Model):
         fp.close()
 
         return self.env["ss.download"].download(
-            "Invoice_{}.xls".format(self.number),
+            "Invoice_{}.xls".format(self.nomor_urut),
             data
         )
