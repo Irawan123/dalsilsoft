@@ -47,7 +47,8 @@ class GenFeeSales(models.Model):
             ("state", "=", 'open'),
             ("is_created_invoice", "=", False)
         ])
-        self.fee_ids = fee_sales_ids
+        if len(fee_sales_ids) > 0:
+            self.fee_ids = [(6, 0, fee_sales_ids.ids)]
 
     @api.multi
     def to_open(self):
