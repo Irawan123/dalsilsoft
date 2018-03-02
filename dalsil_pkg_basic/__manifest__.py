@@ -19,6 +19,7 @@
         'view/modified/res_partner.xml',
         'view/modified/account_invoice.xml',
         'view/modified/product_template.xml',
+        'view/modified/payment_term.xml',
 
         'view/config/config.xml',
         'view/config/wiz_config.xml',

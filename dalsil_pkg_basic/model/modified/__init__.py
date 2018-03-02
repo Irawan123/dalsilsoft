@@ -1,3 +1,4 @@
+import payment_term
 import stock_move
 import account_invoice
 import account_invoice_line

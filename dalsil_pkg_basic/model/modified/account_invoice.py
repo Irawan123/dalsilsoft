@@ -33,25 +33,29 @@ class AccountInvoice(models.Model):
     is_generated_pay_inv = fields.Boolean("Is Generated Payment Invoice", default=False)
 
     @api.model
+    def get_new_date(self, date, days_add):
+        obj_date = datetime.strptime(date, '%Y-%m-%d')
+        result = obj_date + timedelta(days=days_add)
+        return result.strftime('%Y-%m-%d')
+
+    @api.model
     def create(self, vals):
         """
         Mencegah user create kalo state != draft
         """
         acc_inv_id = super(AccountInvoice, self).create(vals)
         if acc_inv_id.jenis_inv == 'invoice':
-            for line_id in acc_inv_id.invoice_line_ids:
-                if acc_inv_id.sales_id:
-                    fee = line_id.product_id.fee * line_id.quantity
-                    self.env['dalsil.fee_sales'].create({
-                        'sales_id': acc_inv_id.sales_id.id,
-                        'invoice_id': acc_inv_id.id,
-                        'invoice_line_id': line_id.id,
-                        'due_date': acc_inv_id.date_due,
-                        'fee_sales': fee,
-                        'note': ""
-                    })
-
+            acc_inv_id.date_due = self.get_new_date(acc_inv_id.date_invoice, acc_inv_id.payment_term_id.due_days)
         return acc_inv_id
+
+    @api.multi
+    def write(self, vals):
+        acc_inv = super(AccountInvoice, self).write(vals)
+        for record in self:
+            date_due = self.get_new_date(record.date_invoice, record.payment_term_id.due_days)
+            if date_due != record.date_due:
+                record.date_due = date_due
+        return acc_inv
 
     @api.multi
     def to_allowed_plafon(self):
@@ -124,7 +128,18 @@ class AccountInvoice(models.Model):
                     total_credit = sum(inv_ids.mapped("amount_total"))
                     if total_credit > record.partner_id.plafon:
                         raise ValidationError("Credit customer sudah melibihi batas plafon.")
+                
                 for line_id in record.invoice_line_ids:
+                    if record.sales_id:
+                        fee = line_id.product_id.fee * line_id.quantity
+                        self.env['dalsil.fee_sales'].create({
+                            'sales_id': record.sales_id.id,
+                            'invoice_id': record.id,
+                            'invoice_line_id': line_id.id,
+                            'due_date': record.date_due,
+                            'fee_sales': fee,
+                            'note': ""
+                        })
                     stock_move_data = {
                         "state": "assigned",
 
@@ -328,11 +343,11 @@ class AccountInvoice(models.Model):
         Membuatkan journal untuk pembayran expense
         """
         self.ensure_one()
-        style_header = xlwt.easyxf('font: height 340, bold on')
+        style_default = xlwt.easyxf('font: height 240')
         style_header = xlwt.easyxf('font: height 280, bold on')
         style_bold = xlwt.easyxf('font: bold on; align: horz center; '
                                  'borders: left thin, top thin, bottom thin, right thin')
-        style_table = xlwt.easyxf('borders: left thin, bottom thin, right thin')
+        style_table = xlwt.easyxf('font: height 240; borders: left thin, bottom thin, right thin')
 
         wb = xlwt.Workbook("UTF-8")
         ws = wb.add_sheet('Invoice')
@@ -359,20 +374,32 @@ class AccountInvoice(models.Model):
         ws.col(x+3).width = 6000
         ws.col(x+4).width = 4200
         ws.col(x+5).width = 6000
+        ws.row(0).height_mismatch = 1
+        ws.row(0).height = 300
+        ws.row(1).height_mismatch = 1
+        ws.row(1).height = 280
+        ws.row(2).height_mismatch = 1
+        ws.row(2).height = 280
+        ws.row(3).height_mismatch = 1
+        ws.row(3).height = 280
+        ws.row(4).height_mismatch = 1
+        ws.row(4).height = 280
+        ws.row(5).height_mismatch = 1
+        ws.row(5).height = 280
 
         ws.write(y, x, "{} {}".format(title, self.nomor_urut), style=style_header)
         y += 1
-        ws.write(y, x, "Tanggal Invoice")
-        ws.write(y, x+2, self.date_invoice)
+        ws.write(y, x, "Tanggal Invoice", style=style_default)
+        ws.write(y, x+2, self.date_invoice, style=style_default)
         y += 1
-        ws.write(y, x, "Customer")
-        ws.write(y, x+2, self.partner_id.name)
+        ws.write(y, x, "Customer", style=style_default)
+        ws.write(y, x+2, self.partner_id.name, style=style_default)
         y += 1
         street_name = ""
         if self.partner_id.street:
             street_name = self.partner_id.street
-        ws.write(y, x, "Alamat")
-        ws.write(y, x+2, street_name)
+        ws.write(y, x, "Alamat", style=style_default)
+        ws.write(y, x+2, street_name, style=style_default)
         y += 2
 
         ws.write(y, x, "No", style=style_bold)
@@ -385,6 +412,8 @@ class AccountInvoice(models.Model):
 
         idx = 0
         for inv_line_id in self.invoice_line_ids:
+            ws.row(y).height_mismatch = 1
+            ws.row(y).height = 280
             idx += 1
             tax_name = ""
             for tax_id in inv_line_id.invoice_line_tax_ids:
@@ -397,7 +426,7 @@ class AccountInvoice(models.Model):
             ws.write(y, x+5, inv_line_id.quantity * inv_line_id.price_unit, style=style_table)
             y += 1
 
-        ws.write(y, x, "Pembayaran dgn cek/giro, dianggap sah jika telah diuangkan")
+        ws.write(y, x, "Pembayaran dgn cek/giro, dianggap sah jika telah diuangkan", style=style_table)
         ws.write(y, x+4, "Subtotal", style=style_table)
         ws.write(y, x+5, self.amount_untaxed, style=style_table)
         y += 1
@@ -407,9 +436,9 @@ class AccountInvoice(models.Model):
         ws.write(y, x+4, "Total", style=style_table)
         ws.write(y, x+5, self.amount_total, style=style_table)
         y += 3
-        ws.write(y, x+1, "Adm. Penjualan,")
+        ws.write(y, x+1, "Adm. Penjualan,", style=style_default)
         y += 3
-        ws.write(y, x+1, "(______________)")
+        ws.write(y, x+1, "(______________)", style=style_default)
 
         fp = StringIO()
         wb.save(fp)
@@ -428,11 +457,11 @@ class AccountInvoice(models.Model):
         Membuatkan journal untuk pembayran expense
         """
         self.ensure_one()
-        style_header = xlwt.easyxf('font: height 340, bold on')
+        style_default = xlwt.easyxf('font: height 240')
         style_header = xlwt.easyxf('font: height 280, bold on')
-        style_bold = xlwt.easyxf('font: bold on; align: horz center; '
+        style_bold = xlwt.easyxf('font: height 240, bold on; align: horz center; '
                                  'borders: left thin, top thin, bottom thin, right thin')
-        style_table = xlwt.easyxf('borders: left thin, bottom thin, right thin')
+        style_table = xlwt.easyxf('font: height 240; borders: left thin, bottom thin, right thin')
 
         wb = xlwt.Workbook("UTF-8")
         ws = wb.add_sheet('Invoice')
@@ -445,22 +474,36 @@ class AccountInvoice(models.Model):
         ws.col(x).width = 5000
         ws.col(x + 1).width = 15000
         ws.col(x + 2).width = 6000
+
+        ws.row(0).height_mismatch = 1
+        ws.row(0).height = 300
+        ws.row(1).height_mismatch = 1
+        ws.row(1).height = 280
+        ws.row(2).height_mismatch = 1
+        ws.row(2).height = 280
+        ws.row(3).height_mismatch = 1
+        ws.row(3).height = 280
+        ws.row(4).height_mismatch = 1
+        ws.row(4).height = 280
+        ws.row(5).height_mismatch = 1
+        ws.row(5).height = 280
+
         # ws.col(x + 3).width = 4500
         # ws.col(x + 4).width = 6000
 
         ws.write(y, x, "{} {}".format(title, self.nomor_urut), style=style_header)
         y += 1
-        ws.write(y, x, "Tanggal Invoice")
-        ws.write(y, x + 1, self.date_invoice)
+        ws.write(y, x, "Tanggal Invoice", style=style_default)
+        ws.write(y, x + 1, self.date_invoice, style=style_default)
         y += 1
-        ws.write(y, x, "Customer")
-        ws.write(y, x + 1, self.partner_id.name)
+        ws.write(y, x, "Customer", style=style_default)
+        ws.write(y, x + 1, self.partner_id.name, style=style_default)
         y += 1
         street_name = ""
         if self.partner_id.street:
             street_name = self.partner_id.street
-        ws.write(y, x, "Alamat")
-        ws.write(y, x + 1, street_name)
+        ws.write(y, x, "Alamat", style=style_default)
+        ws.write(y, x + 1, street_name, style=style_default)
         y += 2
 
         ws.write(y, x, "No", style=style_bold)
@@ -474,6 +517,8 @@ class AccountInvoice(models.Model):
         idx = 0
         sum_qty = sum(self.invoice_line_ids.mapped("quantity"))
         for inv_line_id in self.invoice_line_ids:
+            ws.row(y).height_mismatch = 1
+            ws.row(y).height = 280
             idx += 1
             tax_name = ""
             for tax_id in inv_line_id.invoice_line_tax_ids:
@@ -486,12 +531,12 @@ class AccountInvoice(models.Model):
             # ws.write(y, x + 5, inv_line_id.quantity * inv_line_id.price_unit, style=style_table)
             y += 1
 
-        ws.write(y, x + 1, "Jml. Qty:", style=xlwt.easyxf('align: horiz right'))
+        ws.write(y, x + 1, "Jml. Qty:", style=xlwt.easyxf('font: height 240; align: horiz right'))
         ws.write(y, x + 2, sum_qty, style=style_table)
         y += 3
-        ws.write(y, x, "Adm. Penjualan,         Pengambil               Mengetahui, ")
+        ws.write(y, x, "Adm. Penjualan,         Pengambil               Mengetahui, ", style=style_default)
         y += 3
-        ws.write(y, x, "(____________)       (___________)         (___________)")
+        ws.write(y, x, "(____________)       (___________)         (___________)", style=style_default)
 
         fp = StringIO()
         wb.save(fp)
