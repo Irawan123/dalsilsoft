@@ -17,10 +17,10 @@ class OutgoingCheckGiroLine(models.Model):
     bill_date = fields.Date("Bill Date", compute="_get_inv_data", store=True)
     due_date = fields.Date("Due Date", compute="_get_inv_data", store=True)
     source_doc = fields.Char("Source Document", compute="_get_inv_data", store=True)
-    total = fields.Integer("Total", compute="_get_inv_data", store=True)
-    to_pay = fields.Integer("To Pay", compute="_get_inv_data", store=True)
+    total = fields.Float("Total", (15, 2), compute="_get_inv_data", store=True)
+    to_pay = fields.Float("To Pay", (15, 2), compute="_get_inv_data", store=True)
 
-    payment = fields.Integer("Payment Amount", required=True)
+    payment = fields.Float("Payment Amount", (15, 2), required=True)
 
     @api.depends("invoice_id")
     def _get_inv_data(self):

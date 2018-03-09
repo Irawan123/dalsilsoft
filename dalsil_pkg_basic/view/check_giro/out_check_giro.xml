@@ -59,12 +59,18 @@
                                 class="oe_highlight"
                                 states="open"/>
                         <button type="object" name="to_cancel" string="Cancel"
-                                states="draft"/>
+                                states="draft,open"/>
                         <field name="state" widget="statusbar"
                                statusbar_visible="draft,open,withdraw"/>
                     </header>
 
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object" name="show_je" icon="fa-sitemap" class="oe_stat_button"
+                                    states="open,withdraw,cancel">
+                                <field name="je_count" string="Journal Entries" widget="statinfo"/>
+                            </button>
+                        </div>
                         <group>
                             <group>
                                 <field name="cg_type"/>

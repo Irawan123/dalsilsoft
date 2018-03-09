@@ -8,7 +8,7 @@ STATE = (
     ("cancel", _("Cancelled")),
 )
 CHECK_GIRO = (
-    ("check", _("Check")),
+    ("check", _("Cek")),
     ("giro", _("Giro"))
 )
 
@@ -25,27 +25,31 @@ class OutgoingCheckGiro(models.Model):
     def _default_currency(self):
         return self.env.user.company_id.currency_id.id
 
-    name = fields.Char("Check / Giro No.", required=True)
+    name = fields.Char("Cek / Giro No.", required=True)
     state = fields.Selection(STATE, "State")
-    cg_type = fields.Selection(CHECK_GIRO, "Check / Giro", required=True)
+    cg_type = fields.Selection(CHECK_GIRO, "Cek / Giro", required=True)
 
-    journal_id = fields.Many2one("account.journal", "Check Giro Journal", required=True)
-    account_id = fields.Many2one("account.account", "Check Giro Account", required=True)
+    journal_id = fields.Many2one("account.journal", "Cek Giro Journal", required=True)
+    account_id = fields.Many2one("account.account", "Cek Giro Account", required=True)
     vendor_id = fields.Many2one("res.partner", "Vendor", domain=[("supplier", "=", True)], required=True)
     due_date = fields.Date("Due Date", required=True)
-    cg_amount = fields.Integer("Check Giro Amount", required=True)
+    cg_amount = fields.Float("Cek Giro Amount", (15, 2), required=True)
     cg_curr_id = fields.Many2one("res.currency", default=_default_currency)
 
     wd_journal_id = fields.Many2one("account.journal", "Withdraw Journal")
     wd_account_id = fields.Many2one("account.account", "Withdraw Account")
     wd_date = fields.Date("Withdraw Date")
-    wd_amount = fields.Integer("Withdraw Amount", required=True)
+    wd_amount = fields.Float("Withdraw Amount", (15, 2), required=True)
 
-    total_pay = fields.Integer("Total Payment Amount", compute="_get_total_pay", store=True)
+    total_pay = fields.Float("Total Payment Amount", (15, 2), compute="_get_total_pay", store=True)
     memo = fields.Text("Memo")
     note = fields.Text("Note")
 
     line_ids = fields.One2many("dalsil.check_giro.out.line", "parent_id", "Transaction")
+
+    # history account.move / journal entries
+    je_ids = fields.Many2many("account.move", "isme_check_giro_in_je_rel")
+    je_count = fields.Integer("Journal Entries", compute="_get_je_count")
 
     #################### Compute ####################
     @api.depends("line_ids", "line_ids.payment")
@@ -55,6 +59,14 @@ class OutgoingCheckGiro(models.Model):
         """
         for record in self:
             record.total_pay = sum(record.line_ids.mapped("payment"))
+
+    @api.depends("je_ids")
+    def _get_je_count(self):
+        """
+        Menghitung jumlah journal entry yg dibuat.
+        """
+        for record in self:
+            record.je_count = len(record.je_ids)
 
     #################### Private ####################
     @api.multi
@@ -68,7 +80,7 @@ class OutgoingCheckGiro(models.Model):
             if record.cg_amount != record.total_pay:
                 msg = _(
                     "Outgoing Check Giro Unbalanced!\n"
-                    "Check Giro Amount ({cg_amount}) != Total Payment Amount ({total_pay})"
+                    "Cek Giro Amount ({cg_amount}) != Total Payment Amount ({total_pay})"
                 )
                 raise ValidationError(msg.format(cg_amount=record.cg_amount, total_pay=record.total_pay))
 
@@ -97,6 +109,18 @@ class OutgoingCheckGiro(models.Model):
 
         return payment_method
 
+    @api.multi
+    def show_je(self):
+        """
+        Menampilkan data journal entry yg terbuat
+        """
+        self.ensure_one()
+
+        return self.show_record(
+            "account.move", _("Journal Entries"), view_mode="tree,form",
+            domain=[("id", "in", self.je_ids.ids)]
+        )
+
     #################### State ####################
     @api.multi
     def to_validate(self):
@@ -123,11 +147,13 @@ class OutgoingCheckGiro(models.Model):
                     "debit": line.payment,
                     "date_maturity": fields.Date.today()
                 }))
-            move_env.create({
+            move = move_env.create({
                 "journal_id": record.journal_id.id,
                 "date": fields.Date.today(),
                 "line_ids": lines
-            }).post()
+            })
+            move.post()
+            record.je_ids = [(4, move.id)]
 
         self._cstate(STATE[1][0])
 
@@ -168,10 +194,11 @@ class OutgoingCheckGiro(models.Model):
                     if move.debit > 0.0:
                         MoveLine.update(account_id=record.account_id.id).where(MoveLine.id == move.id).execute()
                     elif move.credit > 0.0:
-                        if not record.wd_journal_id.default_credit_account_id:
-                            raise ValidationError(_("Please set default debit in withdraw journal"))
-                        MoveLine.update(account_id=record.wd_journal_id.default_credit_account_id.id). \
+                        MoveLine.update(account_id=record.wd_journal_id.wd_account_id.id). \
                             where(MoveLine.id == move.id).execute()
+
+                move_ids = acc_pay.move_line_ids.mapped("move_id").ids
+                record.je_ids = list((4, move_id) for move_id in move_ids)
 
         self._cstate(STATE[2][0])
 
@@ -180,6 +207,13 @@ class OutgoingCheckGiro(models.Model):
         """
         Ubah state jadi cancel
         """
+        for record in self:
+            if record.state == STATE[1][0]:
+                # reverse journal
+                for mv in record.je_ids:
+                    mv_rev = mv.reverse_moves()
+                    record.je_ids = [(4, move_id) for move_id in mv_rev]
+
         self._cstate(STATE[3][0])
 
     #################### Onchange ####################
