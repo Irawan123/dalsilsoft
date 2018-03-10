@@ -194,7 +194,7 @@ class OutgoingCheckGiro(models.Model):
                     if move.debit > 0.0:
                         MoveLine.update(account_id=record.account_id.id).where(MoveLine.id == move.id).execute()
                     elif move.credit > 0.0:
-                        MoveLine.update(account_id=record.wd_journal_id.wd_account_id.id). \
+                        MoveLine.update(account_id=record.wd_account_id.id). \
                             where(MoveLine.id == move.id).execute()
 
                 move_ids = acc_pay.move_line_ids.mapped("move_id").ids
