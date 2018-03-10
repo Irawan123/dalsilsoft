@@ -48,7 +48,7 @@ class OutgoingCheckGiro(models.Model):
     line_ids = fields.One2many("dalsil.check_giro.out.line", "parent_id", "Transaction")
 
     # history account.move / journal entries
-    je_ids = fields.Many2many("account.move", "isme_check_giro_in_je_rel")
+    je_ids = fields.Many2many("account.move", "isme_check_giro_out_je_rel")
     je_count = fields.Integer("Journal Entries", compute="_get_je_count")
 
     #################### Compute ####################
