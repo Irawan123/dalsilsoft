@@ -129,6 +129,8 @@
                   action="act_dalsil_report_stock" parent="dalsil_menu_report"/>
         <menuitem id="dalsil_menu_report_summary_stock" name="Laporan Summary Stok" sequence="30"
                   action="act_dalsil_report_summary_stock" parent="dalsil_menu_report"/>
+        <menuitem id="dalsil_menu_report_invoice" name="Laporan Invoice" sequence="40"
+                  action="act_dalsil_report_invoice" parent="dalsil_menu_report"/>
 
 
         <!-- Menu Configuration -->

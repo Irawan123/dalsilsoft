@@ -55,6 +55,7 @@
         'view/report/report_stock.xml',
         'view/report/report_summary_stock.xml',
         'view/report/account_invoice.xml',
+        'view/report/report_invoice.xml',
 
         'view/menu.xml',
 
