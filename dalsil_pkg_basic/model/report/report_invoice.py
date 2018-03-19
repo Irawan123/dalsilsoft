@@ -120,6 +120,7 @@ class ReportInvoice(models.TransientModel):
         invoice_line_ids = self.env["account.invoice.line"].sudo().search(domain, order="create_date ASC")
         no_urut = 1
         grand_total = 0
+        grand_qty = 0
         for invoice_line_id in invoice_line_ids:
             ws.write(y, x, no_urut, style=style_table)
             ws.write(y, x+1, invoice_line_id.invoice_id.nomor_urut, style=style_table)
@@ -130,8 +131,11 @@ class ReportInvoice(models.TransientModel):
             ws.write(y, x+6, invoice_line_id.price_unit, style=style_table)
             ws.write(y, x+7, invoice_line_id.price_subtotal, style=style_table)
             grand_total += invoice_line_id.price_subtotal
+            grand_qty += invoice_line_id.quantity
             no_urut += 1
             y += 1
+        ws.write(y, x+4, "Total Jumlah", style=style_table)
+        ws.write(y, x+5, grand_qty, style=style_table)
         ws.write(y, x+6, "Total", style=style_table)
         ws.write(y, x+7, grand_total, style=style_table)
 
