@@ -54,8 +54,8 @@ class ReportInvoice(models.TransientModel):
     product_id = fields.Many2one("product.product", 'Product', domain=[('active', '=', True)])
     partner_id = fields.Many2one("res.partner", "Customer / Vendor", domain="[('active', '=', True), '|', ('customer', '=', True), ('supplier', '=', True)]")
     jenis_inv = fields.Selection(JENIS_INVOICE, "Jenis Invoice")
-    month = fields.Selection(MONTH, "Bulan")
-    year = fields.Char("Year", size=4)
+    start_date = fields.Date('Tanggal Mulai', default=fields.Date.today())
+    end_date = fields.Date('Tanggal Akhir', default=fields.Date.today())
 
     #################### Button ####################
     def generate_excel(self):
@@ -80,7 +80,7 @@ class ReportInvoice(models.TransientModel):
 
         ws.write(y, x, 'LAPORAN INVOICE', style=style_header)
         y += 1
-        ws.write(y, x, '{} {}'.format(DICT_MONTH[self.month], self.year), style=style_header)
+        ws.write(y, x, '{} - {}'.format(self.start_date, self.end_date), style=style_header)
         y += 2
 
         ws.write(y, x, 'Product', style=xlwt.easyxf('font: bold on'))
@@ -100,14 +100,9 @@ class ReportInvoice(models.TransientModel):
         ws.write(y, x+7, "Subtotal", style=style_bold)
         y += 1
 
-        year = int(self.year)
-        month = int(self.month) + 1
-        if month == 13:
-            month = 1
-            year += 1
         domain = [
-            ("invoice_id.date_invoice", ">=", "{}-{}-01 00:00:00".format(self.year, self.month.zfill(2))),
-            ("invoice_id.date_invoice", "<", "{}-{}-01 00:00:00".format(year, str(month).zfill(2))),
+            ("invoice_id.date_invoice", ">=", "{} 00:00:00".format(self.start_date)),
+            ("invoice_id.date_invoice", "<=", "{} 23:59:59".format(self.end_date)),
             ("invoice_id.state", "!=", "cancel")
         ]
         if self.product_id:

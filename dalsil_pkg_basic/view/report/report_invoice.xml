@@ -13,8 +13,8 @@
                         <field name="product_id" create="0"/>
                         <field name="partner_id" create="0"/>
                         <field name="jenis_inv" />
-                        <field name="month" required="1"/>
-                        <field name="year" required="1"/>
+                        <field name="start_date" required="1"/>
+                        <field name="end_date" required="1"/>
                     </group>
                     <footer>
                         <button type="object" name="generate_excel" string="Generate Excel"
