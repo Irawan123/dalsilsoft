@@ -26,6 +26,7 @@ class FeeSales(models.Model):
     note = fields.Text("Note")
     state = fields.Selection(STATE, "State")
     is_created_invoice = fields.Boolean("Is Created Invoice", default=False)
+    gen_fee_sales_id = fields.Many2one("dalsil.gen_fee_sales", "Generate Fee Sales")
 
     @api.multi
     def to_open(self):

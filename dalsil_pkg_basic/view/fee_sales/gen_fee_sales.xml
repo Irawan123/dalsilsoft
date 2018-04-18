@@ -76,7 +76,7 @@
                         </group>
                         <notebook>
                             <page string="Fee Sales">
-                                <field name="fee_ids"/>
+                                <field name="fee_sales_ids"/>
                                 <group class="oe_subtotal_footer oe_right">
                                     <field name="total_fee_sales" widget="monetary" class="oe_subtotal_footer_separator"/>
                                 </group>

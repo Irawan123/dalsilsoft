@@ -28,27 +28,29 @@ class GenFeeSales(models.Model):
     sales_id = fields.Many2one("res.partner", "Sales", domain="[('active', '=', True), ('is_sales', '=', True)]")
     fee_ids = fields.Many2many("dalsil.fee_sales", "dalsil_fee_sales_gen_rel", string="Fee Sales",
         domain="[('sales_id', '=', sales_id), ('state', '=', 'open'), ('is_created_invoice', '=', False)]")
+    fee_sales_ids = fields.One2many("dalsil.fee_sales", "gen_fee_sales_id", string="Fee Sales", compute="_get_fee_sales", store=True)
     fee_payment_term_id = fields.Many2one('account.payment.term', string='Fee Payment Terms')
     # fee_invoice_id = fields.Many2one("account.invoice", "Invoice Fee Sales", readonly="1")
     note = fields.Text("Note")
     state = fields.Selection(STATE, "State")
     total_fee_sales = fields.Float("Total Fee Sales", digits=(20,2), compute="_get_total", store=True)
 
-    @api.depends("fee_ids", "fee_ids.fee_sales")
+    @api.depends("fee_sales_ids", "fee_sales_ids.fee_sales")
     def _get_total(self):
         for record in self:
-            record.total_fee_sales = sum(record.fee_ids.mapped("fee_sales"))
+            record.total_fee_sales = sum(record.fee_sales_ids.mapped("fee_sales"))
 
-    @api.onchange("sales_id")
-    def _onchange_sales(self):
-        self.fee_ids = [(5, 0)]
-        fee_sales_ids = self.env["dalsil.fee_sales"].suspend_security().search([
+    @api.depends("sales_id")
+    def _get_fee_sales(self):
+        # self.fee_sales_ids.write({'gen_fee_sales_id': False})
+        self.fee_sales_ids = self.env["dalsil.fee_sales"].suspend_security().search([
             ("sales_id", "=", self.sales_id.id),
             ("state", "=", 'open'),
             ("is_created_invoice", "=", False)
         ])
-        if len(fee_sales_ids) > 0:
-            self.fee_ids = [(6, 0, fee_sales_ids.ids)]
+        # if len(fee_sales_ids) > 0:
+        #     fee_sales_ids.write({'gen_fee_sales_id': self.id})
+        #     import pdb;pdb.set_trace()
 
     @api.multi
     def to_open(self):
@@ -56,10 +58,10 @@ class GenFeeSales(models.Model):
             record = record.suspend_security()
             if record.state != STATE[0][0]:
                 continue
-            for fee_id in record.fee_ids:
+            for fee_id in record.fee_sales_ids:
                 if fee_id.is_created_invoice == True:
                     raise ValidationError("Fee Sales no {} sudah mempunyai account invoice.".format(fee_id.name))
-            record.fee_ids.write({
+            record.fee_sales_ids.write({
                 "is_created_invoice": True
             })
 
@@ -75,7 +77,7 @@ class GenFeeSales(models.Model):
                     'product_id': setting.product_fee.id,
                     'name': 'Fee Sales No ({})'.format(record.name),
                     'quantity': 1.0,
-                    'price_unit': sum(record.fee_ids.mapped("fee_sales")),
+                    'price_unit': sum(record.fee_sales_ids.mapped("fee_sales")),
                     'account_id': setting.fee_acc_id.id
                 })]
             }
@@ -89,7 +91,7 @@ class GenFeeSales(models.Model):
             record = record.suspend_security()
             if record.state != STATE[1][0]:
                 continue
-            record.fee_ids.to_paid()
+            record.fee_sales_ids.to_paid()
             record._cstate(STATE[2][0])
 
     @api.multi
@@ -127,7 +129,7 @@ class GenFeeSales(models.Model):
         ws.write(y, x+7, "Subtotal Fee", style=style_bold)
         y += 1
         grand_total_fee = 0
-        for fee_id in self.fee_ids:
+        for fee_id in self.fee_sales_ids:
             grand_total_fee += fee_id.fee_sales
             ws.write(y, x, fee_id.invoice_id.date_invoice, style=style_table)
             ws.write(y, x+1, fee_id.invoice_id.number, style=style_table)
