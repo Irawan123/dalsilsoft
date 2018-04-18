@@ -472,7 +472,7 @@ class AccountInvoice(models.Model):
         x = 0
 
         ws.col(x).width = 5000
-        ws.col(x + 1).width = 15000
+        ws.col(x + 1).width = 12000
         ws.col(x + 2).width = 6000
 
         ws.row(0).height_mismatch = 1
