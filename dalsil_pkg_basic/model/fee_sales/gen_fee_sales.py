@@ -35,19 +35,26 @@ class GenFeeSales(models.Model):
     state = fields.Selection(STATE, "State")
     total_fee_sales = fields.Float("Total Fee Sales", digits=(20,2), compute="_get_total", store=True)
 
+    start_date = fields.Date('Tanggal Mulai', default=fields.Date.today())
+    end_date = fields.Date('Tanggal Akhir', default=fields.Date.today())
+
     @api.depends("fee_sales_ids", "fee_sales_ids.fee_sales")
     def _get_total(self):
         for record in self:
             record.total_fee_sales = sum(record.fee_sales_ids.mapped("fee_sales"))
 
-    @api.depends("sales_id")
+    @api.depends("sales_id", "start_date", "end_date")
     def _get_fee_sales(self):
         # self.fee_sales_ids.write({'gen_fee_sales_id': False})
-        self.fee_sales_ids = self.env["dalsil.fee_sales"].suspend_security().search([
-            ("sales_id", "=", self.sales_id.id),
-            ("state", "=", 'open'),
-            ("is_created_invoice", "=", False)
-        ])
+        for record in self:
+            if record.start_date and record.end_date:
+                record.fee_sales_ids = self.env["dalsil.fee_sales"].suspend_security().search([
+                    ("sales_id", "=", record.sales_id.id),
+                    ("state", "in", ['open','draft','expired']),
+                    ("is_created_invoice", "=", False),
+                    ("due_date", ">=", record.start_date),
+                    ("due_date", "<=", record.end_date),
+                ])
         # if len(fee_sales_ids) > 0:
         #     fee_sales_ids.write({'gen_fee_sales_id': self.id})
         #     import pdb;pdb.set_trace()
@@ -65,6 +72,10 @@ class GenFeeSales(models.Model):
                 "is_created_invoice": True
             })
 
+            fee_sales = 0
+            for fee_sales_id in record.fee_sales_ids:
+                if fee_sales_id.state == 'open':
+                    fee_sales += fee_sales_id.fee_sales
             setting = self.env["ir.model.data"].xmlid_to_object("dalsil_pkg_basic.dalsil_config")
             vals = {
                 'jenis_inv': "fee",
@@ -77,7 +88,7 @@ class GenFeeSales(models.Model):
                     'product_id': setting.product_fee.id,
                     'name': 'Fee Sales No ({})'.format(record.name),
                     'quantity': 1.0,
-                    'price_unit': sum(record.fee_sales_ids.mapped("fee_sales")),
+                    'price_unit': fee_sales,
                     'account_id': setting.fee_acc_id.id
                 })]
             }
@@ -91,7 +102,10 @@ class GenFeeSales(models.Model):
             record = record.suspend_security()
             if record.state != STATE[1][0]:
                 continue
-            record.fee_sales_ids.to_paid()
+
+            for fee_sales_id in record.fee_sales_ids:
+                if fee_sales_id.state == 'open':
+                    fee_sales_id.to_paid()
             record._cstate(STATE[2][0])
 
     @api.multi
@@ -114,34 +128,36 @@ class GenFeeSales(models.Model):
 
         ws.write(y, x, 'LAPORAN FEE SALES', style=style_header)
         y += 1
-        ws.write(y, x, 'Tanggal Print {}'.format(fields.Date.today()), style=xlwt.easyxf('font: bold on'))
+        ws.write(y, x, '{} - {}'.format(self.start_date, self.end_date), style=xlwt.easyxf('font: bold on'))
         y += 1
         ws.write(y, x, 'Sales: {}'.format(self.sales_id.name), style=style_header)
         y += 2
 
         ws.write(y, x, "Tanggal Invoice", style=style_bold)
         ws.write(y, x+1, "Document Invoice", style=style_bold)
-        ws.write(y, x+2, "Tanggal Jatuh Tempo", style=style_bold)
-        ws.write(y, x+3, "Tanggal Pembayaran", style=style_bold)        
-        ws.write(y, x+4, "Barang", style=style_bold)
-        ws.write(y, x+5, "Jumlah", style=style_bold)
-        ws.write(y, x+6, "Fee Per Barang", style=style_bold)
-        ws.write(y, x+7, "Subtotal Fee", style=style_bold)
+        ws.write(y, x+2, "Customer", style=style_bold)
+        ws.write(y, x+3, "Tanggal Jatuh Tempo", style=style_bold)
+        ws.write(y, x+4, "Tanggal Pembayaran", style=style_bold)        
+        ws.write(y, x+5, "Barang", style=style_bold)
+        ws.write(y, x+6, "Jumlah", style=style_bold)
+        ws.write(y, x+7, "Fee Per Barang", style=style_bold)
+        ws.write(y, x+8, "Subtotal Fee", style=style_bold)
         y += 1
         grand_total_fee = 0
         for fee_id in self.fee_sales_ids:
             grand_total_fee += fee_id.fee_sales
             ws.write(y, x, fee_id.invoice_id.date_invoice, style=style_table)
             ws.write(y, x+1, fee_id.invoice_id.number, style=style_table)
-            ws.write(y, x+2, fee_id.due_date, style=style_table)
-            ws.write(y, x+3, fee_id.invoice_id.dt_full_paid, style=style_table)
-            ws.write(y, x+4, fee_id.invoice_line_id.product_id.name, style=style_table)
-            ws.write(y, x+5, fee_id.invoice_line_id.quantity, style=style_table)
-            ws.write(y, x+6, fee_id.fee_sales / fee_id.invoice_line_id.quantity, style=style_table)
-            ws.write(y, x+7, fee_id.fee_sales, style=style_table)
+            ws.write(y, x+2, fee_id.invoice_id.partner_id.name, style=style_table)
+            ws.write(y, x+3, fee_id.due_date, style=style_table)
+            ws.write(y, x+4, fee_id.invoice_id.dt_full_paid, style=style_table)
+            ws.write(y, x+5, fee_id.invoice_line_id.product_id.name, style=style_table)
+            ws.write(y, x+6, fee_id.invoice_line_id.quantity, style=style_table)
+            ws.write(y, x+7, fee_id.fee_sales / fee_id.invoice_line_id.quantity, style=style_table)
+            ws.write(y, x+8, fee_id.fee_sales, style=style_table)
             y += 1
-        ws.write(y, x+6, "Total Fee Sales:", style=style_table)
-        ws.write(y, x+7, grand_total_fee, style=style_table)
+        ws.write(y, x+7, "Total Fee Sales:", style=style_table)
+        ws.write(y, x+8, grand_total_fee, style=style_table)
         fp = StringIO()
         wb.save(fp)
         fp.seek(0)
