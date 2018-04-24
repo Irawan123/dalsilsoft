@@ -153,7 +153,7 @@ class GenFeeSales(models.Model):
             ws.write(y, x+4, fee_id.invoice_id.dt_full_paid, style=style_table)
             ws.write(y, x+5, fee_id.invoice_line_id.product_id.name, style=style_table)
             ws.write(y, x+6, fee_id.invoice_line_id.quantity, style=style_table)
-            ws.write(y, x+7, fee_id.fee_sales / fee_id.invoice_line_id.quantity, style=style_table)
+            ws.write(y, x+7, (fee_id.fee_sales / fee_id.invoice_line_id.quantity) if fee_id.invoice_line_id.quantity > 0 else fee_id.fee_sales, style=style_table)
             ws.write(y, x+8, fee_id.fee_sales, style=style_table)
             y += 1
         ws.write(y, x+7, "Total Fee Sales:", style=style_table)
