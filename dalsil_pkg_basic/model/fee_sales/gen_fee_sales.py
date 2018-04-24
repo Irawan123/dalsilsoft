@@ -145,7 +145,11 @@ class GenFeeSales(models.Model):
         y += 1
         grand_total_fee = 0
         for fee_id in self.fee_sales_ids:
-            grand_total_fee += fee_id.fee_sales
+            fee_sales = 0
+            if fee_id.state == 'open':
+                fee_sales = fee_id.fee_sales
+
+            grand_total_fee += fee_sales
             ws.write(y, x, fee_id.invoice_id.date_invoice, style=style_table)
             ws.write(y, x+1, fee_id.invoice_id.number, style=style_table)
             ws.write(y, x+2, fee_id.invoice_id.partner_id.name, style=style_table)
@@ -154,7 +158,7 @@ class GenFeeSales(models.Model):
             ws.write(y, x+5, fee_id.invoice_line_id.product_id.name, style=style_table)
             ws.write(y, x+6, fee_id.invoice_line_id.quantity, style=style_table)
             ws.write(y, x+7, (fee_id.fee_sales / fee_id.invoice_line_id.quantity) if fee_id.invoice_line_id.quantity > 0 else fee_id.fee_sales, style=style_table)
-            ws.write(y, x+8, fee_id.fee_sales, style=style_table)
+            ws.write(y, x+8, fee_sales, style=style_table)
             y += 1
         ws.write(y, x+7, "Total Fee Sales:", style=style_table)
         ws.write(y, x+8, grand_total_fee, style=style_table)
