@@ -41,7 +41,11 @@ class GenFeeSales(models.Model):
     @api.depends("fee_sales_ids", "fee_sales_ids.fee_sales")
     def _get_total(self):
         for record in self:
-            record.total_fee_sales = sum(record.fee_sales_ids.mapped("fee_sales"))
+            total_fee_sales = 0
+            for fee_sales_id in record.fee_sales_ids:
+                if fee_sales_id.state == 'open':
+                    total_fee_sales += fee_sales_id.fee_sales
+            record.total_fee_sales = total_fee_sales
 
     @api.depends("sales_id", "start_date", "end_date")
     def _get_fee_sales(self):
