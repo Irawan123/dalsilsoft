@@ -413,7 +413,7 @@ class AccountInvoice(models.Model):
         idx = 0
         for inv_line_id in self.invoice_line_ids:
             ws.row(y).height_mismatch = 1
-            ws.row(y).height = 280
+            ws.row(y).height = 320
             idx += 1
             tax_name = ""
             for tax_id in inv_line_id.invoice_line_tax_ids:
@@ -426,13 +426,16 @@ class AccountInvoice(models.Model):
             ws.write(y, x+5, inv_line_id.quantity * inv_line_id.price_unit, style=style_table)
             y += 1
 
+        ws.row(y).height = 320
         ws.write(y, x, "Pembayaran dgn cek/giro, dianggap sah jika telah diuangkan", style=style_table)
         ws.write(y, x+4, "Subtotal", style=style_table)
         ws.write(y, x+5, self.amount_untaxed, style=style_table)
         y += 1
+        ws.row(y).height = 320
         ws.write(y, x+4, "Taxes", style=style_table)
         ws.write(y, x+5, self.amount_tax, style=style_table)
         y += 1
+        ws.row(y).height = 320
         ws.write(y, x+4, "Total", style=style_table)
         ws.write(y, x+5, self.amount_total, style=style_table)
         y += 3
