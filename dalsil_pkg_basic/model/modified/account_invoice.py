@@ -521,7 +521,7 @@ class AccountInvoice(models.Model):
         sum_qty = sum(self.invoice_line_ids.mapped("quantity"))
         for inv_line_id in self.invoice_line_ids:
             ws.row(y).height_mismatch = 1
-            ws.row(y).height = 280
+            ws.row(y).height = 320
             idx += 1
             tax_name = ""
             for tax_id in inv_line_id.invoice_line_tax_ids:
@@ -534,6 +534,7 @@ class AccountInvoice(models.Model):
             # ws.write(y, x + 5, inv_line_id.quantity * inv_line_id.price_unit, style=style_table)
             y += 1
 
+        ws.row(y).height = 320
         ws.write(y, x + 1, "Jml. Qty:", style=xlwt.easyxf('font: height 240; align: horiz right'))
         ws.write(y, x + 2, sum_qty, style=style_table)
         y += 3
