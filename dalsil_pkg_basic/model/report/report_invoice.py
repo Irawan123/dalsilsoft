@@ -85,19 +85,20 @@ class ReportInvoice(models.TransientModel):
 
         ws.write(y, x, 'Product', style=xlwt.easyxf('font: bold on'))
         ws.write(y, x+2, str(self.product_id.name))
-        y += 1
-        ws.write(y, x, 'Pembeli / Penjual', style=xlwt.easyxf('font: bold on'))
-        ws.write(y, x+2, str(self.partner_id.name))
+        # y += 1
+        # ws.write(y, x, 'Pembeli / Penjual', style=xlwt.easyxf('font: bold on'))
+        # ws.write(y, x+2, str(self.partner_id.name))
         y += 2
 
         ws.write(y, x, "No.", style=style_bold)
         ws.write(y, x+1, "No Dokumen", style=style_bold)
-        ws.write(y, x+2, "Tanggal Invoice", style=style_bold)
-        ws.write(y, x+3, "Status Dokumen", style=style_bold)
-        ws.write(y, x+4, "Sales", style=style_bold)
-        ws.write(y, x+5, "Qty", style=style_bold)
-        ws.write(y, x+6, "Harga", style=style_bold)
-        ws.write(y, x+7, "Subtotal", style=style_bold)
+        ws.write(y, x+2, "Pembeli / Penjual", style=style_bold)
+        ws.write(y, x+3, "Tanggal Invoice", style=style_bold)
+        ws.write(y, x+4, "Status Dokumen", style=style_bold)
+        ws.write(y, x+5, "Sales", style=style_bold)
+        ws.write(y, x+6, "Qty", style=style_bold)
+        ws.write(y, x+7, "Harga", style=style_bold)
+        ws.write(y, x+8, "Subtotal", style=style_bold)
         y += 1
 
         domain = [
@@ -119,20 +120,21 @@ class ReportInvoice(models.TransientModel):
         for invoice_line_id in invoice_line_ids:
             ws.write(y, x, no_urut, style=style_table)
             ws.write(y, x+1, invoice_line_id.invoice_id.nomor_urut, style=style_table)
-            ws.write(y, x+2, invoice_line_id.invoice_id.date_invoice, style=style_table)
-            ws.write(y, x+3, invoice_line_id.invoice_id.state, style=style_table)
-            ws.write(y, x+4, invoice_line_id.invoice_id.sales_id.name, style=style_table)
-            ws.write(y, x+5, invoice_line_id.quantity, style=style_table)
-            ws.write(y, x+6, invoice_line_id.price_unit, style=style_table)
-            ws.write(y, x+7, invoice_line_id.price_subtotal, style=style_table)
+            ws.write(y, x+2, invoice_line_id.invoice_id.partner_id.name, style=style_table)
+            ws.write(y, x+3, invoice_line_id.invoice_id.date_invoice, style=style_table)
+            ws.write(y, x+4, invoice_line_id.invoice_id.state, style=style_table)
+            ws.write(y, x+5, invoice_line_id.invoice_id.sales_id.name, style=style_table)
+            ws.write(y, x+6, invoice_line_id.quantity, style=style_table)
+            ws.write(y, x+7, invoice_line_id.price_unit, style=style_table)
+            ws.write(y, x+8, invoice_line_id.price_subtotal, style=style_table)
             grand_total += invoice_line_id.price_subtotal
             grand_qty += invoice_line_id.quantity
             no_urut += 1
             y += 1
-        ws.write(y, x+4, "Total Jumlah", style=style_table)
-        ws.write(y, x+5, grand_qty, style=style_table)
-        ws.write(y, x+6, "Total", style=style_table)
-        ws.write(y, x+7, grand_total, style=style_table)
+        ws.write(y, x+5, "Total Jumlah", style=style_table)
+        ws.write(y, x+6, grand_qty, style=style_table)
+        ws.write(y, x+7, "Total", style=style_table)
+        ws.write(y, x+8, grand_total, style=style_table)
 
         fp = StringIO()
         wb.save(fp)
